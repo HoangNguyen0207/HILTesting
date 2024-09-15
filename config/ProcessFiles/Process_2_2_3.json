@@ -1,0 +1,16 @@
+{
+    "name": "TestProcess_2_2_3",
+    "type": 18,
+    "param": {
+        "tmsAziLowerLimitedPos": -2,
+        "tmsAziUpperLimitedPos": 2,
+		"tmsAziMinVelocity": 0.01,
+		"tmsElvLowerLimitedPos": -1,
+		"tmsElvUpperLimitedPos": 1,
+		"tmsElvMinVelocity": 0.01
+    },
+	"spec": {
+		"tmsAziMinVelocity": 0.01,
+		"tmsElvMinVelocity": 0.01
+	}
+}

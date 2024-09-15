@@ -1,0 +1,20 @@
+{
+    "name": "TestProcess_1_2_6_7",
+    "type": 9,
+    "param": {
+        "fmsTxUpperLimitedPos": 0.25,
+        "fmsTyUpperLimitedPos": 0.25,
+        "fmsTzUpperLimitedPos": 0.25,
+        "fmsTxLowerLimitedPos": -0.25,
+        "fmsTyLowerLimitedPos": -0.25,
+        "fmsTzLowerLimitedPos": -0.25
+    },
+	"spec": {
+		"fmsTxUpperLimitedPos": 0.25,
+		"fmsTyUpperLimitedPos": 0.25,
+		"fmsTzUpperLimitedPos": 0.25,
+        "fmsTxLowerLimitedPos": -0.25,
+		"fmsTyLowerLimitedPos": -0.25,
+        "fmsTzLowerLimitedPos": -0.25
+	}
+}

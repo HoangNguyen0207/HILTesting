@@ -1,0 +1,12 @@
+#SystemConfig of TMS
+
+tmsIp: 192.168.24.181
+tmsUdpRemotePort: 1024
+tmsUdpLocalPort: 1024
+gimbalIp: 192.168.24.18
+gimbalUdpRemotePort: 1024
+gimbalUdpLocalPort: 1024
+macAddress: 00:0C:29:2A:35:94
+
+
+

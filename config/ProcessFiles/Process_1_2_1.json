@@ -1,0 +1,20 @@
+{
+    "name": "TestProcess_1_2_1",
+    "type": 4,
+    "param": {
+        "fmsRollLowerLimitedPos": -25,
+        "fmsRollUpperLimitedPos": 25,
+        "fmsPitchLowerLimitedPos": -25,
+        "fmsPitchUpperLimitedPos": 25,
+        "fmsYawLowerLimitedPos": -25,
+        "fmsYawUpperLimitedPos": 25
+    },
+	"spec": {
+		"fmsRollLowerLimitedPos": -25,
+        "fmsRollUpperLimitedPos": 25,
+        "fmsPitchLowerLimitedPos": -25,
+        "fmsPitchUpperLimitedPos": 25,
+        "fmsYawLowerLimitedPos": -25,
+        "fmsYawUpperLimitedPos": 25
+	}	
+}

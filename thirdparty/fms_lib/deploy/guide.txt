@@ -1,0 +1,2 @@
+:-1: error: cannot find -lGL: No such file or directory
+sudo apt install libgl1-mesa-dev

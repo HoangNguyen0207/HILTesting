@@ -1,0 +1,18 @@
+{
+    "name": "TestProcess_1_1_2",
+    "type": 2,
+    "param": {
+        "fmsRollPos1": -20,
+        "fmsRollPos2": 20,
+        "fmsPitchPos1": -20,
+        "fmsPitchPos2": 20,
+        "fmsYawPos1": -20,
+        "fmsYawPos2": 20,
+        "fmsTxPos1": -0.02,
+        "fmsTxPos2": 0.02,
+		"fmsTyPos1": -0.02,
+        "fmsTyPos2": 0.02,
+		"fmsTzPos1": -0.02,
+        "fmsTzPos2": 0.02
+    }
+}

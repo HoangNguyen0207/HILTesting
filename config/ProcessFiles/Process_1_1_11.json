@@ -1,0 +1,21 @@
+{
+    "name": "TestProcess_1_1_11",
+    "type": 3,
+    "param": {
+        "fmsRollStartPos": -20,
+        "fmsRollStopPos": 20,
+        "fmsRollStepPos": 0.5,
+        "fmsPitchStartPos": -20,
+        "fmsPitchStopPos": 20,
+        "fmsPitchStepPos": 0.5,
+        "fmsYawStartPos": -20,
+        "fmsYawStopPos": 20,
+        "fmsYawStepPos": 0.5,
+        "fmsRollAmp": 2,
+        "fmsRollFreq": 0.5,
+        "fmsPitchAmp": 2,
+        "fmsPitchFreq": 0.5,
+        "fmsYawAmp": 2,
+        "fmsYawFreq": 0.5
+    }
+}

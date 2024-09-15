@@ -1,0 +1,16 @@
+{
+    "name": "TestProcess_2_2_10",
+    "type": 22,
+    "param": {
+        "tmsAziStartPos": -2,
+        "tmsAziStopPos": 2,
+        "tmsAziStepPos": 0.05,
+        "tmsElvStartPos": -1,
+        "tmsElvStopPos": 1,
+        "tmsElvStepPos": 0.05,
+        "tmsAziAmp": 2,
+        "tmsAziFreq": 0.5,
+        "tmsElvAmp": 2,
+        "tmsElvFreq": 0.5
+    }
+}

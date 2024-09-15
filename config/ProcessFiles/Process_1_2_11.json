@@ -1,0 +1,18 @@
+{
+    "name": "TestProcess_1_2_11",
+    "type": 13,
+    "param": {
+        "fmsRollPos1": -10,
+        "fmsRollPos2": 10,
+        "fmsPitchPos1": -10,
+        "fmsPitchPos2": 10,
+        "fmsYawPos1": -10,
+        "fmsYawPos2": 10,
+		"fmsRepeatedMotionNumber": 10
+    },
+	"spec": {
+		"fmsRollMaxRepeatedAngleAccuracy": 0.05,
+		"fmsPitchMaxRepeatedAngleAccuracy": 0.05,
+		"fmsYawMaxRepeatedAngleAccuracy": 0.05
+	}
+}

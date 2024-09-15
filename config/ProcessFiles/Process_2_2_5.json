@@ -1,0 +1,12 @@
+{
+    "name": "TestProcess_2_2_5",
+    "type": 20,
+    "param": {
+		"tmsAziStepPos": 0.2,
+		"tmsElvStepPos": 0.2
+    },
+	"spec": {
+		"tmsAziMaxAccuracy": 0.003,
+		"tmsElvMaxAccuracy": 0.003
+	}
+}

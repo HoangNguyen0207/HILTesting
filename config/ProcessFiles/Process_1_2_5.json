@@ -1,0 +1,20 @@
+{
+    "name": "TestProcess_1_2_5",
+    "type": 8,
+    "param": {
+        "fmsRollAmp": 20,
+        "fmsRollFreq": 3,
+		"fmsRollMaxAcc": 1000,
+        "fmsPitchAmp": 20,
+        "fmsPitchFreq": 3,
+		"fmsPitchMaxAcc": 1000,
+        "fmsYawAmp": 20,
+        "fmsYawFreq": 3,
+		"fmsYawMaxAcc": 1000
+    },
+	"spec": {
+		"fmsRollMaxAcc": 1000,
+		"fmsPitchMaxAcc": 1000,
+		"fmsYawMaxAcc": 1000
+	}
+}

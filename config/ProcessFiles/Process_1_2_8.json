@@ -1,0 +1,20 @@
+{
+    "name": "TestProcess_1_2_8",
+    "type": 10,
+    "param": {
+        "fmsTxAmp": 0.25,
+        "fmsTxFreq": 3,
+		"fmsTxMaxVelocity": 1.2,
+        "fmsTyAmp": 0.25,
+        "fmsTyFreq": 3,
+		"fmsTyMaxVelocity": 1.2,
+        "fmsTzAmp": 0.25,
+        "fmsTzFreq": 3,
+		"fmsTzMaxVelocity": 0.64
+    },
+	"spec": {
+		"fmsTxMaxVelocity": 1.2,
+		"fmsTyMaxVelocity": 1.2,
+		"fmsTzMaxVelocity": 0.64
+	}
+}

@@ -1,0 +1,16 @@
+{
+    "name": "TestProcess_2_1_11",
+    "type": 15,
+    "param": {
+		"fmsRollAmp": 2,
+		"fmsRollFreq": 1,
+		"fmsPitchAmp": 2,
+		"fmsPitchFreq": 1,
+		"fmsYawAmp": 2,
+		"fmsYawFreq": 1,
+        "tmsAziAmp": 0.2,
+        "tmsAziFreq": 1,
+		"tmsElvAmp": 0.2,
+		"tmsElvFreq": 1
+    }
+}
