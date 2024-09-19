@@ -125,7 +125,7 @@ ComboBox
             context.lineTo(width,0);
             context.lineTo(width/2, height);
             context.closePath();
-            context.fillStyle = cbxId.pressed ? "black" : "black";
+            context.fillStyle = cbxId.pressed ? "white" : "white";
             context.fill();
         }
     }

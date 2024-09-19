@@ -18,7 +18,7 @@ Item {
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
-        width: 240
+        width: 160
 
         Label
         {
@@ -49,27 +49,6 @@ Item {
             anchors.left: fmsLblId.right
             anchors.leftMargin: 5
             text: "TMS"
-            width: 75
-            font.bold: true
-            font.pixelSize: SGT.Style.normalFontPixelSize
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-            color: SGT.Style.hightTextColor
-            background: Rectangle
-            {
-                anchors.fill: parent
-                color: SGT.Style.disconnectedStatusColor
-                radius: 3
-            }
-        }
-        Label
-        {
-            id: gimbalLblId
-            anchors.top: parent.top
-            anchors.bottom: parent.bottom
-            anchors.left: tmsLblId.right
-            anchors.leftMargin: 5
-            text: "Gimbal"
             width: 75
             font.bold: true
             font.pixelSize: SGT.Style.normalFontPixelSize

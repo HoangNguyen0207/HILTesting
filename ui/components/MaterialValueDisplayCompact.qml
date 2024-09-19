@@ -59,7 +59,7 @@ Control
                 verticalAlignment: Text.AlignVCenter
                 anchors.fill: parent
                 horizontalAlignment: Text.AlignLeft
-                color: "red"/*"#cac735"*/
+                color: SGT.Style.checkedButton
             }
         }
 

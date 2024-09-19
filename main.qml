@@ -13,7 +13,7 @@ ApplicationWindow {
     id: mainWindow
     visible: true
     width: 1400
-    height: 700
+    height: 800
     x: Screen.desktopAvailableWidth/2 - mainWindow.width/2
     y: Screen.desktopAvailableHeight/2 - mainWindow.height/2
     title: qsTr("HILTesting")
@@ -54,7 +54,7 @@ ApplicationWindow {
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.bottom: recFooterId.top
-            width: 400
+            width: 350
         }
 
         Rectangle
@@ -71,50 +71,39 @@ ApplicationWindow {
                 anchors.top: parent.top
                 anchors.left: parent.left
                 anchors.right: parent.right
-                anchors.topMargin: 15
-                anchors.leftMargin: 15
-                anchors.rightMargin: 15
-                height: 230
+                anchors.topMargin: 10
+                anchors.leftMargin: 10
+                anchors.rightMargin: 10
+                height: 260
                 MDL.FMSMonitor
                 {
                     id: fmsMonitorId
                     anchors.top: parent.top
                     anchors.left: parent.left
                     anchors.bottom: parent.bottom
-                    width: 450
+                    width: parent.width/10 * 6
                 }
                 MDL.TMSMonitor
                 {
                     id: tmsMonitorId
                     anchors.top: parent.top
                     anchors.left: fmsMonitorId.right
-                    anchors.leftMargin: 2
                     anchors.bottom: parent.bottom
-                    width: (parent.width - 450)/2 - 1
-                }
-                MDL.GimbalMonitor
-                {
-                    id: gimbalMonitorId
-                    anchors.top: parent.top
-                    anchors.left: tmsMonitorId.right
                     anchors.right: parent.right
-                    anchors.bottom: parent.bottom
-                    anchors.leftMargin: 2
+                    anchors.leftMargin: 5
                 }
             }
-
             MAP.ProcessMap
             {
                 id: processMapId
                 anchors.top: deviceMonitorItemId.bottom
                 anchors.left: parent.left
                 anchors.right: parent.right
+                anchors.topMargin: 10
+                anchors.leftMargin: 10
+                anchors.rightMargin: 10
                 anchors.bottom: parent.bottom
-                anchors.topMargin: 5
-                anchors.leftMargin: 15
-                anchors.rightMargin: 15
-                anchors.bottomMargin: 15
-
+                anchors.bottomMargin: 10
             }
         }
 
