@@ -1,6 +1,6 @@
 {
     "name": "TestProcess_1_2_6_7",
-    "type": 9,
+    "type": 8,
     "param": {
         "fmsTxUpperLimitedPos": 0.25,
         "fmsTyUpperLimitedPos": 0.25,

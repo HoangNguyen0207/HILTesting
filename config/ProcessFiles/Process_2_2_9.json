@@ -1,15 +1,15 @@
 {
     "name": "TestProcess_2_2_9",
-    "type": 21,
+    "type": 20,
     "param": {
-		"tmsAziPos1": -0.2,
-		"tmsAziPos2": 0.2,
-		"tmsElvPos1": -0.2,
-		"tmsElvPos2": 0.2,
+		"tmsTxPos1": -0.2,
+		"tmsTxPos2": 0.2,
+		"tmsTyPos1": -0.2,
+		"tmsTyPos2": 0.2,
 		"tmsRepeatedMotionNumber": 20
     },
 	"spec": {
-		"tmsAziMaxRepeatedAccuracy": 0.001,
-		"tmsElvMaxRepeatedAccuracy": 0.001
+		"tmsTxMaxRepeatedAccuracy": 0.001,
+		"tmsTyMaxRepeatedAccuracy": 0.001
 	}
 }

@@ -1,10 +1,10 @@
 {
     "name": "TestProcess_2_1_10",
-    "type": 14,
+    "type": 13,
     "param": {
-        "tmsAziPos1": -0.2,
-        "tmsAziPos2": 0.2,
-		"tmsElvPos1": -0.2,
-		"tmsElvPos2": 0.2
+        "tmsTxPos1": -0.2,
+        "tmsTxPos2": 0.2,
+		"tmsTyPos1": -0.2,
+		"tmsTyPos2": 0.2
     }
 }

@@ -19,6 +19,7 @@ class ActionProvider : public QObject
         ~ActionProvider() = default;
 
         Q_INVOKABLE void loadProcessFile(const int& processIndex);
+        void sendFileDataToProcessService(const QVariantMap& data);
 
     signals:
 

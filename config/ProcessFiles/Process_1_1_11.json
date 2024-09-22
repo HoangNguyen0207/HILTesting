@@ -1,21 +1,21 @@
 {
     "name": "TestProcess_1_1_11",
-    "type": 3,
+    "type": 2,
     "param": {
-        "fmsRollStartPos": -20,
-        "fmsRollStopPos": 20,
-        "fmsRollStepPos": 0.5,
-        "fmsPitchStartPos": -20,
-        "fmsPitchStopPos": 20,
-        "fmsPitchStepPos": 0.5,
-        "fmsYawStartPos": -20,
-        "fmsYawStopPos": 20,
-        "fmsYawStepPos": 0.5,
-        "fmsRollAmp": 2,
-        "fmsRollFreq": 0.5,
-        "fmsPitchAmp": 2,
-        "fmsPitchFreq": 0.5,
-        "fmsYawAmp": 2,
-        "fmsYawFreq": 0.5
+        "fmsRxStartPos": -20,
+        "fmsRxStopPos": 20,
+        "fmsRxStepPos": 0.5,
+        "fmsRyStartPos": -20,
+        "fmsRyStopPos": 20,
+        "fmsRyStepPos": 0.5,
+        "fmsRzStartPos": -20,
+        "fmsRzStopPos": 20,
+        "fmsRzStepPos": 0.5,
+        "fmsRxAmp": 2,
+        "fmsRxFreq": 0.5,
+        "fmsRyAmp": 2,
+        "fmsRyFreq": 0.5,
+        "fmsRzAmp": 2,
+        "fmsRzFreq": 0.5
     }
 }

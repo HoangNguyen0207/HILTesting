@@ -1,6 +1,6 @@
 {
     "name": "TestProcess_1_2_8",
-    "type": 10,
+    "type": 9,
     "param": {
         "fmsTxAmp": 0.25,
         "fmsTxFreq": 3,

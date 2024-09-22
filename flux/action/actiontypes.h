@@ -4,6 +4,7 @@
 enum class ActionType
 {
     LoadProcessFile,
+    SendFileDataToProcessService,
 };
 
 #endif

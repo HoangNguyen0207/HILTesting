@@ -9,6 +9,11 @@ QSharedPointer<Action> SystemMiddleware::process(const QSharedPointer<Action> &a
             emit sigDispatchActionToConfig(action);
             break;
         }
+        case ActionType::SendFileDataToProcessService:
+        {
+            // emit sigToProcessService
+            break;
+        }
         default:
         break;
     }

@@ -1,20 +1,20 @@
 {
     "name": "TestProcess_1_2_10",
-    "type": 12,
+    "type": 11,
     "param": {
-        "fmsRollStartPos": -25,
-        "fmsRollStopPos": 25,
-        "fmsRollStepPos": 5,
-        "fmsPitchStartPos": -25,
-        "fmsPitchStopPos": 25,
-        "fmsPitchStepPos": 5,
-        "fmsYawStartPos": -25,
-        "fmsYawStopPos": 25,
-        "fmsYawStepPos": 5
+        "fmsRxStartPos": -25,
+        "fmsRxStopPos": 25,
+        "fmsRxStepPos": 5,
+        "fmsRyStartPos": -25,
+        "fmsRyStopPos": 25,
+        "fmsRyStepPos": 5,
+        "fmsRzStartPos": -25,
+        "fmsRzStopPos": 25,
+        "fmsRzStepPos": 5
     },
 	"spec": {
-		"fmsRollMaxAngleAccuracy": 0.1,
-		"fmsPitchMaxAngleAccuracy": 0.1,
-		"fmsYawMaxAngleAccuracy": 0.1
+		"fmsRxMaxAngleAccuracy": 0.1,
+		"fmsRyMaxAngleAccuracy": 0.1,
+		"fmsRzMaxAngleAccuracy": 0.1
 	}
 }

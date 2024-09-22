@@ -1,16 +1,16 @@
 {
     "name": "TestProcess_2_2_4",
-    "type": 19,
+    "type": 18,
     "param": {
-		"tmsAziAmp": 1,
-		"tmsAziFreq": 5,
-		"tmsAziMaxAcc": 6,
-		"tmsElvAmp": 1,
-		"tmsElvFreq": 5,
-		"tmsElvMaxAcc": 6
+		"tmsTxAmp": 1,
+		"tmsTxFreq": 5,
+		"tmsTxMaxAcc": 6,
+		"tmsTyAmp": 1,
+		"tmsTyFreq": 5,
+		"tmsTyMaxAcc": 6
     },
 	"spec": {
-		"tmsAziMaxAcc": 6,
-		"tmsElvMaxAcc": 6
+		"tmsTxMaxAcc": 6,
+		"tmsTyMaxAcc": 6
 	}
 }
