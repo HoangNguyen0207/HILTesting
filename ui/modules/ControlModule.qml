@@ -23,8 +23,8 @@ Item {
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.right: parent.right
-            anchors.topMargin: 15
-            anchors.leftMargin: 15
+            anchors.topMargin: 10
+            anchors.leftMargin: 10
             height: 40
             leftPadding: 5
             model: ListModel
@@ -70,8 +70,44 @@ Item {
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.topMargin: 10
-            anchors.leftMargin: 15
+            anchors.leftMargin: 10
             height: 40
+        }
+
+        Row
+        {
+            id: btnRowId
+            anchors.top: filePathId.bottom
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.topMargin: 10
+            anchors.leftMargin: 10
+            height: 30
+            CMN.MaterialButton
+            {
+                id: startBtnId
+                anchors.top: parent.top
+                anchors.left: parent.left
+                anchors.bottom: parent.bottom
+                width: 100
+                text: "Start"
+                iconImg: "qrc:/ui/resources/icon/play_50px.png"
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+            }
+            CMN.MaterialButton
+            {
+                id: stopBtnId
+                anchors.top: parent.top
+                anchors.left: startBtnId.right
+                anchors.bottom: parent.bottom
+                anchors.leftMargin: 5
+                width: 100
+                text: "Stop"
+                iconImg: "qrc:/ui/resources/icon/cancel_96px.png"
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+            }
         }
     }
 }

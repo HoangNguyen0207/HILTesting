@@ -1,14 +1,14 @@
 {
     "name": "TestProcess_1_2_4",
-    "type": 7,
+    "type": 6,
     "param": {
-        "fmsRollStep": 0.01,
-        "fmsPitchStep": 0.01,
-        "fmsYawStep": 0.01
+        "fmsRxStep": 0.01,
+        "fmsRyStep": 0.01,
+        "fmsRzStep": 0.01
     },
 	"spec": {
-		"fmsRollAngleResolution": 0.01,
-		"fmsPitchAngleResolution": 0.01,
-		"fmsYawAngleResolution": 0.01
+		"fmsRxAngleResolution": 0.01,
+		"fmsRyAngleResolution": 0.01,
+		"fmsRzAngleResolution": 0.01
 	}
 }

@@ -25,6 +25,7 @@ class ActionProvider : public QObject
         Q_INVOKABLE void updateCenterInput(int device, int axis, double x, double y, double z);
         Q_INVOKABLE void updateState(int state);
         Q_INVOKABLE void finishTest(bool result);
+        void sendFileDataToProcessService(const QVariantMap& data);
 
     signals:
 

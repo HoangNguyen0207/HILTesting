@@ -1,16 +1,16 @@
 {
     "name": "TestProcess_2_2_13_1",
-    "type": 23,
+    "type": 22,
     "param": {
-        "gimbalAziLowerLimitedPos": -25,
-        "gimbalAziUpperLimitedPos": 25,
-		"gimbalElvLowerLimitedPos": -25,
-		"gimbalElvUpperLimitedPos": 25
+        "tmsRxLowerLimitedPos": -25,
+        "tmsRxUpperLimitedPos": 25,
+		"tmsRyLowerLimitedPos": -25,
+		"tmsRyUpperLimitedPos": 25
     },
 	"spec": {
-		"gimbalAziLowerLimitedPos": -25,
-        "gimbalAziUpperLimitedPos": 25,
-		"gimbalElvLowerLimitedPos": -25,
-		"gimbalElvUpperLimitedPos": 25
+		"tmsRxLowerLimitedPos": -25,
+        "tmsRxUpperLimitedPos": 25,
+		"tmsRyLowerLimitedPos": -25,
+		"tmsRyUpperLimitedPos": 25
 	}
 }

@@ -12,8 +12,10 @@ QSharedPointer<Action> SystemMiddleware::process(const QSharedPointer<Action> &a
         case ActionType::AbortTest:
         case ActionType::UpdatePositionInput:
         case ActionType::UpdateCenterInput:
+        case ActionType::SendFileDataToProcessService:
         {
             emit sigDispatchActionToTest(action);
+            break;
         }
         default:
         break;

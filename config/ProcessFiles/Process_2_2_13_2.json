@@ -1,16 +1,16 @@
 {
     "name": "TestProcess_2_2_13_2",
-    "type": 24,
+    "type": 23,
     "param": {
-        "gimbalAziAmp": 10,
-        "gimbalAziFreq": 2,
-		"gimbalAziMaxVelocity": 20,
-		"gimbalElvAmp": 10,
-		"gimbalElvFreq": 2,
-		"gimbalElvMaxVelocity": 20
+        "tmsRxAmp": 10,
+        "tmsRxFreq": 2,
+		"tmsRxMaxVelocity": 20,
+		"tmsRyAmp": 10,
+		"tmsRyFreq": 2,
+		"tmsRyMaxVelocity": 20
     },
 	"spec": {
-		"gimbalAziMaxVelocity": 20,
-        "gimbalElvMaxVelocity": 20
+		"tmsRxMaxVelocity": 20,
+        "tmsRyMaxVelocity": 20
 	}
 }

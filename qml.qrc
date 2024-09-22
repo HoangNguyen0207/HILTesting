@@ -186,7 +186,6 @@
         <file>ui/singletons/qmldir</file>
         <file>ui/singletons/Style.qml</file>
         <file>ui/modules/TMSMonitor.qml</file>
-        <file>ui/modules/GimbalMonitor.qml</file>
         <file>ui/modules/FMSMonitor.qml</file>
         <file>ui/maps/ProcessMap.qml</file>
         <file>ui/modules/StatusBar.qml</file>

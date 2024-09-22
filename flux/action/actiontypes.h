@@ -11,6 +11,7 @@ enum class ActionType
     FinishTest,
     UpdateCenterInput,
     UpdateTestConfig
+    SendFileDataToProcessService,
 };
 
 #endif

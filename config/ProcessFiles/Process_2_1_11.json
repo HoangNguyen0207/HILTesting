@@ -1,16 +1,16 @@
 {
     "name": "TestProcess_2_1_11",
-    "type": 15,
+    "type": 14,
     "param": {
-		"fmsRollAmp": 2,
-		"fmsRollFreq": 1,
-		"fmsPitchAmp": 2,
-		"fmsPitchFreq": 1,
-		"fmsYawAmp": 2,
-		"fmsYawFreq": 1,
-        "tmsAziAmp": 0.2,
-        "tmsAziFreq": 1,
-		"tmsElvAmp": 0.2,
-		"tmsElvFreq": 1
+		"fmsRxAmp": 2,
+		"fmsRxFreq": 1,
+		"fmsRyAmp": 2,
+		"fmsRyFreq": 1,
+		"fmsRzAmp": 2,
+		"fmsRzFreq": 1,
+        "tmsTxAmp": 0.2,
+        "tmsTxFreq": 1,
+		"tmsTyAmp": 0.2,
+		"tmsTyFreq": 1
     }
 }

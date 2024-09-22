@@ -1,16 +1,16 @@
 {
     "name": "TestProcess_2_2_10",
-    "type": 22,
+    "type": 21,
     "param": {
-        "tmsAziStartPos": -2,
-        "tmsAziStopPos": 2,
-        "tmsAziStepPos": 0.05,
-        "tmsElvStartPos": -1,
-        "tmsElvStopPos": 1,
-        "tmsElvStepPos": 0.05,
-        "tmsAziAmp": 2,
-        "tmsAziFreq": 0.5,
-        "tmsElvAmp": 2,
-        "tmsElvFreq": 0.5
+        "tmsTxStartPos": -2,
+        "tmsTxStopPos": 2,
+        "tmsTxStepPos": 0.05,
+        "tmsTyStartPos": -1,
+        "tmsTyStopPos": 1,
+        "tmsTyStepPos": 0.05,
+        "tmsTxAmp": 2,
+        "tmsTxFreq": 0.5,
+        "tmsTyAmp": 2,
+        "tmsTyFreq": 0.5
     }
 }

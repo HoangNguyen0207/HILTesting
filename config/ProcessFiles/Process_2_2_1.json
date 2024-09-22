@@ -1,16 +1,16 @@
 {
     "name": "TestProcess_2_2_1",
-    "type": 16,
+    "type": 15,
     "param": {
-        "tmsAziLowerLimitedPos": -2,
-        "tmsAziUpperLimitedPos": 2,
-		"tmsElvLowerLimitedPos": -1,
-		"tmsElvUpperLimitedPos": 1
+        "tmsTxLowerLimitedPos": -2,
+        "tmsTxUpperLimitedPos": 2,
+		"tmsTyLowerLimitedPos": -1,
+		"tmsTyUpperLimitedPos": 1
     },
 	"spec": {
-		"tmsAziMaxRange": 4,
-		"tmsAziOffsetRange": 0.2,
-		"tmsElvMaxRange": 2,
-		"tmsElvOffsetRange": 0.2
+		"tmsTxMaxRange": 4,
+		"tmsTxOffsetRange": 0.2,
+		"tmsTyMaxRange": 2,
+		"tmsTyOffsetRange": 0.2
 	}
 }

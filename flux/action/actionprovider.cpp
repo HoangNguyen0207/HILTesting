@@ -44,4 +44,7 @@ void ActionProvider::updateCenterInput(int device, int axis, double x, double y,
     data["y"] = QVariant::fromValue(y);
     data["z"] = QVariant::fromValue(z);
     Dispatcher::instance().dispatch(new Action(ActionType::UpdateCenterInput, data));
+void ActionProvider::sendFileDataToProcessService(const QVariantMap &data)
+{
+    Dispatcher::instance().dispatch(new Action(ActionType::SendFileDataToProcessService,data));
 }

@@ -1,20 +1,20 @@
 {
     "name": "TestProcess_1_2_2",
-    "type": 5,
+    "type": 4,
     "param": {
-        "fmsRollAmp": 25,
-        "fmsRollFreq": 1,
-		"fmsRollMaxVelocity": 100,
-        "fmsPitchAmp": 25,
-        "fmsPitchFreq": 1,
-		"fmsPitchMaxVelocity": 100,
-        "fmsYawAmp": 25,
-        "fmsYawFreq": 1,
-		"fmsYawMaxVelocity": 100
+        "fmsRxAmp": 25,
+        "fmsRxFreq": 1,
+		"fmsRxMaxVelocity": 100,
+        "fmsRyAmp": 25,
+        "fmsRyFreq": 1,
+		"fmsRyMaxVelocity": 100,
+        "fmsRzAmp": 25,
+        "fmsRzFreq": 1,
+		"fmsRzMaxVelocity": 100
     },
 	"spec": {
-		"fmsRollMaxVelocity": 100,
-		"fmsPitchMaxVelocity": 100,
-		"fmsYawMaxVelocity": 100
+		"fmsRxMaxVelocity": 100,
+		"fmsRyMaxVelocity": 100,
+		"fmsRzMaxVelocity": 100
 	}	
 }
