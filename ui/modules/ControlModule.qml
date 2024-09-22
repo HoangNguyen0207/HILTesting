@@ -72,6 +72,7 @@ Item {
             anchors.topMargin: 10
             anchors.leftMargin: 10
             height: 40
+            path: MainStore.loadedProcessFilePath
         }
 
         Row
@@ -82,14 +83,26 @@ Item {
             anchors.right: parent.right
             anchors.topMargin: 10
             anchors.leftMargin: 10
-            height: 30
+            height: 80
+
+            CMN.MaterialLabel
+            {
+                id: processStatusId
+                anchors.top: parent.top
+                anchors.left: parent.left
+                anchors.right: parent.right
+                height: 35
+                text: "IDLE"
+                iconImg: "qrc:/ui/resources/icon/aboutinfo.png"
+            }
             CMN.MaterialButton
             {
                 id: startBtnId
-                anchors.top: parent.top
+                anchors.top: processStatusId.bottom
                 anchors.left: parent.left
                 anchors.bottom: parent.bottom
-                width: 100
+                anchors.topMargin: 10
+                width: parent.width/2 - 2
                 text: "Start"
                 iconImg: "qrc:/ui/resources/icon/play_50px.png"
                 horizontalAlignment: Text.AlignHCenter
@@ -98,11 +111,12 @@ Item {
             CMN.MaterialButton
             {
                 id: stopBtnId
-                anchors.top: parent.top
+                anchors.top: processStatusId.bottom
                 anchors.left: startBtnId.right
                 anchors.bottom: parent.bottom
+                anchors.right: parent.right
                 anchors.leftMargin: 5
-                width: 100
+                anchors.topMargin: 10
                 text: "Stop"
                 iconImg: "qrc:/ui/resources/icon/cancel_96px.png"
                 horizontalAlignment: Text.AlignHCenter

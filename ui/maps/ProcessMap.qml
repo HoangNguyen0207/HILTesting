@@ -68,5 +68,27 @@ Item {
             mapId.setZoomDirection(Chart.Vertical)
             close()
         }
+        distanceBtn.onClicked:
+        {
+            mapId.onDistanceCalcModeTriggered()
+            if(!distancePopupId.visible)
+            {
+                distancePopupId.open()
+            }else
+            {
+                distancePopupId.close()
+            }
+
+            close()
+        }
+    }
+
+    DistancePopup
+    {
+        id: distancePopupId
+        x: mapId.x + mapId.width - distancePopupId.width - 14
+        y: mapId.y + 15
+        deltaXValue: "delta X = " + mapId.deltaX.toFixed(3)
+        deltaYValue: "delta Y = " + mapId.deltaY.toFixed(3)
     }
 }

@@ -110,7 +110,6 @@ void OutputChart::drawTrackCursor(QmlChartViewer *viewer, int mouseX)
 {
     crossHair((XYChart*)viewer->getChart(),viewer->getPlotAreaMouseX(),viewer->getPlotAreaMouseY());
     viewer->updateDisplay();
-
     viewer->removeDynamicLayer("mouseleaveplotarea");
 }
 

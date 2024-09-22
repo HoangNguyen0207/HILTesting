@@ -13,17 +13,12 @@
 #include <QTimerEvent>
 #include "utils/calculatehelper/calculatehelper.h"
 
-const int SETUP_POSITION_TIMER_FREQ = 500;
-const int SETUP_POSITION_TIMER_INTERVAL = 1000 / SETUP_POSITION_TIMER_FREQ; //ms
-
 class TrajectoryMap : public QQuickPaintedItem
 {
         Q_OBJECT
-
-        static constexpr unsigned AZI_POS_SETUP = 0;
-        static constexpr unsigned ELV_POS_SETUP = 1;
-        static constexpr unsigned AZI_POS_MONITOR = 2;
-        static constexpr unsigned ELV_POS_MONITOR = 3;
+        Q_PROPERTY(double deltaX READ deltaX WRITE setDeltaX NOTIFY deltaXChanged)
+        Q_PROPERTY(double deltaY READ deltaY WRITE setDeltaY NOTIFY deltaYChanged)
+        constexpr static int DISTANCE_CURVE_ID = 0;
 
     public:
         TrajectoryMap(QQuickPaintedItem* parent = nullptr);
@@ -33,11 +28,18 @@ class TrajectoryMap : public QQuickPaintedItem
         Q_INVOKABLE void setScrollDirection(const QmlChartViewer::Direction& direction);
         Q_INVOKABLE void setMouseUsage(const QmlChartViewer::MouseUsage& mouseUsage);
         Q_INVOKABLE void fitChart(const QmlChartViewer::Direction& dir);
+        Q_INVOKABLE void onDistanceCalcModeTriggered();
 
-        // Create Azi, Elv position trajectory
-        Q_INVOKABLE void createPositionTrajectory(const QVariantMap& data);
+        double deltaX() const;
+        double deltaY() const;
+
+    public slots:
+        void setDeltaX(double deltaX);
+        void setDeltaY(double deltaY);
 
     signals:
+        void deltaXChanged(double deltaX);
+        void deltaYChanged(double deltaY);
 
     private slots:
         void onMouseMoveChart();
@@ -53,28 +55,29 @@ class TrajectoryMap : public QQuickPaintedItem
         void drawChart(QmlChartViewer* viewer);
         void drawLegend(XYChart* c);
 
-        // Timer event
-        void timerEvent(QTimerEvent* event) override;
-
-        // Resize X axis
+        // Resize XY axis
         void resizeXAxis(double time);
+        void resizeYAxis(double amp);
 
-        // Draw sinewave
-        void drawSineWaveLayer(unsigned int layerId, double amp, double freq,
-                               double phase, double offset);
+        // Draw track cursor when the mouse move over the plot area
+        void drawTrackCursor(QmlChartViewer *viewer);
+        void drawCrossHair(XYChart *c, int mouseX, int mouseY);
+        void drawSelectedDistancePoint(double posX, double posY);
 
     private:
+        // Data curve
         std::vector<CurveDataSeries> mCurveList;
         // QuickChartViewer control
         QmlChartViewer *mpChartViewer{nullptr};
-
-        double mMinYValue {-2200};
-        double mMaxYValue {2200};
+        // XY axis
+        double mMinYValue {0};
+        double mMaxYValue {200};
         double mMinXValue {0};
         double mMaxXValue {200};
-
-        // Time duration
-        double mDuration{10};
-
+        // Distance calc mode
+        bool mDistanceCalcModeFlag{false};
+        // Delta XY
+        double mDeltaX;
+        double mDeltaY;
 };
 

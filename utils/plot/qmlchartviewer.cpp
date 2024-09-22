@@ -709,67 +709,6 @@ int QmlChartViewer::getPlotAreaMouseY()
     return ret;
 }
 
-void QmlChartViewer::fitChart(const QmlChartViewer::Direction &dir)
-{
-    bool hasUpdate = false;
-    switch (dir)
-    {
-        case Direction::HorizontalVertical:
-        {
-            // User just click on a point. Zoom-in around the mouse cursor position.
-            hasUpdate = zoomAt(Direction::Vertical, 0, 0, 0.000000001);
-            break;
-        }
-        case Direction::Horizontal:
-        {
-            // User just click on a point. Zoom-in around the mouse cursor position.
-            hasUpdate = zoomAt(Direction::Horizontal, 0, 0, 0.000000001);
-            break;
-        }
-        default:
-        {
-            hasUpdate = zoomAt(Direction::HorizontalVertical, 0, 0, 0.000000001);
-            break;
-        }
-    }
-
-    if(hasUpdate)
-    {
-        updateViewPort(true,true);
-    }
-}
-
-//
-//handles for PPI chart
-//
-bool QmlChartViewer::onPPIMouseWheelZoom(double x, double y, int zDelta)
-{
-    if(m_mouseWheelZoomRatio == 1)
-    {
-        return false;
-    }
-
-    double zoomRatio = 1;
-    if(getZoomDirection() == Direction::HorizontalVertical)
-        zoomRatio = (zDelta > 0) ? m_mouseWheelZoomRatio : 1 / m_mouseWheelZoomRatio;
-
-    if(zoomAt(Direction::HorizontalVertical,x,y,zoomRatio))
-    {
-        updateViewPort(true,true);
-    }
-    return true;
-}
-
-void QmlChartViewer::setPPIChartEnable(bool isEnable)
-{
-    this->mPPIChartEnable = isEnable;
-}
-
-void QmlChartViewer::setPPICenter(LatLongCoordinate_t center)
-{
-    this->mPPICenter = center;
-}
-
 //
 // Check if mouse is on the extended plot area
 //
@@ -997,7 +936,7 @@ void QmlChartViewer::commitMouseMove(QMouseEvent *event)
 
     // Check if mouse is dragging on the plot area
     m_isOnPlotArea = m_isPlotAreaMouseDown || inPlotArea(toImageX(event->x()), toImageY(event->y()));
-    if (m_isPlotAreaMouseDown && mPPIChartEnable == false)
+    if (m_isPlotAreaMouseDown)
         onPlotAreaMouseDrag(event);
 
     // Emit mouseMoveChart
@@ -1164,19 +1103,8 @@ void QmlChartViewer::wheelEvent(QWheelEvent *event)
     }
 
     // Process the mouse wheel only if the mouse is over the plot area
-    bool hasMouseWheelZoom = false;
-
-    if(mPPIChartEnable)
-    {
-        double x1Coor = toImageX(static_cast<XYChart*>(this->getChart())->getXCoor(mPPICenter.lon));
-        double y1Coor = toImageY(static_cast<XYChart*>(this->getChart())->getYCoor(mPPICenter.lat));
-        hasMouseWheelZoom = isMouseOnPlotArea() &&
-                onPPIMouseWheelZoom(x1Coor,y1Coor,event->angleDelta().y());
-    }else
-    {
-        hasMouseWheelZoom = isMouseOnPlotArea() &&
-                onMouseWheelZoom(getPlotAreaMouseX(), getPlotAreaMouseY(), event->angleDelta().y());
-    }
+    bool hasMouseWheelZoom = isMouseOnPlotArea() &&
+        onMouseWheelZoom(getPlotAreaMouseX(), getPlotAreaMouseY(), event->angleDelta().y());
 
     if (!(hasReceivers || hasMouseWheelZoom))
         event->ignore();

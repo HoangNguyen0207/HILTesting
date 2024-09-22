@@ -4,6 +4,7 @@
 #include <math.h>
 #include "chartdir.h"
 #include <QTimerEvent>
+#include <QMouseEvent>
 
 TrajectoryMap::TrajectoryMap(QQuickPaintedItem *parent)
     : QQuickPaintedItem(parent)
@@ -65,29 +66,51 @@ void TrajectoryMap::fitChart(const QmlChartViewer::Direction &dir)
 
 }
 
-void TrajectoryMap::createPositionTrajectory(const QVariantMap &data)
+void TrajectoryMap::onDistanceCalcModeTriggered()
 {
-    double aziAmp = data["aziAmp"].toDouble();
-    double aziFreq = data["aziFreq"].toDouble();
-    double aziPhase = data["aziPhase"].toDouble();
-    double aziOffset = data["aziOffset"].toDouble();
+    if(!mDistanceCalcModeFlag)
+    {
+        mDistanceCalcModeFlag = true;
+    }else
+    {
+        mCurveList[DISTANCE_CURVE_ID].xSeries.clear();
+        mCurveList[DISTANCE_CURVE_ID].ySeries.clear();
+        replot();
+        mDistanceCalcModeFlag = false;
+    }
+}
 
-    double elvAmp = data["elvAmp"].toDouble();
-    double elvFreq = data["elvFreq"].toDouble();
-    double elvPhase = data["elvPhase"].toDouble();
-    double elvOffset = data["elvOffset"].toDouble();
+double TrajectoryMap::deltaX() const
+{
+    return mDeltaX;
+}
 
-    double duration = data["duration"].toDouble();
+double TrajectoryMap::deltaY() const
+{
+    return mDeltaY;
+}
 
-    mDuration = duration;
+void TrajectoryMap::setDeltaX(double deltaX)
+{
+    if (qFuzzyCompare(mDeltaX, deltaX))
+        return;
 
-    drawSineWaveLayer(AZI_POS_SETUP,aziAmp,aziFreq,aziPhase,aziOffset);
-    drawSineWaveLayer(ELV_POS_SETUP,elvAmp,elvFreq,elvPhase,elvOffset);
+    mDeltaX = deltaX;
+    emit deltaXChanged(mDeltaX);
+}
+
+void TrajectoryMap::setDeltaY(double deltaY)
+{
+    if (qFuzzyCompare(mDeltaY, deltaY))
+        return;
+
+    mDeltaY = deltaY;
+    emit deltaYChanged(mDeltaY);
 }
 
 void TrajectoryMap::onMouseMoveChart()
 {
-
+    drawTrackCursor(this->mpChartViewer);
 }
 
 void TrajectoryMap::onViewPortChanged()
@@ -109,7 +132,14 @@ void TrajectoryMap::onClickChart(Qt::MouseButton button)
 
 void TrajectoryMap::onDoubleClickChart(QMouseEvent *event)
 {
-
+    if(event->button() == Qt::LeftButton)
+    {
+        XYChart* c = static_cast<XYChart*>(mpChartViewer->getChart());
+        if(mDistanceCalcModeFlag)
+        {
+            drawSelectedDistancePoint(c->getXValue(event->x()),c->getYValue(event->y()));
+        }
+    }
 }
 
 void TrajectoryMap::slotUpdateCustomPlotSize()
@@ -120,46 +150,13 @@ void TrajectoryMap::slotUpdateCustomPlotSize()
 void TrajectoryMap::initCurvePropertiesList()
 {
     CurveDataSeries tmp;
-    tmp.id = AZI_POS_SETUP;
-    tmp.color = 0xFFC500;
-    tmp.name = "AZI Setup";
-    tmp.symbolSize = 8;
-    tmp.symbol = Chart::NoSymbol;
-    tmp.lineWidth = 1;
-    tmp.isDashLine = false;
-    tmp.needToDraw = true;
-    tmp.needToShow = true;
-    mCurveList.push_back(tmp);
-
-    tmp.id = ELV_POS_SETUP;
-    tmp.color = 0x54CAAA;
-    tmp.name = "ELV Setup";
-    tmp.symbolSize = 8;
-    tmp.symbol = Chart::NoSymbol;
-    tmp.lineWidth = 1;
-    tmp.isDashLine = false;
-    tmp.needToDraw = true;
-    tmp.needToShow = true;
-    mCurveList.push_back(tmp);
-
-    tmp.id = AZI_POS_MONITOR;
-    tmp.color = 0xCCC500;
-    tmp.name = "AZI Monitor";
-    tmp.symbolSize = 8;
-    tmp.symbol = Chart::NoSymbol;
-    tmp.lineWidth = 1;
-    tmp.isDashLine = false;
-    tmp.needToDraw = true;
-    tmp.needToShow = true;
-    mCurveList.push_back(tmp);
-
-    tmp.id = ELV_POS_MONITOR;
-    tmp.color = 0x44C500;
-    tmp.name = "ELV Monitor";
-    tmp.symbolSize = 8;
-    tmp.symbol = Chart::NoSymbol;
-    tmp.lineWidth = 1;
-    tmp.isDashLine = false;
+    tmp.id = DISTANCE_CURVE_ID;
+    tmp.color = 0x00FFFF;
+    tmp.name = "Distance";
+    tmp.symbolSize = 14;
+    tmp.symbol = Chart::CircleSymbol;
+    tmp.lineWidth = 2;
+    tmp.isDashLine = true;
     tmp.needToDraw = true;
     tmp.needToShow = true;
     mCurveList.push_back(tmp);
@@ -177,7 +174,7 @@ void TrajectoryMap::drawChart(QmlChartViewer *viewer)
 
     XYChart* c = new XYChart(width,height, Chart::Transparent);
 
-    int leftMargin = 40;
+    int leftMargin = 50;
     int topMargin = 15;
     int rightMargin = 15;
     int bottomMargin = 25;
@@ -238,9 +235,6 @@ void TrajectoryMap::drawChart(QmlChartViewer *viewer)
         }
     }
 
-    // Resize X axis
-    resizeXAxis(mDuration);
-
     viewer->setFullRange("y", mMinYValue, mMaxYValue);
     viewer->setFullRange("x", mMinXValue, mMaxXValue);
     viewer->setZoomInHeightLimit(0.000001);
@@ -251,6 +245,11 @@ void TrajectoryMap::drawChart(QmlChartViewer *viewer)
     drawLegend(c);
     delete viewer->getChart();
     viewer->setChart(c);
+
+    if(viewer->isMouseOnPlotArea())
+    {
+        drawTrackCursor(viewer);
+    }
 }
 
 void TrajectoryMap::drawLegend(XYChart *c)
@@ -293,34 +292,90 @@ void TrajectoryMap::drawLegend(XYChart *c)
     t->destroy();
 }
 
-void TrajectoryMap::timerEvent(QTimerEvent *event)
-{
-
-}
-
 void TrajectoryMap::resizeXAxis(double time)
 {
-    mMinXValue = 0;
-    mMaxXValue = time;
+
 }
 
-void TrajectoryMap::drawSineWaveLayer(unsigned int layerId, double amp, double freq, double phase, double offset)
+void TrajectoryMap::resizeYAxis(double amp)
 {
-    mCurveList[layerId].xSeries.clear();
-    mCurveList[layerId].ySeries.clear();
 
-    std::pair<double, double> sinePoint;
+}
 
-    double currentTime = 0;
-    phase = phase * D2R;
-
-    while(currentTime < mDuration)
+void TrajectoryMap::drawTrackCursor(QmlChartViewer *viewer)
+{
+    if(mDistanceCalcModeFlag == true)
     {
-        sinePoint.first = currentTime;
-        sinePoint.second = amp * sin(2 * PI * freq * currentTime + phase) + offset;
-        mCurveList[layerId].xSeries.push_back(sinePoint.first);
-        mCurveList[layerId].ySeries.push_back(sinePoint.second);
-        currentTime += (double)SETUP_POSITION_TIMER_INTERVAL / 1000;
+        drawCrossHair((XYChart*)viewer->getChart(),viewer->getPlotAreaMouseX(),viewer->getPlotAreaMouseY());
+        viewer->updateDisplay();
+        viewer->removeDynamicLayer("mouseleaveplotarea");
     }
+}
+
+void TrajectoryMap::drawCrossHair(XYChart *c, int mouseX, int mouseY)
+{
+    // Clear the current dynamic layer and get the DrawArea object to draw on it.
+    DrawArea *d = c->initDynamicLayer();
+
+    // The plot area object
+    PlotArea *plotArea = c->getPlotArea();
+
+    // Draw a vertical line and a horizontal line as the cross hair
+    d->vline(plotArea->getTopY(), plotArea->getBottomY(), mouseX, d->dashLineColor(0xd3d3d3, 0x0101));
+    d->hline(plotArea->getLeftX(), plotArea->getRightX(), mouseY, d->dashLineColor(0xd3d3d3, 0x0101));
+
+    // Draw y-axis label
+    std::ostringstream ylabel;
+    ylabel << "<*block,bgColor=FFFFDD,margin=3,edgeColor=000000*>" << c->formatValue(c->getYValue(
+        mouseY, c->yAxis()), "{value|P4}") << "<*/*>";
+    TTFText *t = d->text(ylabel.str().c_str(), "Arial Bold", 8);
+    t->draw(plotArea->getLeftX() - 5, mouseY, 0x000000, Chart::Right);
+    t->destroy();
+
+    // Draw x-axis label
+    std::ostringstream xlabel;
+    xlabel << "<*block,bgColor=FFFFDD,margin=3,edgeColor=000000*>" << c->formatValue(c->getXValue(
+        mouseX), "{value|P4}") << "<*/*>";
+    t = d->text(xlabel.str().c_str(), "Arial Bold", 8);
+    t->draw(mouseX, plotArea->getBottomY() + 5, 0x000000, Chart::Top);
+    t->destroy();
+}
+
+void TrajectoryMap::drawSelectedDistancePoint(double posX, double posY)
+{
+    int numpoint = mCurveList[DISTANCE_CURVE_ID].xSeries.size();
+    switch (numpoint)
+    {
+        case 0:
+        {
+            mCurveList[DISTANCE_CURVE_ID].xSeries.push_back(posX);
+            mCurveList[DISTANCE_CURVE_ID].ySeries.push_back(posY);
+            break;
+        }
+        case 1:
+        {
+            mCurveList[DISTANCE_CURVE_ID].xSeries.push_back(posX);
+            mCurveList[DISTANCE_CURVE_ID].ySeries.push_back(posY);
+            break;
+        }
+        case 2:
+        {
+            mCurveList[DISTANCE_CURVE_ID].xSeries.clear();
+            mCurveList[DISTANCE_CURVE_ID].ySeries.clear();
+            mCurveList[DISTANCE_CURVE_ID].xSeries.push_back(posX);
+            mCurveList[DISTANCE_CURVE_ID].ySeries.push_back(posY);
+            break;
+        }
+        default: break;
+    }
+
+    numpoint = mCurveList[DISTANCE_CURVE_ID].xSeries.size();
+    if(numpoint == 2)
+    {
+        setDeltaX(abs(mCurveList[DISTANCE_CURVE_ID].xSeries[1] - mCurveList[DISTANCE_CURVE_ID].xSeries[0]));
+        setDeltaY(abs(mCurveList[DISTANCE_CURVE_ID].ySeries[1] - mCurveList[DISTANCE_CURVE_ID].ySeries[0]));
+    }
+
     replot();
 }
+

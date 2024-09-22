@@ -13,7 +13,7 @@ Control {
     height: 30
     text: "Connect"
     leftPadding: 5
-    property color backgroundColor: "#0052cc"
+    property color backgroundColor: "gray"
     property alias border: recBkgId.border
     property alias iconImg: iconId.source
     property alias iconSize: iconId.size
@@ -46,14 +46,14 @@ Control {
         Label
         {
             id: labelId
-            Layout.alignment: Qt.AlignCenter
             text: root.text
             Layout.fillWidth: true
             color: "white"
             wrapMode: Text.Wrap
-            horizontalAlignment: Text.AlignLeft
+            horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
-            font.pixelSize: 14
+            font.pixelSize: 16
+            font.bold: true
         }
     }
 }

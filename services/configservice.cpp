@@ -11,6 +11,7 @@
 #include <QVector>
 #include "typedef/globalvar.h"
 #include "flux/action/actionprovider.h"
+#include "flux/store/mainstore.h"
 
 ConfigService::ConfigService(const QString &processorName)
     : ProcessorAbstract(processorName)
@@ -72,121 +73,289 @@ bool ConfigService::loadProcessFile(int processIndex)
         case ProcessType::Process_1_1_1:
         {
             rs = loadProcessFile_1_1_1(ProcessFilePath::Process_1_1_1);
+            if(rs == true)
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Loaded " + QString(ProcessFilePath::Process_1_1_1).remove("../../config/ProcessFiles/"));
+            }else
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Error");
+            }
             break;
         }
         case ProcessType::Process_1_1_2:
         {
             rs = loadProcessFile_1_1_2(ProcessFilePath::Process_1_1_2);
+            if(rs == true)
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Loaded " + QString(ProcessFilePath::Process_1_1_2).remove("../../config/ProcessFiles/"));
+            }else
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Error");
+            }
             break;
         }
         case ProcessType::Process_1_1_11:
         {
             rs = loadProcessFile_1_1_11(ProcessFilePath::Process_1_1_11);
+            if(rs == true)
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Loaded " + QString(ProcessFilePath::Process_1_1_11).remove("../../config/ProcessFiles/"));
+            }else
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Error");
+            }
             break;
         }
         case ProcessType::Process_1_2_1:
         {
             rs = loadProcessFile_1_2_1(ProcessFilePath::Process_1_2_1);
+            if(rs == true)
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Loaded " + QString(ProcessFilePath::Process_1_2_1).remove("../../config/ProcessFiles/"));
+            }else
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Error");
+            }
             break;
         }
         case ProcessType::Process_1_2_2:
         {
             rs = loadProcessFile_1_2_2(ProcessFilePath::Process_1_2_2);
+            if(rs == true)
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Loaded " + QString(ProcessFilePath::Process_1_2_2).remove("../../config/ProcessFiles/"));
+            }else
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Error");
+            }
             break;
         }
         case ProcessType::Process_1_2_3:
         {
             rs = loadProcessFile_1_2_3(ProcessFilePath::Process_1_2_3);
+            if(rs == true)
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Loaded " + QString(ProcessFilePath::Process_1_2_3).remove("../../config/ProcessFiles/"));
+            }else
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Error");
+            }
             break;
         }
         case ProcessType::Process_1_2_4:
         {
             rs = loadProcessFile_1_2_4(ProcessFilePath::Process_1_2_4);
+            if(rs == true)
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Loaded " + QString(ProcessFilePath::Process_1_2_4).remove("../../config/ProcessFiles/"));
+            }else
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Error");
+            }
             break;
         }
         case ProcessType::Process_1_2_5:
         {
             rs = loadProcessFile_1_2_5(ProcessFilePath::Process_1_2_5);
+            if(rs == true)
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Loaded " + QString(ProcessFilePath::Process_1_2_5).remove("../../config/ProcessFiles/"));
+            }else
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Error");
+            }
             break;
         }
         case ProcessType::Process_1_2_6_7:
         {
             rs = loadProcessFile_1_2_6_7(ProcessFilePath::Process_1_2_6_7);
+            if(rs == true)
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Loaded " + QString(ProcessFilePath::Process_1_2_6_7).remove("../../config/ProcessFiles/"));
+            }else
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Error");
+            }
             break;
         }
         case ProcessType::Process_1_2_8:
         {
             rs = loadProcessFile_1_2_8(ProcessFilePath::Process_1_2_8);
+            if(rs == true)
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Loaded " + QString(ProcessFilePath::Process_1_2_8).remove("../../config/ProcessFiles/"));
+            }else
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Error");
+            }
             break;
         }
         case ProcessType::Process_1_2_9:
         {
             rs = loadProcessFile_1_2_9(ProcessFilePath::Process_1_2_9);
+            if(rs == true)
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Loaded " + QString(ProcessFilePath::Process_1_2_9).remove("../../config/ProcessFiles/"));
+            }else
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Error");
+            }
             break;
         }
         case ProcessType::Process_1_2_10:
         {
             rs = loadProcessFile_1_2_10(ProcessFilePath::Process_1_2_10);
+            if(rs == true)
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Loaded " + QString(ProcessFilePath::Process_1_2_10).remove("../../config/ProcessFiles/"));
+            }else
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Error");
+            }
             break;
         }
         case ProcessType::Process_1_2_11:
         {
             rs = loadProcessFile_1_2_11(ProcessFilePath::Process_1_2_11);
+            if(rs == true)
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Loaded " + QString(ProcessFilePath::Process_1_2_11).remove("../../config/ProcessFiles/"));
+            }else
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Error");
+            }
             break;
         }
         case ProcessType::Process_2_1_10:
         {
             rs = loadProcessFile_2_1_10(ProcessFilePath::Process_2_1_10);
+            if(rs == true)
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Loaded " + QString(ProcessFilePath::Process_2_1_10).remove("../../config/ProcessFiles/"));
+            }else
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Error");
+            }
             break;
         }
         case ProcessType::Process_2_1_11:
         {
             rs = loadProcessFile_2_1_11(ProcessFilePath::Process_2_1_11);
+            if(rs == true)
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Loaded " + QString(ProcessFilePath::Process_2_1_11).remove("../../config/ProcessFiles/"));
+            }else
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Error");
+            }
             break;
         }
         case ProcessType::Process_2_2_1:
         {
             rs = loadProcessFile_2_2_1(ProcessFilePath::Process_2_2_1);
+            if(rs == true)
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Loaded " + QString(ProcessFilePath::Process_2_2_1).remove("../../config/ProcessFiles/"));
+            }else
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Error");
+            }
             break;
         }
         case ProcessType::Process_2_2_2:
         {
             rs = loadProcessFile_2_2_2(ProcessFilePath::Process_2_2_2);
+            if(rs == true)
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Loaded " + QString(ProcessFilePath::Process_2_2_2).remove("../../config/ProcessFiles/"));
+            }else
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Error");
+            }
             break;
         }
         case ProcessType::Process_2_2_3:
         {
             rs = loadProcessFile_2_2_3(ProcessFilePath::Process_2_2_3);
+            if(rs == true)
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Loaded " + QString(ProcessFilePath::Process_2_2_3).remove("../../config/ProcessFiles/"));
+            }else
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Error");
+            }
             break;
         }
         case ProcessType::Process_2_2_4:
         {
             rs = loadProcessFile_2_2_4(ProcessFilePath::Process_2_2_4);
+            if(rs == true)
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Loaded " + QString(ProcessFilePath::Process_2_2_4).remove("../../config/ProcessFiles/"));
+            }else
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Error");
+            }
             break;
         }
         case ProcessType::Process_2_2_5:
         {
             rs = loadProcessFile_2_2_5(ProcessFilePath::Process_2_2_5);
+            if(rs == true)
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Loaded " + QString(ProcessFilePath::Process_2_2_5).remove("../../config/ProcessFiles/"));
+            }else
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Error");
+            }
             break;
         }
         case ProcessType::Process_2_2_9:
         {
             rs = loadProcessFile_2_2_9(ProcessFilePath::Process_2_2_9);
+            if(rs == true)
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Loaded " + QString(ProcessFilePath::Process_2_2_9).remove("../../config/ProcessFiles/"));
+            }else
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Error");
+            }
             break;
         }
         case ProcessType::Process_2_2_10:
         {
             rs = loadProcessFile_2_2_10(ProcessFilePath::Process_2_2_10);
+            if(rs == true)
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Loaded " + QString(ProcessFilePath::Process_2_2_10).remove("../../config/ProcessFiles/"));
+            }else
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Error");
+            }
             break;
         }
         case ProcessType::Process_2_2_13_1:
         {
             rs = loadProcessFile_2_2_13_1(ProcessFilePath::Process_2_2_13_1);
+            if(rs == true)
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Loaded " + QString(ProcessFilePath::Process_2_2_13_1).remove("../../config/ProcessFiles/"));
+            }else
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Error");
+            }
             break;
         }
         case ProcessType::Process_2_2_13_2:
         {
             rs = loadProcessFile_2_2_13_2(ProcessFilePath::Process_2_2_13_2);
+            if(rs == true)
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Loaded " + QString(ProcessFilePath::Process_2_2_13_2).remove("../../config/ProcessFiles/"));
+            }else
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Error");
+            }
             break;
         }
         default: break;

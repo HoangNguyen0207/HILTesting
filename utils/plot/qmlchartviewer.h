@@ -5,7 +5,7 @@
 #include <QPainter>
 #include <QElapsedTimer>
 #include "chartdir.h"
-#include "utils/calculatehelper/calculatehelper.h"
+
 
 class QmlChartImage : public QQuickPaintedItem
 {
@@ -135,6 +135,12 @@ public:
     virtual void setDefaultToolTip(const QString& text);
     virtual void setCDMLToolTipPrefix(const QString& text);
 
+    virtual void setSelectionBorderWidth(int width);
+    virtual int getSelectionBorderWidth();
+
+    virtual void setSelectionBorderColor(QColor c);
+    virtual QColor getSelectionBorderColor();
+
     virtual void setMouseUsage(MouseUsage mouseUsage);
     virtual MouseUsage getMouseUsage();
 
@@ -167,12 +173,6 @@ public:
     virtual bool isInViewPortChangedEvent();
     virtual bool isMouseDragging();
 
-    virtual void setSelectionBorderWidth(int width);
-    virtual int getSelectionBorderWidth();
-
-    virtual void setSelectionBorderColor(QColor c);
-    virtual QColor getSelectionBorderColor();
-
     //
     // QmlChartViewer methods
     //
@@ -202,20 +202,9 @@ public:
     virtual int getPlotAreaMouseX();
     virtual int getPlotAreaMouseY();
 
-    // Fit chart area
-    virtual void fitChart(const Direction &dir);
-
     // Utility to obtain the viewport right/top
     virtual double getViewPortRight() { return getViewPortLeft() + getViewPortWidth(); }
     virtual double getViewPortBottom() { return getViewPortTop() + getViewPortHeight(); }
-
-    //
-    // Handles for PPI chart
-    //
-    // Handles mouse wheel zooming for PPI chart
-    virtual bool onPPIMouseWheelZoom(double x, double y, int zDelta);
-    virtual void setPPIChartEnable(bool isEnable);
-    virtual void setPPICenter(LatLongCoordinate_t center);
 
 protected:   
     //
@@ -241,8 +230,8 @@ private:
     BaseChart *m_currentChart;          // Current BaseChart object
     QString m_defaultToolTip;           // Default tool tip text
     QString m_CDMLToolTipPrefix;        // Default prefix for CDML tooltip
-    QColor m_selectBoxLineColor;        // Selection box border color
-    int m_selectBoxLineWidth;           // Selection box border width
+    QColor m_selectBoxLineColor;        // Selectiom box border color
+    int m_selectBoxLineWidth;           // Selectiom box border width
     MouseUsage m_mouseUsage;            // Mouse usage mode
     int m_zoomDirection;                // Zoom direction
     int m_scrollDirection;              // Scroll direction
@@ -263,7 +252,7 @@ private:
     bool m_isPlotAreaMouseDown;         // Mouse left button is down in the plot area.
     bool m_isDragScrolling;             // Is current dragging scrolling the chart.
     bool m_isMouseTracking;             // Is tracking mouse leave event
-    bool m_isInMouseMove;               // Is in mouse move event handler
+    bool m_isInMouseMove;               // Is in mouse moeve event handler
 
     //
     // Dragging support
@@ -322,23 +311,18 @@ private:
     QString m_autoHideMsg;                      // The message that will trigger removing the dynamic layer.
     void applyAutoHide(const char *msg);        // Attempt to remove the dynamic layer with the given message.
 
-    // Member for PPI Chart
-    bool mPPIChartEnable{false};
-    LatLongCoordinate_t mPPICenter;
-
 signals:
     void viewPortChanged();                     // View port has changed
     void clicked(Qt::MouseButton button);       // Mouse button clicked
     void mousePressed(Qt::MouseButton button);  // Mouse button clicked
     void mouseReleased(Qt::MouseButton button); // Mouse button clicked
-    void mouseDoubleClicked(QMouseEvent *event);// Mouse button double clicked
+    void mouseDoubleClicked(QMouseEvent *event);// Mouse double clicked
     void mouseMove();                           // Mouse moves over the widget
     void mouseWheel(QPoint angleDelta);         // Mouse wheel scrolled
     void mouseMoveChart();                      // Mouse moves over the chart
     void mouseLeaveChart();                     // Mouse leaves the chart
     void mouseMovePlotArea();                   // Mouse moves over the extended plot area
     void mouseLeavePlotArea();                  // Mouse leaves the extended plot area
-
     void mouseUsageChanged(MouseUsage mouseUsage);     // Mouse usage changed
 };
 

@@ -11,6 +11,20 @@ void MainStore::process(const QSharedPointer<Action> &action)
     }
 }
 
+QString MainStore::loadedProcessFilePath() const
+{
+    return mLoadedProcessFilePath;
+}
+
+void MainStore::setLoadedProcessFilePath(QString loadedProcessFilePath)
+{
+    if (mLoadedProcessFilePath == loadedProcessFilePath)
+        return;
+
+    mLoadedProcessFilePath = loadedProcessFilePath;
+    emit loadedProcessFilePathChanged(mLoadedProcessFilePath);
+}
+
 
 MainStore::MainStore(QObject* parent) : QObject(parent)
 {
