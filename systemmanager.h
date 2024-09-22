@@ -2,7 +2,7 @@
 
 #include <QObject>
 #include <QSharedPointer>
-#include <sys/resource.h>
+//#include <sys/resource.h>
 #include "services/configservice.h"
 #include "services/logservice.h"
 #include "flux/action/actionprovider.h"

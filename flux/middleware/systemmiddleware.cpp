@@ -9,6 +9,12 @@ QSharedPointer<Action> SystemMiddleware::process(const QSharedPointer<Action> &a
             emit sigDispatchActionToConfig(action);
             break;
         }
+        case ActionType::AbortTest:
+        case ActionType::UpdatePositionInput:
+        case ActionType::UpdateCenterInput:
+        {
+            emit sigDispatchActionToTest(action);
+        }
         default:
         break;
     }

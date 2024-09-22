@@ -11,6 +11,7 @@ namespace DataSize {
 namespace ProcessorName {
     const QString BUS_ADDR_CONFIG = "VTX.HIL.CONFIG";
     const QString BUS_ADDR_LOGGER = "VTX.HIL.LOGGER";
+    const QString BUS_ADDR_TESTING = "VTX.HIL.TESTING";
 }
 
 namespace FilePath {

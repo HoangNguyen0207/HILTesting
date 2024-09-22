@@ -4,6 +4,13 @@
 enum class ActionType
 {
     LoadProcessFile,
+    AbortTest,
+    RequestPositionInput,
+    UpdatePositionInput,
+    UpdateState,
+    FinishTest,
+    UpdateCenterInput,
+    UpdateTestConfig
 };
 
 #endif

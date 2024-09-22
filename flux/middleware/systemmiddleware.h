@@ -20,6 +20,7 @@ class SystemMiddleware final : public QObject, public Middleware
     signals:
         void sigDispatchActionToConfig(QSharedPointer<Action> actionFromMiddle);
         void sigDispatchActionToLogger(QSharedPointer<Action> actionFromMiddle);
+        void sigDispatchActionToTest(QSharedPointer<Action> actionFromMiddle);
 
     private:
         SystemMiddleware(const SystemMiddleware&) = delete;
