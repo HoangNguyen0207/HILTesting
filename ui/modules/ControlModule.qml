@@ -89,7 +89,7 @@ Item {
             anchors.right: parent.right
             anchors.topMargin: 10
             anchors.leftMargin: 10
-            height: 80
+            height: 120
 
             CMN.MaterialLabel
             {
@@ -98,7 +98,7 @@ Item {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 height: 35
-                text: "IDLE"
+                text: "IDLE STATE"
                 iconImg: "qrc:/ui/resources/icon/aboutinfo.png"
             }
             CMN.MaterialButton
@@ -106,9 +106,9 @@ Item {
                 id: startBtnId
                 anchors.top: processStatusId.bottom
                 anchors.left: parent.left
-                anchors.bottom: parent.bottom
                 anchors.topMargin: 10
                 width: parent.width/2 - 2
+                height: 35
                 text: "Start"
                 iconImg: "qrc:/ui/resources/icon/play_50px.png"
                 horizontalAlignment: Text.AlignHCenter
@@ -119,14 +119,28 @@ Item {
                 id: stopBtnId
                 anchors.top: processStatusId.bottom
                 anchors.left: startBtnId.right
-                anchors.bottom: parent.bottom
                 anchors.right: parent.right
                 anchors.leftMargin: 5
                 anchors.topMargin: 10
+                height: 35
                 text: "Stop"
                 iconImg: "qrc:/ui/resources/icon/cancel_96px.png"
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
+            }
+            CMN.MaterialButton
+            {
+                id: emergencyBtnId
+                anchors.top: startBtnId.bottom
+                anchors.left: parent.left
+                anchors.topMargin: 10
+                width: parent.width/2 - 2
+                height: 35
+                text: "Emergency"
+                iconImg: "qrc:/ui/resources/icon/error_64px.png"
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                Material.background: SGT.Style.redColor
             }
         }
     }

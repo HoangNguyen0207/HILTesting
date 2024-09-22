@@ -8,6 +8,7 @@ import "ui/components" as CMN
 import "ui/singletons" as SGT
 import "ui/modules" as MDL
 import "ui/maps" as MAP
+import "ui/dialogs" as DLG
 
 ApplicationWindow {
     id: mainWindow
@@ -27,7 +28,7 @@ ApplicationWindow {
                 text: "Connection"
                 onTriggered:
                 {
-
+                    connectionDialogId.open()
                 }
             }
 
@@ -124,5 +125,10 @@ ApplicationWindow {
                 anchors.leftMargin: 0
             }
         }
+    }
+
+    DLG.ConnectionDialog
+    {
+        id: connectionDialogId
     }
 }
