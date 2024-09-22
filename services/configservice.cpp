@@ -226,6 +226,42 @@ bool ConfigService::loadProcessFile(int processIndex)
             }
             break;
         }
+        case ProcessType::Process_1_2_12:
+        {
+            rs = loadProcessFile_1_2_12(ProcessFilePath::Process_1_2_12);
+            if(rs == true)
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Loaded " + QString(ProcessFilePath::Process_1_2_12).remove("../../config/ProcessFiles/"));
+            }else
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Error");
+            }
+            break;
+        }
+        case ProcessType::Process_1_2_13:
+        {
+            rs = loadProcessFile_1_2_13(ProcessFilePath::Process_1_2_13);
+            if(rs == true)
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Loaded " + QString(ProcessFilePath::Process_1_2_13).remove("../../config/ProcessFiles/"));
+            }else
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Error");
+            }
+            break;
+        }
+        case ProcessType::Process_1_2_14:
+        {
+            rs = loadProcessFile_1_2_14(ProcessFilePath::Process_1_2_14);
+            if(rs == true)
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Loaded " + QString(ProcessFilePath::Process_1_2_14).remove("../../config/ProcessFiles/"));
+            }else
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Error");
+            }
+            break;
+        }
         case ProcessType::Process_2_1_10:
         {
             rs = loadProcessFile_2_1_10(ProcessFilePath::Process_2_1_10);
@@ -310,6 +346,30 @@ bool ConfigService::loadProcessFile(int processIndex)
             }
             break;
         }
+        case ProcessType::Process_2_2_6:
+        {
+            rs = loadProcessFile_2_2_6(ProcessFilePath::Process_2_2_6);
+            if(rs == true)
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Loaded " + QString(ProcessFilePath::Process_2_2_6).remove("../../config/ProcessFiles/"));
+            }else
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Error");
+            }
+            break;
+        }
+        case ProcessType::Process_2_2_8:
+        {
+            rs = loadProcessFile_2_2_8(ProcessFilePath::Process_2_2_8);
+            if(rs == true)
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Loaded " + QString(ProcessFilePath::Process_2_2_8).remove("../../config/ProcessFiles/"));
+            }else
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Error");
+            }
+            break;
+        }
         case ProcessType::Process_2_2_9:
         {
             rs = loadProcessFile_2_2_9(ProcessFilePath::Process_2_2_9);
@@ -352,6 +412,18 @@ bool ConfigService::loadProcessFile(int processIndex)
             if(rs == true)
             {
                 MainStore::getInstance()->setLoadedProcessFilePath("Loaded " + QString(ProcessFilePath::Process_2_2_13_2).remove("../../config/ProcessFiles/"));
+            }else
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Error");
+            }
+            break;
+        }
+        case ProcessType::Process_2_2_15:
+        {
+            rs = loadProcessFile_2_2_15(ProcessFilePath::Process_2_2_15);
+            if(rs == true)
+            {
+                MainStore::getInstance()->setLoadedProcessFilePath("Loaded " + QString(ProcessFilePath::Process_2_2_15).remove("../../config/ProcessFiles/"));
             }else
             {
                 MainStore::getInstance()->setLoadedProcessFilePath("Error");
@@ -998,6 +1070,149 @@ bool ConfigService::loadProcessFile_1_2_11(const QString &filePath)
     }
 }
 
+bool ConfigService::loadProcessFile_1_2_12(const QString &filePath)
+{
+    QString path = filePath;
+    path = path.remove("file://");
+
+    QFile file(path);
+    if(!file.open(QIODevice::ReadOnly))
+    {
+        LOG_ERROR("Could not read process file!, %s", file.errorString().toStdString());
+        return false;
+    }
+
+    QByteArray data = file.readAll();
+    file.close();
+
+    QJsonDocument doc = QJsonDocument::fromJson(data);
+    QJsonObject mainObj = doc.object();
+
+    QVariantMap dataMap;
+    if(mainObj.value("type").toInt() == static_cast<int>(ProcessType::Process_1_2_12))
+    {
+        dataMap.insert("type",mainObj.value("type").toInt());
+        dataMap.insert("name",mainObj.value("name").toString());
+
+        QVariantMap paramMap;
+        paramMap.insert("fmsRxAmp",mainObj.value("param").toObject().value("fmsRxAmp").toDouble());
+        paramMap.insert("fmsRxFreq",mainObj.value("param").toObject().value("fmsRxFreq").toDouble());
+        paramMap.insert("fmsRyAmp",mainObj.value("param").toObject().value("fmsRyAmp").toDouble());
+        paramMap.insert("fmsRyFreq",mainObj.value("param").toObject().value("fmsRyFreq").toDouble());
+        paramMap.insert("fmsRzAmp",mainObj.value("param").toObject().value("fmsRzAmp").toDouble());
+        paramMap.insert("fmsRzFreq",mainObj.value("param").toObject().value("fmsRzFreq").toDouble());
+
+        QVariantMap specMap;
+        specMap.insert("fmsRxMaxVelocity",mainObj.value("spec").toObject().value("fmsRxMaxVelocity").toDouble());
+        specMap.insert("fmsRyMaxVelocity",mainObj.value("spec").toObject().value("fmsRyMaxVelocity").toDouble());
+        specMap.insert("fmsRzMaxVelocity",mainObj.value("spec").toObject().value("fmsRzMaxVelocity").toDouble());
+
+        dataMap.insert("param",paramMap);
+        dataMap.insert("spec",specMap);
+        ActionProvider::instance()->sendFileDataToProcessService(dataMap);
+        return true;
+    }else
+    {
+        return false;
+    }
+}
+
+bool ConfigService::loadProcessFile_1_2_13(const QString &filePath)
+{
+    QString path = filePath;
+    path = path.remove("file://");
+
+    QFile file(path);
+    if(!file.open(QIODevice::ReadOnly))
+    {
+        LOG_ERROR("Could not read process file!, %s", file.errorString().toStdString());
+        return false;
+    }
+
+    QByteArray data = file.readAll();
+    file.close();
+
+    QJsonDocument doc = QJsonDocument::fromJson(data);
+    QJsonObject mainObj = doc.object();
+
+    QVariantMap dataMap;
+    if(mainObj.value("type").toInt() == static_cast<int>(ProcessType::Process_1_2_13))
+    {
+        dataMap.insert("type",mainObj.value("type").toInt());
+        dataMap.insert("name",mainObj.value("name").toString());
+
+        QVariantMap paramMap;
+        paramMap.insert("fmsRxAmp",mainObj.value("param").toObject().value("fmsRxAmp").toDouble());
+        paramMap.insert("fmsRxStartFreq",mainObj.value("param").toObject().value("fmsRxStartFreq").toDouble());
+        paramMap.insert("fmsRxStopFreq",mainObj.value("param").toObject().value("fmsRxStopFreq").toDouble());
+        paramMap.insert("fmsRxStepFreq",mainObj.value("param").toObject().value("fmsRxStepFreq").toDouble());
+        paramMap.insert("fmsRyAmp",mainObj.value("param").toObject().value("fmsRyAmp").toDouble());
+        paramMap.insert("fmsRyStartFreq",mainObj.value("param").toObject().value("fmsRyStartFreq").toDouble());
+        paramMap.insert("fmsRyStopFreq",mainObj.value("param").toObject().value("fmsRyStopFreq").toDouble());
+        paramMap.insert("fmsRyStepFreq",mainObj.value("param").toObject().value("fmsRyStepFreq").toDouble());
+        paramMap.insert("fmsRzAmp",mainObj.value("param").toObject().value("fmsRzAmp").toDouble());
+        paramMap.insert("fmsRzStartFreq",mainObj.value("param").toObject().value("fmsRzStartFreq").toDouble());
+        paramMap.insert("fmsRzStopFreq",mainObj.value("param").toObject().value("fmsRzStopFreq").toDouble());
+        paramMap.insert("fmsRzStepFreq",mainObj.value("param").toObject().value("fmsRzStepFreq").toDouble());
+
+        QVariantMap specMap;
+        specMap.insert("fmsControlBandWidth",mainObj.value("spec").toObject().value("fmsControlBandWidth").toDouble());
+
+        dataMap.insert("param",paramMap);
+        dataMap.insert("spec",specMap);
+        ActionProvider::instance()->sendFileDataToProcessService(dataMap);
+        return true;
+    }else
+    {
+        return false;
+    }
+}
+
+bool ConfigService::loadProcessFile_1_2_14(const QString &filePath)
+{
+    QString path = filePath;
+    path = path.remove("file://");
+
+    QFile file(path);
+    if(!file.open(QIODevice::ReadOnly))
+    {
+        LOG_ERROR("Could not read process file!, %s", file.errorString().toStdString());
+        return false;
+    }
+
+    QByteArray data = file.readAll();
+    file.close();
+
+    QJsonDocument doc = QJsonDocument::fromJson(data);
+    QJsonObject mainObj = doc.object();
+
+    QVariantMap dataMap;
+    if(mainObj.value("type").toInt() == static_cast<int>(ProcessType::Process_1_2_14))
+    {
+        dataMap.insert("type",mainObj.value("type").toInt());
+        dataMap.insert("name",mainObj.value("name").toString());
+
+        QVariantMap paramMap;
+        paramMap.insert("fmsRxAmp",mainObj.value("param").toObject().value("fmsRxAmp").toDouble());
+        paramMap.insert("fmsRxFreq",mainObj.value("param").toObject().value("fmsRxFreq").toDouble());
+        paramMap.insert("fmsRyAmp",mainObj.value("param").toObject().value("fmsRyAmp").toDouble());
+        paramMap.insert("fmsRyFreq",mainObj.value("param").toObject().value("fmsRyFreq").toDouble());
+        paramMap.insert("fmsRzAmp",mainObj.value("param").toObject().value("fmsRzAmp").toDouble());
+        paramMap.insert("fmsRzFreq",mainObj.value("param").toObject().value("fmsRzFreq").toDouble());
+
+        QVariantMap specMap;
+        specMap.insert("fmsControlDelay",mainObj.value("spec").toObject().value("fmsControlDelay").toDouble());
+
+        dataMap.insert("param",paramMap);
+        dataMap.insert("spec",specMap);
+        ActionProvider::instance()->sendFileDataToProcessService(dataMap);
+        return true;
+    }else
+    {
+        return false;
+    }
+}
+
 bool ConfigService::loadProcessFile_2_1_10(const QString &filePath)
 {
     QString path = filePath;
@@ -1308,6 +1523,94 @@ bool ConfigService::loadProcessFile_2_2_5(const QString &filePath)
     }
 }
 
+bool ConfigService::loadProcessFile_2_2_6(const QString &filePath)
+{
+    QString path = filePath;
+    path = path.remove("file://");
+
+    QFile file(path);
+    if(!file.open(QIODevice::ReadOnly))
+    {
+        LOG_ERROR("Could not read process file!, %s", file.errorString().toStdString());
+        return false;
+    }
+
+    QByteArray data = file.readAll();
+    file.close();
+
+    QJsonDocument doc = QJsonDocument::fromJson(data);
+    QJsonObject mainObj = doc.object();
+
+    QVariantMap dataMap;
+    if(mainObj.value("type").toInt() == static_cast<int>(ProcessType::Process_2_2_6))
+    {
+        dataMap.insert("type",mainObj.value("type").toInt());
+        dataMap.insert("name",mainObj.value("name").toString());
+
+        QVariantMap paramMap;
+        paramMap.insert("tmsTxAmp",mainObj.value("param").toObject().value("tmsTxAmp").toDouble());
+        paramMap.insert("tmsTxStartFreq",mainObj.value("param").toObject().value("tmsTxStartFreq").toDouble());
+        paramMap.insert("tmsTxStopFreq",mainObj.value("param").toObject().value("tmsTxStopFreq").toDouble());
+        paramMap.insert("tmsTxStepFreq",mainObj.value("param").toObject().value("tmsTxStepFreq").toDouble());
+        paramMap.insert("tmsTyAmp",mainObj.value("param").toObject().value("tmsTyAmp").toDouble());
+        paramMap.insert("tmsTyStartFreq",mainObj.value("param").toObject().value("tmsTyStartFreq").toDouble());
+        paramMap.insert("tmsTyStopFreq",mainObj.value("param").toObject().value("tmsTyStopFreq").toDouble());
+        paramMap.insert("tmsTyStepFreq",mainObj.value("param").toObject().value("tmsTyStepFreq").toDouble());
+
+        QVariantMap specMap;
+        specMap.insert("tmsControlBandWidth",mainObj.value("spec").toObject().value("tmsControlBandWidth").toDouble());
+
+        dataMap.insert("param",paramMap);
+        dataMap.insert("spec",specMap);
+        ActionProvider::instance()->sendFileDataToProcessService(dataMap);
+        return true;
+    }else
+    {
+        return false;
+    }
+}
+
+bool ConfigService::loadProcessFile_2_2_8(const QString &filePath)
+{
+    QString path = filePath;
+    path = path.remove("file://");
+
+    QFile file(path);
+    if(!file.open(QIODevice::ReadOnly))
+    {
+        LOG_ERROR("Could not read process file!, %s", file.errorString().toStdString());
+        return false;
+    }
+
+    QByteArray data = file.readAll();
+    file.close();
+
+    QJsonDocument doc = QJsonDocument::fromJson(data);
+    QJsonObject mainObj = doc.object();
+
+    QVariantMap dataMap;
+    if(mainObj.value("type").toInt() == static_cast<int>(ProcessType::Process_2_2_8))
+    {
+        dataMap.insert("type",mainObj.value("type").toInt());
+        dataMap.insert("name",mainObj.value("name").toString());
+
+        QVariantMap paramMap;
+        paramMap.insert("tmsTxStartPos",mainObj.value("param").toObject().value("tmsTxStartPos").toDouble());
+        paramMap.insert("tmsTxStopPos",mainObj.value("param").toObject().value("tmsTxStopPos").toDouble());
+
+        QVariantMap specMap;
+        specMap.insert("tmsTxMaxVelocity",mainObj.value("spec").toObject().value("tmsTxMaxVelocity").toDouble());
+
+        dataMap.insert("param",paramMap);
+        dataMap.insert("spec",specMap);
+        ActionProvider::instance()->sendFileDataToProcessService(dataMap);
+        return true;
+    }else
+    {
+        return false;
+    }
+}
+
 bool ConfigService::loadProcessFile_2_2_9(const QString &filePath)
 {
     QString path = filePath;
@@ -1479,6 +1782,49 @@ bool ConfigService::loadProcessFile_2_2_13_2(const QString &filePath)
         QVariantMap specMap;
         specMap.insert("tmsRxMaxVelocity",mainObj.value("spec").toObject().value("tmsRxMaxVelocity").toDouble());
         specMap.insert("tmsRyMaxVelocity",mainObj.value("spec").toObject().value("tmsRyMaxVelocity").toDouble());
+
+        dataMap.insert("param",paramMap);
+        dataMap.insert("spec",specMap);
+        ActionProvider::instance()->sendFileDataToProcessService(dataMap);
+        return true;
+    }else
+    {
+        return false;
+    }
+}
+
+bool ConfigService::loadProcessFile_2_2_15(const QString &filePath)
+{
+    QString path = filePath;
+    path = path.remove("file://");
+
+    QFile file(path);
+    if(!file.open(QIODevice::ReadOnly))
+    {
+        LOG_ERROR("Could not read process file!, %s", file.errorString().toStdString());
+        return false;
+    }
+
+    QByteArray data = file.readAll();
+    file.close();
+
+    QJsonDocument doc = QJsonDocument::fromJson(data);
+    QJsonObject mainObj = doc.object();
+
+    QVariantMap dataMap;
+    if(mainObj.value("type").toInt() == static_cast<int>(ProcessType::Process_2_2_15))
+    {
+        dataMap.insert("type",mainObj.value("type").toInt());
+        dataMap.insert("name",mainObj.value("name").toString());
+
+        QVariantMap paramMap;
+        paramMap.insert("tmsTxAmp",mainObj.value("param").toObject().value("tmsTxAmp").toDouble());
+        paramMap.insert("tmsTxFreq",mainObj.value("param").toObject().value("tmsTxFreq").toDouble());
+        paramMap.insert("tmsTyAmp",mainObj.value("param").toObject().value("tmsTyAmp").toDouble());
+        paramMap.insert("tmsTyFreq",mainObj.value("param").toObject().value("tmsTyFreq").toDouble());
+
+        QVariantMap specMap;
+        specMap.insert("tmsControlDelay",mainObj.value("spec").toObject().value("tmsControlDelay").toDouble());
 
         dataMap.insert("param",paramMap);
         dataMap.insert("spec",specMap);

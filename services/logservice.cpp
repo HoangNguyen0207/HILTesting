@@ -33,7 +33,12 @@ void LogService::processActionFromMiddleware(const QSharedPointer<Action> &actio
 {
     switch (action->getType<ActionType>())
     {
-
+//        case ActionType::SendFileDataToProcessService:
+//        {
+//            QVariantMap dataMap = action->getPayload<QVariantMap>();
+//            QVariantMap paramMap = dataMap.value("param").toMap();
+//            break;
+//        }
         default:
         break;
     }

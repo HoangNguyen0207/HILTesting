@@ -1,0 +1,13 @@
+{
+    "name": "TestProcess_2_2_15",
+    "type": 29,
+    "param": {
+        "tmsTxAmp": 2,
+        "tmsTxFreq": 3,
+        "tmsTyAmp": 1,
+        "tmsTyFreq": 3
+    },
+	"spec": {
+		"tmsControlDelay": 20
+	}
+}

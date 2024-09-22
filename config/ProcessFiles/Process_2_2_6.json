@@ -1,0 +1,17 @@
+{
+    "name": "TestProcess_2_2_6",
+    "type": 23,
+    "param": {
+        "tmsTxAmp": 2,
+        "tmsTxStartFreq": 0.1,
+        "tmsTxStopFreq": 3,
+        "tmsTxStepFreq": 0.1,
+        "tmsTyAmp": 1,
+        "tmsTyStartFreq": 0.1,
+        "tmsTyStopFreq": 3,
+        "tmsTyStepFreq": 0.1
+    },
+	"spec": {
+		"tmsControlBandWidth": 3
+	}
+}

@@ -1,0 +1,11 @@
+{
+    "name": "TestProcess_2_2_8",
+    "type": 24,
+    "param": {
+		"tmsTxStartPos": -2,
+		"tmsTxStopPos": 2
+    },
+	"spec": {
+		"tmsTxMaxVelocity": 0.5
+	}
+}

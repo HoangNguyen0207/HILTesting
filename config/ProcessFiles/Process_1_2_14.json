@@ -1,0 +1,15 @@
+{
+    "name": "TestProcess_1_2_14",
+    "type": 15,
+    "param": {
+        "fmsRxAmp": 20,
+        "fmsRxFreq": 3,
+        "fmsRyAmp": 20,
+        "fmsRyFreq": 3,
+        "fmsRzAmp": 20,
+        "fmsRzFreq": 3
+    },
+	"spec": {
+		"fmsControlDelay": 20
+	}
+}

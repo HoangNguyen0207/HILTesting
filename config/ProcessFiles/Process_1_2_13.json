@@ -1,0 +1,21 @@
+{
+    "name": "TestProcess_1_2_13",
+    "type": 14,
+    "param": {
+        "fmsRxAmp": 20,
+        "fmsRxStartFreq": 1,
+        "fmsRxStopFreq": 3,
+        "fmsRxStepFreq": 0.1,
+        "fmsRyAmp": 20,
+        "fmsRyStartFreq": 1,
+        "fmsRyStopFreq": 3,
+        "fmsRyStepFreq": 0.1,
+        "fmsRzAmp": 20,
+        "fmsRzStartFreq": 1,
+        "fmsRzStopFreq": 3,
+        "fmsRzStepFreq": 0.1
+    },
+	"spec": {
+		"fmsControlBandWidth": 3
+	}
+}

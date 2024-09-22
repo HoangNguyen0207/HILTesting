@@ -1,0 +1,17 @@
+{
+    "name": "TestProcess_1_2_12",
+    "type": 13,
+    "param": {
+        "fmsRxAmp": 20,
+        "fmsRxFreq": 3,
+        "fmsRyAmp": 20,
+        "fmsRyFreq": 3,
+        "fmsRzAmp": 20,
+        "fmsRzFreq": 3
+    },
+	"spec": {
+		"fmsRxMaxVelocity": 160,
+		"fmsRyMaxVelocity": 160,
+		"fmsRzMaxVelocity": 160
+	}
+}

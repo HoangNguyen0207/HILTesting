@@ -42,6 +42,9 @@ Item {
                 ListElement {text: "Process_1_2_9"}
                 ListElement {text: "Process_1_2_10"}
                 ListElement {text: "Process_1_2_11"}
+                ListElement {text: "Process_1_2_12"}
+                ListElement {text: "Process_1_2_13"}
+                ListElement {text: "Process_1_2_14"}
                 ListElement {text: "Process_2_1_10"}
                 ListElement {text: "Process_2_1_11"}
                 ListElement {text: "Process_2_2_1"}
@@ -49,10 +52,13 @@ Item {
                 ListElement {text: "Process_2_2_3"}
                 ListElement {text: "Process_2_2_4"}
                 ListElement {text: "Process_2_2_5"}
+                ListElement {text: "Process_2_2_6"}
+                ListElement {text: "Process_2_2_8"}
                 ListElement {text: "Process_2_2_9"}
                 ListElement {text: "Process_2_2_10"}
                 ListElement {text: "Process_2_2_13_1"}
                 ListElement {text: "Process_2_2_13_2"}
+                ListElement {text: "Process_2_2_15"}
             }
             onCurrentIndexChanged:
             {

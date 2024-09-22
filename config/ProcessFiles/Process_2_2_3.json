@@ -1,6 +1,6 @@
 {
     "name": "TestProcess_2_2_3",
-    "type": 17,
+    "type": 20,
     "param": {
         "tmsTxLowerLimitedPos": -2,
         "tmsTxUpperLimitedPos": 2,
