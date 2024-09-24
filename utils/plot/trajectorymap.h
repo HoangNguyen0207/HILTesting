@@ -29,6 +29,7 @@ class TrajectoryMap : public QQuickPaintedItem
         Q_INVOKABLE void setMouseUsage(const QmlChartViewer::MouseUsage& mouseUsage);
         Q_INVOKABLE void fitChart(const QmlChartViewer::Direction& dir);
         Q_INVOKABLE void onDistanceCalcModeTriggered();
+        Q_INVOKABLE QString onCreateImageTriggered(const QString& imageName);
 
         double deltaX() const;
         double deltaY() const;

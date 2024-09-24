@@ -77,7 +77,7 @@ Popup {
             anchors.rightMargin: 10
             text: "FMS"
             height: 35
-            font.bold: false
+            font.bold: true
             checkable: true
             checked: true
             Material.background: checked ? SGT.Style.checkedButton : SGT.Style.uncheckedButton
@@ -102,7 +102,7 @@ Popup {
             anchors.rightMargin: 10
             text: "TMS"
             height: 35
-            font.bold: false
+            font.bold: true
             checkable: true
             Material.background: checked ? SGT.Style.checkedButton : SGT.Style.uncheckedButton
             horizontalAlignment: Text.AlignHCenter

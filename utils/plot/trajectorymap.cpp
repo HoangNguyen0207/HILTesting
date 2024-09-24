@@ -5,6 +5,8 @@
 #include "chartdir.h"
 #include <QTimerEvent>
 #include <QMouseEvent>
+#include <QPixmap>
+#include <QStringLiteral>
 
 TrajectoryMap::TrajectoryMap(QQuickPaintedItem *parent)
     : QQuickPaintedItem(parent)
@@ -77,6 +79,20 @@ void TrajectoryMap::onDistanceCalcModeTriggered()
         mCurveList[DISTANCE_CURVE_ID].ySeries.clear();
         replot();
         mDistanceCalcModeFlag = false;
+    }
+}
+
+QString TrajectoryMap::onCreateImageTriggered(const QString &imageName)
+{
+    QString imagePath = QString("../../image/%1.png").arg(imageName);
+    if(mpChartViewer->getChart()->makeChart(imagePath.toStdString().c_str()))
+    {
+        QPixmap image(imagePath);
+        image.copy(0,0,this->width(),this->height() - ChartConstances::DEFAULT_LICENSE_LABEL_MARGIN).save(imagePath);
+        return imagePath;
+    }else
+    {
+        return QString();
     }
 }
 
@@ -172,7 +188,7 @@ void TrajectoryMap::drawChart(QmlChartViewer *viewer)
     int width = static_cast<int>(this->width());
     int height = static_cast<int>(this->height());
 
-    XYChart* c = new XYChart(width,height, Chart::Transparent);
+    XYChart* c = new XYChart(width,height,0xFFFFFF);
 
     int leftMargin = 50;
     int topMargin = 15;
