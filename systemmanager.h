@@ -5,6 +5,7 @@
 //#include <sys/resource.h>
 #include "services/configservice.h"
 #include "services/logservice.h"
+#include "services/testprocessservice.h"
 #include "flux/action/actionprovider.h"
 #include "flux/middleware/systemmiddleware.h"
 #include "flux/store/mainstore.h"
@@ -25,6 +26,7 @@ class SystemManager : public QObject
 
     private slots:
         void slotCreateLogService();
+        void slotSetSystemConfig(SystemConfig_t config);
 
     private:
         SystemManager() = default;
@@ -38,6 +40,7 @@ class SystemManager : public QObject
         QSharedPointer<SystemMiddleware> mSystemMiddleware{nullptr};
         LogService* mLogService{nullptr};
         ConfigService* mConfigService{nullptr};
+        TestProcessService* mTestService {nullptr};
 
 };
 

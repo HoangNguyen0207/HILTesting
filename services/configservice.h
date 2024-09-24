@@ -23,6 +23,7 @@ class ConfigService final : public ProcessorAbstract
 
     signals:
         void sigCreateLogService();
+        void sigLoadSystemConfig(SystemConfig_t config);
 
     private:
         bool loadProcessFile(int processIndex);
@@ -50,6 +51,8 @@ class ConfigService final : public ProcessorAbstract
         bool loadProcessFile_2_2_10(const QString& filePath);
         bool loadProcessFile_2_2_13_1(const QString& filePath);
         bool loadProcessFile_2_2_13_2(const QString& filePath);
+
+        bool loadSystemConfigFile(const QString& filePath);
 
     private:
         SystemConfigLoader mSystemConfigLoader;

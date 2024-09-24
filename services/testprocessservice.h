@@ -3,17 +3,13 @@
 
 #include "processorabs/processorabstract.h"
 #include "TestProcess/TestProcessFactory.h"
+#include "TestProcess/TestConfigGetter.h"
+#include "utils/configLoader/systemconfigloader.h"
 #include "action.h"
 #include <QTimer>
 #include <QTimerEvent>
 
 using namespace flux_qt;
-
-typedef struct {
-    DEVICE::TYPE device;
-    int axis;
-    TEST_DEFINE::TEST_PROCESS type;
-} TestProcessQueuePart;
 
 class TestProcessService : public ProcessorAbstract
 {
@@ -23,6 +19,7 @@ public:
     ~TestProcessService() override;
 
     void timerEvent(QTimerEvent *event) override;
+    void setSystemConfig(SystemConfig_t config);
 
 public slots:
     void onStopProcess() override;
@@ -37,10 +34,13 @@ private:
 private:
     TestProcessFactory* mTestFactory {nullptr};
     TestProcess* mTestProcess {nullptr};
+    TestConfigGetter* mTestConfigGetter {nullptr};
 
     std::vector<double> mCenterCoordinate[2][3];
 
     TEST_DEFINE::STATE mState {TEST_DEFINE::STATE::IDLE};
+    bool mIsTestPass {true};
+
     std::queue<TestProcessQueuePart> mTestQueue;
 
     int mTestTimer {0};

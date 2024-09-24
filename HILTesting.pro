@@ -1,4 +1,4 @@
-QT += core gui serialport quick qml widgets quickcontrols2 network location opengl
+QT += core gui serialport quick qml widgets quickcontrols2 network location opengl xml
 greaterThan(QT_MAJOR_VERSION, 4): QT += printsupport
 
 CONFIG += c++11

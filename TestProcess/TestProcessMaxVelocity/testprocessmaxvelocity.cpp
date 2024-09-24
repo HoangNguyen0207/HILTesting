@@ -10,6 +10,11 @@ TestProcessMaxVelocity::TestProcessMaxVelocity(DEVICE::TYPE device, int axis, Co
                         * mCtrlParam.mFrequency[mAxis] * 4 * PI * PI;
 }
 
+TestProcessMaxVelocity::~TestProcessMaxVelocity()
+{
+
+}
+
 int TestProcessMaxVelocity::run()
 {
     if(mPause == false)

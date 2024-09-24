@@ -17,11 +17,11 @@ enum TEST_STEP {
 
 class TestProcess
 {
-    Q_OBJECT
 public:
     TestProcess(DEVICE::TYPE device, ControlParamType control_param, SpecificationParamType spec);
     TestProcess(DEVICE::TYPE device, int axis, ControlParamType control_param, SpecificationParamType spec);
 
+    virtual ~TestProcess() = default;
     virtual int run() = 0;
     void abort();
     void pause();

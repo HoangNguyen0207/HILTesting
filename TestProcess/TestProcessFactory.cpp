@@ -21,7 +21,7 @@ TestProcessFactory::~TestProcessFactory() {
 
 }
 
-TestProcess* TestProcessFactory::createTestProcess(DEVICE::TYPE device, ControlParamType control, SpecificationParamType spec, TEST_DEFINE::TEST_PROCESS type)
+TestProcess* TestProcessFactory::createTestProcess(DEVICE::TYPE device, int axis, ControlParamType control, SpecificationParamType spec, TEST_DEFINE::TEST_PROCESS type)
 {
     switch(type)
     {
@@ -31,14 +31,6 @@ TestProcess* TestProcessFactory::createTestProcess(DEVICE::TYPE device, ControlP
         return new TestProcessClosedLoop(device, control, spec);
     case TEST_DEFINE::TEST_PROCESS::REALTIME_CONTROL:
         return new TestProcessRealtimeControl(device, control, spec);
-    default: return nullptr;
-    }
-}
-
-TestProcess* TestProcessFactory::createTestProcess(DEVICE::TYPE device, int axis, ControlParamType control, SpecificationParamType spec, TEST_DEFINE::TEST_PROCESS type)
-{
-    switch(type)
-    {
     case TEST_DEFINE::TEST_PROCESS::POSITION:
         return new TestProcessPosition(device, axis, control, spec);
     case TEST_DEFINE::TEST_PROCESS::BANDWIDTH:

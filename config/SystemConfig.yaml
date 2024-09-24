@@ -8,5 +8,17 @@ gimbalUdpRemotePort: 1024
 gimbalUdpLocalPort: 1024
 macAddress: 00:0C:29:2A:35:94
 
+fmsRollCenterX: 5
+fmsRollCenterY: 5
+fmsRollCenterZ: 5
+
+fmsYawPitchCenterX: 5
+fmsYawPitchCenterY: 5
+fmsYawPitchCenterZ: 5
+
+tmsCenterX: 5
+tmsCenterY: 5
+tmsCenterZ: 5
+
 
 

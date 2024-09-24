@@ -10,6 +10,11 @@ TestProcessLoad::TestProcessLoad(DEVICE::TYPE device, int axis, ControlParamType
                         * mCtrlParam.mFrequency[mAxis] * 4 * PI * PI;
 }
 
+TestProcessLoad::~TestProcessLoad()
+{
+
+}
+
 int TestProcessLoad::run()
 {
     if(mPause == false)

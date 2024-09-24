@@ -3,7 +3,15 @@
 
 struct SystemConfig_t
 {
-
+    double fmsRollCenterX;
+    double fmsRollCenterY;
+    double fmsRollCenterZ;
+    double fmsYawPitchCenterX;
+    double fmsYawPitchCenterY;
+    double fmsYawPitchCenterZ;
+    double tmsCenterX;
+    double tmsCenterY;
+    double tmsCenterZ;
 };
 class SystemConfigLoader
 {

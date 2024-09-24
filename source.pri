@@ -40,7 +40,6 @@ SOURCES += \
         $$PWD/utils/math_helper/math_helper.cpp \
         $$PWD/utils/reportHandle/reporthandle.cpp \
         $$PWD/services/testprocessservice.cpp \
-        $$PWD/TestProcess/TestConfigGetter.cpp \
         $$PWD/TestProcess/TestProcessClosedLoop/TestProcessClosedLoop.cpp \
         $$PWD/TestProcess/TestProcessControl/TestProcessControl.cpp \
         $$PWD/TestProcess/TestProcessRealtimeControl/TestProcessRealtimeControl.cpp \
@@ -90,7 +89,6 @@ HEADERS += \
     $$PWD/utils/math_helper/math_helper.h \
     $$PWD/utils/reportHandle/reporthandle.h \
     $$PWD/services/testprocessservice.h \
-    $$PWD/TestProcess/TestConfigGetter.h \
     $$PWD/TestProcess/TestProcessClosedLoop/TestProcessClosedLoop.h \
     $$PWD/TestProcess/TestProcessControl/TestProcessControl.h \
     $$PWD/TestProcess/TestProcessRealtimeControl/TestProcessRealtimeControl.h \

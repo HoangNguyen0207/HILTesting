@@ -63,6 +63,7 @@ void ConfigService::onStartProcess()
     {
         LOG_DEBUG("Load file Config Successfully");
         emit sigCreateLogService();
+        emit sigLoadSystemConfig(mSystemConfigLoader.getSystemConfig());
     }
     else
     {
@@ -89,6 +90,8 @@ void ConfigService::processActionFromMiddleware(const QSharedPointer<Action> &ac
         break;
     }
 }
+
+
 
 bool ConfigService::loadProcessFile(int processIndex)
 {

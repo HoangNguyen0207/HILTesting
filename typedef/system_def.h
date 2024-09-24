@@ -17,6 +17,7 @@ typedef struct {
     double mSpecification[6];
 } SpecificationParamType;
 
+
 //typedef struct {
 //    double MaxRotationAngle;
 //    double MaxLinearHorPosition;

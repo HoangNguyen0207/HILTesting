@@ -14,7 +14,7 @@ static int count_zero_crossings(const std::vector<double>& signal) {
     return zero_crossings;
 }
 
-double peak_amplitude_detect(const std::vector<double>& signal) {
+double peak_amplitude_detect(std::vector<double>& signal) {
     return *std::max_element(signal.begin(), signal.end());
 }
 

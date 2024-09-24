@@ -4,7 +4,15 @@
 #include "typedef/globalvar.h"
 #include "typedef/system_def.h"
 #include <QMap>
-#include <QList>
+#include "queue"
+
+typedef struct {
+    DEVICE::TYPE device;
+    int axis;
+    TEST_DEFINE::TEST_PROCESS type;
+    ControlParamType control;
+    SpecificationParamType spec;
+} TestProcessQueuePart;
 
 class TestConfigGetter
 {
@@ -15,7 +23,7 @@ public:
     ControlParamType getControlParam();
     SpecificationParamType getSpecParam();
 
-    TEST_DEFINE::TEST_PROCESS updateConfig(ProcessType type, QMap<QString, QVariantMap>& config, DEVICE::TYPE& device);
+    void updateConfig(ProcessType type, QMap<QString, QVariantMap>& config, std::queue<TestProcessQueuePart>& mQueue);
 
 private:
     ControlParamType mCtrlParam;

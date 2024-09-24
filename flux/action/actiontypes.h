@@ -10,7 +10,7 @@ enum class ActionType
     UpdateState,
     FinishTest,
     UpdateCenterInput,
-    UpdateTestConfig
+    UpdateTestConfig,
     SendFileDataToProcessService,
 };
 

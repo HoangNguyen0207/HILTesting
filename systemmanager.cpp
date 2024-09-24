@@ -45,10 +45,16 @@ void SystemManager::registerMetaType()
 
 void SystemManager::initThreads()
 {
+    LOG_DEBUG("Init TestSetvice thread");
+    mTestService = new TestProcessService(ProcessorName::BUS_ADDR_TESTING);
+    QObject::connect(mSystemMiddleware.get(), &SystemMiddleware::sigDispatchActionToTest, mTestService, &TestProcessService::processActionFromMiddleware, Qt::QueuedConnection);
+    emit mTestService->startProcess();
+
     LOG_DEBUG("Init ConfigService thread");
     mConfigService = new ConfigService(ProcessorName::BUS_ADDR_CONFIG);
     QObject::connect(mSystemMiddleware.get(),&SystemMiddleware::sigDispatchActionToConfig,mConfigService,&ConfigService::processActionFromMiddleware, Qt::QueuedConnection);
     QObject::connect(mConfigService,&ConfigService::sigCreateLogService,this,&SystemManager::slotCreateLogService);
+    QObject::connect(mConfigService, &ConfigService::sigLoadSystemConfig, this, &SystemManager::slotSetSystemConfig);
     emit mConfigService->startProcess();
 }
 
@@ -86,4 +92,9 @@ void SystemManager::initObjectForQmlAccession()
 void SystemManager::initSignalSlotConnection()
 {
     LOG_DEBUG("Init connect signal and slot");
+}
+
+void SystemManager::slotSetSystemConfig(SystemConfig_t config)
+{
+    mTestService->setSystemConfig(config);
 }

@@ -21,8 +21,9 @@ SpecificationParamType TestConfigGetter::getSpecParam()
     return mSpecParam;
 }
 
-TEST_DEFINE::TEST_PROCESS TestConfigGetter::updateConfig(ProcessType type, QMap<QString, QVariantMap>& config, DEVICE::TYPE& device)
+void TestConfigGetter::updateConfig(ProcessType type, QMap<QString, QVariantMap>& config, std::queue<TestProcessQueuePart>& mQueue)
 {
+    TestProcessQueuePart queue;
     switch(type)
     {
     case ProcessType::Process_1_1_1:
@@ -31,8 +32,12 @@ TEST_DEFINE::TEST_PROCESS TestConfigGetter::updateConfig(ProcessType type, QMap<
         mCtrlParam.mAmplitude[static_cast<int>(DEVICE::TYPE::FMS)] = config["param"]["fmsFreq"].toDouble();
         mCtrlParam.mAmplitude[static_cast<int>(DEVICE::TYPE::TMS)] = config["param"]["tmsApp"].toDouble();
         mCtrlParam.mAmplitude[static_cast<int>(DEVICE::TYPE::TMS)] = config["param"]["tmsFreq"].toDouble();
-        device = DEVICE::TYPE::FMS;
-        return TEST_DEFINE::TEST_PROCESS::CLOSED_LOOP;
+        queue.device = DEVICE::TYPE::FMS;
+        queue.type = TEST_DEFINE::TEST_PROCESS::CLOSED_LOOP;
+        queue.control = mCtrlParam;
+        queue.spec = mSpecParam;
+        mQueue.push(queue);
+        return;
     }
     case ProcessType::Process_1_1_2:
     {
@@ -48,8 +53,16 @@ TEST_DEFINE::TEST_PROCESS TestConfigGetter::updateConfig(ProcessType type, QMap<
         mCtrlParam.mUpperPosition[static_cast<int>(DEVICE::FMS_AXIS::Y)] = config["param"]["fmsTyPos2"].toDouble();
         mCtrlParam.mLowerPosition[static_cast<int>(DEVICE::FMS_AXIS::Z)] = config["param"]["fmsTzPos1"].toDouble();
         mCtrlParam.mUpperPosition[static_cast<int>(DEVICE::FMS_AXIS::Z)] = config["param"]["fmsTzPos2"].toDouble();
-        device = DEVICE::TYPE::FMS;
-        return TEST_DEFINE::TEST_PROCESS::CONTROL;
+        queue.device = DEVICE::TYPE::FMS;
+        queue.type = TEST_DEFINE::TEST_PROCESS::CONTROL;
+        queue.control = mCtrlParam;
+        queue.spec = mSpecParam;
+        for(int i = static_cast<int>(DEVICE::FMS_AXIS::ROLL); i <= static_cast<int>(DEVICE::FMS_AXIS::YAW); i++)
+        {
+            queue.axis = i;
+            mQueue.push(queue);
+        }
+        return;
     }
     case ProcessType::Process_1_1_11:
     case ProcessType::Process_2_1_11:
@@ -60,8 +73,12 @@ TEST_DEFINE::TEST_PROCESS TestConfigGetter::updateConfig(ProcessType type, QMap<
         mCtrlParam.mFrequency[static_cast<int>(DEVICE::FMS_AXIS::PITCH)] = config["param"]["fmsPitchFreq"].toDouble();
         mCtrlParam.mAmplitude[static_cast<int>(DEVICE::FMS_AXIS::YAW)] = config["param"]["fmsYawAmp"].toDouble();
         mCtrlParam.mFrequency[static_cast<int>(DEVICE::FMS_AXIS::YAW)] = config["param"]["fmsYawFreq"].toDouble();
-        device = DEVICE::TYPE::FMS;
-        return TEST_DEFINE::TEST_PROCESS::REALTIME_CONTROL;
+        queue.device = DEVICE::TYPE::FMS;
+        queue.type = TEST_DEFINE::TEST_PROCESS::REALTIME_CONTROL;
+        queue.control = mCtrlParam;
+        queue.spec = mSpecParam;
+        mQueue.push(queue);
+        return;
     }
     case ProcessType::Process_1_2_1:
     {
@@ -77,8 +94,16 @@ TEST_DEFINE::TEST_PROCESS TestConfigGetter::updateConfig(ProcessType type, QMap<
         mSpecParam.mSpecification[static_cast<int>(DEVICE::FMS_AXIS::YAW)] = config["spec"]["fmsYawUpperLimitedPos"].toDouble();
 
         mCtrlParam.mIsLinear = false;
-        device = DEVICE::TYPE::FMS;
-        return TEST_DEFINE::TEST_PROCESS::MAX_POS;
+        queue.device = DEVICE::TYPE::FMS;
+        queue.type = TEST_DEFINE::TEST_PROCESS::MAX_POS;
+        queue.control = mCtrlParam;
+        queue.spec = mSpecParam;
+        for(int i = static_cast<int>(DEVICE::FMS_AXIS::ROLL); i <= static_cast<int>(DEVICE::FMS_AXIS::YAW); i++)
+        {
+            queue.axis = i;
+            mQueue.push(queue);
+        }
+        return;
     }
     case ProcessType::Process_1_2_2:
     {
@@ -93,8 +118,16 @@ TEST_DEFINE::TEST_PROCESS TestConfigGetter::updateConfig(ProcessType type, QMap<
         mSpecParam.mSpecification[static_cast<int>(DEVICE::FMS_AXIS::PITCH)] = config["spec"]["fmsPitchMaxVelocity"].toDouble();
         mSpecParam.mSpecification[static_cast<int>(DEVICE::FMS_AXIS::YAW)] = config["spec"]["fmsYawMaxVelocity"].toDouble();
 
-        device = DEVICE::TYPE::FMS;
-        return TEST_DEFINE::TEST_PROCESS::MAX_VEL;
+        queue.device = DEVICE::TYPE::FMS;
+        queue.type = TEST_DEFINE::TEST_PROCESS::MAX_VEL;
+        queue.control = mCtrlParam;
+        queue.spec = mSpecParam;
+        for(int i = static_cast<int>(DEVICE::FMS_AXIS::ROLL); i <= static_cast<int>(DEVICE::FMS_AXIS::YAW); i++)
+        {
+            queue.axis = i;
+            mQueue.push(queue);
+        }
+        return;
     }
     case ProcessType::Process_1_2_3:
     {
@@ -109,8 +142,16 @@ TEST_DEFINE::TEST_PROCESS TestConfigGetter::updateConfig(ProcessType type, QMap<
         mSpecParam.mSpecification[static_cast<int>(DEVICE::FMS_AXIS::PITCH)] = config["spec"]["fmsPitchMinVelocity"].toDouble();
         mSpecParam.mSpecification[static_cast<int>(DEVICE::FMS_AXIS::YAW)] = config["spec"]["fmsYawMinVelocity"].toDouble();
 
-        device = DEVICE::TYPE::FMS;
-        return TEST_DEFINE::TEST_PROCESS::MIN_VEL;
+        queue.device = DEVICE::TYPE::FMS;
+        queue.type = TEST_DEFINE::TEST_PROCESS::MIN_VEL;
+        queue.control = mCtrlParam;
+        queue.spec = mSpecParam;
+        for(int i = static_cast<int>(DEVICE::FMS_AXIS::ROLL); i <= static_cast<int>(DEVICE::FMS_AXIS::YAW); i++)
+        {
+            queue.axis = i;
+            mQueue.push(queue);
+        }
+        return;
     }
     case ProcessType::Process_1_2_4:
     {
@@ -123,8 +164,16 @@ TEST_DEFINE::TEST_PROCESS TestConfigGetter::updateConfig(ProcessType type, QMap<
         mSpecParam.mSpecification[static_cast<int>(DEVICE::FMS_AXIS::YAW)] = config["spec"]["fmsYawAngleResolution"].toDouble();
 
         mCtrlParam.mIsLinear = false;
-        device = DEVICE::TYPE::FMS;
-        return TEST_DEFINE::TEST_PROCESS::RESOLUTION;
+        queue.device = DEVICE::TYPE::FMS;
+        queue.type = TEST_DEFINE::TEST_PROCESS::RESOLUTION;
+        queue.control = mCtrlParam;
+        queue.spec = mSpecParam;
+        for(int i = static_cast<int>(DEVICE::FMS_AXIS::ROLL); i <= static_cast<int>(DEVICE::FMS_AXIS::YAW); i++)
+        {
+            queue.axis = i;
+            mQueue.push(queue);
+        }
+        return;
     }
     case ProcessType::Process_1_2_5:
     {
@@ -139,8 +188,16 @@ TEST_DEFINE::TEST_PROCESS TestConfigGetter::updateConfig(ProcessType type, QMap<
         mSpecParam.mSpecification[static_cast<int>(DEVICE::FMS_AXIS::PITCH)] = config["spec"]["fmsPitchMaxAcc"].toDouble();
         mSpecParam.mSpecification[static_cast<int>(DEVICE::FMS_AXIS::YAW)] = config["spec"]["fmsYawMaxAcc"].toDouble();
 
-        device = DEVICE::TYPE::FMS;
-        return TEST_DEFINE::TEST_PROCESS::MAX_ACC;
+        queue.device = DEVICE::TYPE::FMS;
+        queue.type = TEST_DEFINE::TEST_PROCESS::MAX_ACC;
+        queue.control = mCtrlParam;
+        queue.spec = mSpecParam;
+        for(int i = static_cast<int>(DEVICE::FMS_AXIS::ROLL); i <= static_cast<int>(DEVICE::FMS_AXIS::YAW); i++)
+        {
+            queue.axis = i;
+            mQueue.push(queue);
+        }
+        return;
     }
     case ProcessType::Process_1_2_6_7:
     {
@@ -156,8 +213,16 @@ TEST_DEFINE::TEST_PROCESS TestConfigGetter::updateConfig(ProcessType type, QMap<
         mSpecParam.mSpecification[static_cast<int>(DEVICE::FMS_AXIS::Z)] = config["spec"]["fmsTzUpperLimitedPos"].toDouble();
 
         mCtrlParam.mIsLinear = true;
-        device = DEVICE::TYPE::FMS;
-        return TEST_DEFINE::TEST_PROCESS::MAX_POS;
+        queue.device = DEVICE::TYPE::FMS;
+        queue.type = TEST_DEFINE::TEST_PROCESS::MAX_POS;
+        queue.control = mCtrlParam;
+        queue.spec = mSpecParam;
+        for(int i = static_cast<int>(DEVICE::FMS_AXIS::X); i <= static_cast<int>(DEVICE::FMS_AXIS::Z); i++)
+        {
+            queue.axis = i;
+            mQueue.push(queue);
+        }
+        return;
     }
     case ProcessType::Process_1_2_8:
     {
@@ -172,8 +237,16 @@ TEST_DEFINE::TEST_PROCESS TestConfigGetter::updateConfig(ProcessType type, QMap<
         mSpecParam.mSpecification[static_cast<int>(DEVICE::FMS_AXIS::Y)] = config["spec"]["fmsTyMaxVelocity"].toDouble();
         mSpecParam.mSpecification[static_cast<int>(DEVICE::FMS_AXIS::Z)] = config["spec"]["fmsTzMaxVelocity"].toDouble();
 
-        device = DEVICE::TYPE::FMS;
-        return TEST_DEFINE::TEST_PROCESS::MAX_VEL;
+        queue.device = DEVICE::TYPE::FMS;
+        queue.type = TEST_DEFINE::TEST_PROCESS::MAX_VEL;
+        queue.control = mCtrlParam;
+        queue.spec = mSpecParam;
+        for(int i = static_cast<int>(DEVICE::FMS_AXIS::X); i <= static_cast<int>(DEVICE::FMS_AXIS::Z); i++)
+        {
+            queue.axis = i;
+            mQueue.push(queue);
+        }
+        return;
     }
     case ProcessType::Process_1_2_9:
     {
@@ -188,8 +261,73 @@ TEST_DEFINE::TEST_PROCESS TestConfigGetter::updateConfig(ProcessType type, QMap<
         mSpecParam.mSpecification[static_cast<int>(DEVICE::FMS_AXIS::Y)] = config["spec"]["fmsTyMaxAcc"].toDouble();
         mSpecParam.mSpecification[static_cast<int>(DEVICE::FMS_AXIS::Z)] = config["spec"]["fmsTzMaxAcc"].toDouble();
 
-        device = DEVICE::TYPE::FMS;
-        return TEST_DEFINE::TEST_PROCESS::MAX_ACC;
+        queue.device = DEVICE::TYPE::FMS;
+        queue.type = TEST_DEFINE::TEST_PROCESS::MAX_ACC;
+        queue.control = mCtrlParam;
+        queue.spec = mSpecParam;
+        for(int i = static_cast<int>(DEVICE::FMS_AXIS::X); i <= static_cast<int>(DEVICE::FMS_AXIS::Z); i++)
+        {
+            queue.axis = i;
+            mQueue.push(queue);
+        }
+        return;
+    }
+    case ProcessType::Process_1_2_10:
+    {
+        mCtrlParam.mLowerPosition[static_cast<int>(DEVICE::FMS_AXIS::ROLL)] = config["param"]["fmsRxStartPos"].toDouble();
+        mCtrlParam.mUpperPosition[static_cast<int>(DEVICE::FMS_AXIS::ROLL)] = config["param"]["fmsRxStopPos"].toDouble();
+        mCtrlParam.mPositionStep[static_cast<int>(DEVICE::FMS_AXIS::ROLL)] = config["param"]["fmsRxStepPos"].toDouble();
+
+        mCtrlParam.mLowerPosition[static_cast<int>(DEVICE::FMS_AXIS::PITCH)] = config["param"]["fmsRyStartPos"].toDouble();
+        mCtrlParam.mUpperPosition[static_cast<int>(DEVICE::FMS_AXIS::PITCH)] = config["param"]["fmsRyStopPos"].toDouble();
+        mCtrlParam.mPositionStep[static_cast<int>(DEVICE::FMS_AXIS::PITCH)] = config["param"]["fmsRyStepPos"].toDouble();
+
+        mCtrlParam.mLowerPosition[static_cast<int>(DEVICE::FMS_AXIS::YAW)] = config["param"]["fmsRzStartPos"].toDouble();
+        mCtrlParam.mUpperPosition[static_cast<int>(DEVICE::FMS_AXIS::YAW)] = config["param"]["fmsRzStopPos"].toDouble();
+        mCtrlParam.mPositionStep[static_cast<int>(DEVICE::FMS_AXIS::YAW)] = config["param"]["fmsRzStepPos"].toDouble();
+
+        mSpecParam.mSpecification[static_cast<int>(DEVICE::FMS_AXIS::ROLL)] = config["spec"]["fmsRxMaxAngleAccuracy"].toDouble();
+        mSpecParam.mSpecification[static_cast<int>(DEVICE::FMS_AXIS::PITCH)] = config["spec"]["fmsRyMaxAngleAccuracy"].toDouble();
+        mSpecParam.mSpecification[static_cast<int>(DEVICE::FMS_AXIS::YAW)] = config["spec"]["fmsRzMaxAngleAccuracy"].toDouble();
+
+        queue.device = DEVICE::TYPE::FMS;
+        queue.type = TEST_DEFINE::TEST_PROCESS::POSITION;
+        queue.control = mCtrlParam;
+        queue.spec = mSpecParam;
+        for(int i = static_cast<int>(DEVICE::FMS_AXIS::ROLL); i <= static_cast<int>(DEVICE::FMS_AXIS::YAW); i++)
+        {
+            queue.axis = i;
+            mQueue.push(queue);
+        }
+        return;
+    }
+    case ProcessType::Process_1_2_11:
+    {
+        mCtrlParam.mLowerPosition[static_cast<int>(DEVICE::FMS_AXIS::ROLL)] = config["param"]["fmsRxPos1"].toDouble();
+        mCtrlParam.mUpperPosition[static_cast<int>(DEVICE::FMS_AXIS::ROLL)] = config["param"]["fmsRxPos2"].toDouble();
+
+        mCtrlParam.mLowerPosition[static_cast<int>(DEVICE::FMS_AXIS::PITCH)] = config["param"]["fmsRyPos1"].toDouble();
+        mCtrlParam.mUpperPosition[static_cast<int>(DEVICE::FMS_AXIS::PITCH)] = config["param"]["fmsRyPos2"].toDouble();
+
+        mCtrlParam.mLowerPosition[static_cast<int>(DEVICE::FMS_AXIS::YAW)] = config["param"]["fmsRzPos1"].toDouble();
+        mCtrlParam.mUpperPosition[static_cast<int>(DEVICE::FMS_AXIS::YAW)] = config["param"]["fmsRzPos2"].toDouble();
+
+        mCtrlParam.mPositionRepeat = config["param"]["fmsRepeatedMotionNumber"].toInt();
+
+        mSpecParam.mSpecification[static_cast<int>(DEVICE::FMS_AXIS::ROLL)] = config["spec"]["fmsRxMaxRepeatedAngleAccuracy"].toDouble();
+        mSpecParam.mSpecification[static_cast<int>(DEVICE::FMS_AXIS::PITCH)] = config["spec"]["fmsRyMaxRepeatedAngleAccuracy"].toDouble();
+        mSpecParam.mSpecification[static_cast<int>(DEVICE::FMS_AXIS::YAW)] = config["spec"]["fmsRzMaxRepeatedAngleAccuracy"].toDouble();
+
+        queue.device = DEVICE::TYPE::FMS;
+        queue.type = TEST_DEFINE::TEST_PROCESS::POSITION;
+        queue.control = mCtrlParam;
+        queue.spec = mSpecParam;
+        for(int i = static_cast<int>(DEVICE::FMS_AXIS::ROLL); i <= static_cast<int>(DEVICE::FMS_AXIS::YAW); i++)
+        {
+            queue.axis = i;
+            mQueue.push(queue);
+        }
+        return;
     }
     case ProcessType::Process_2_1_10:
     {
@@ -198,8 +336,12 @@ TEST_DEFINE::TEST_PROCESS TestConfigGetter::updateConfig(ProcessType type, QMap<
         mCtrlParam.mLowerPosition[static_cast<int>(DEVICE::TMS_AXIS::Y)] = config["param"]["tmsElvPos1"].toDouble();
         mCtrlParam.mUpperPosition[static_cast<int>(DEVICE::TMS_AXIS::Y)] = config["param"]["tmsElvPos2"].toDouble();
 
-        device = DEVICE::TYPE::TMS;
-        return TEST_DEFINE::TEST_PROCESS::CONTROL;
+        queue.device = DEVICE::TYPE::TMS;
+        queue.type = TEST_DEFINE::TEST_PROCESS::CONTROL;
+        queue.control = mCtrlParam;
+        queue.spec = mSpecParam;
+        mQueue.push(queue);
+        return;
     }
     case ProcessType::Process_2_2_1:
     {
@@ -212,8 +354,16 @@ TEST_DEFINE::TEST_PROCESS TestConfigGetter::updateConfig(ProcessType type, QMap<
         mSpecParam.mSpecification[static_cast<int>(DEVICE::TMS_AXIS::Y)] = config["spec"]["tmsElvMaxRange"].toDouble();
 
         mCtrlParam.mIsLinear = false;
-        device = DEVICE::TYPE::TMS;
-        return TEST_DEFINE::TEST_PROCESS::MAX_POS;
+        queue.device = DEVICE::TYPE::TMS;
+        queue.type = TEST_DEFINE::TEST_PROCESS::MAX_POS;
+        queue.control = mCtrlParam;
+        queue.spec = mSpecParam;
+        for(int i = static_cast<int>(DEVICE::TMS_AXIS::X); i <= static_cast<int>(DEVICE::TMS_AXIS::Y); i++)
+        {
+            queue.axis = i;
+            mQueue.push(queue);
+        }
+        return;
     }
     case ProcessType::Process_2_2_2:
     {
@@ -225,9 +375,17 @@ TEST_DEFINE::TEST_PROCESS TestConfigGetter::updateConfig(ProcessType type, QMap<
         mSpecParam.mSpecification[static_cast<int>(DEVICE::TMS_AXIS::X)] = config["spec"]["tmsAziMaxVelocity"].toDouble();
         mSpecParam.mSpecification[static_cast<int>(DEVICE::TMS_AXIS::Y)] = config["spec"]["tmsElvMaxVelocity"].toDouble();
 
-        device = DEVICE::TYPE::TMS;
-        return TEST_DEFINE::TEST_PROCESS::MAX_VEL;
+        queue.device = DEVICE::TYPE::TMS;
+        queue.type = TEST_DEFINE::TEST_PROCESS::MAX_VEL;
+        queue.control = mCtrlParam;
+        queue.spec = mSpecParam;
+        for(int i = static_cast<int>(DEVICE::TMS_AXIS::X); i <= static_cast<int>(DEVICE::TMS_AXIS::Y); i++)
+        {
+            queue.axis = i;
+            mQueue.push(queue);
+        }
+        return;
     }
-    default: return TEST_DEFINE::TEST_PROCESS::NONE;
+    default: return;
     }
 }
