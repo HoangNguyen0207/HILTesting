@@ -9,7 +9,7 @@ import "../components" as CMN
 Popup {
     id: root
     width: 160
-    height: 150
+    height: 185
     modal: false
     padding: 0
     closePolicy: Popup.CloseOnReleaseOutside
@@ -19,7 +19,8 @@ Popup {
     property alias zoomVerticalBtn: zoomVerticalId
     property alias distanceBtn: distanceId
     property alias imageBtn: imageId
-    property int optionNumber: 5
+    property alias resetBtn: resetId
+    property int optionNumber: 6
 
     background: Rectangle
     {
@@ -38,7 +39,7 @@ Popup {
         anchors.rightMargin: 1
         anchors.leftMargin: 1
         text: "Zoom all"
-        height: parent.height/root.optionNumber
+        height: parent.height/root.optionNumber - 1
         font.bold: false
         horizontalAlignment: Text.AlignLeft
         Material.background: SGT.Style.gray_20
@@ -54,7 +55,7 @@ Popup {
         anchors.rightMargin: 1
         anchors.leftMargin: 1
         text: "Zoom horizontal"
-        height: parent.height/root.optionNumber
+        height: parent.height/root.optionNumber - 1
         font.bold: false
         horizontalAlignment: Text.AlignLeft
         Material.background: SGT.Style.gray_20
@@ -70,7 +71,7 @@ Popup {
         anchors.rightMargin: 1
         anchors.leftMargin: 1
         text: "Zoom vertical"
-        height: parent.height/root.optionNumber
+        height: parent.height/root.optionNumber - 1
         font.bold: false
         horizontalAlignment: Text.AlignLeft
         Material.background: SGT.Style.gray_20
@@ -85,7 +86,7 @@ Popup {
         anchors.topMargin: 1
         anchors.rightMargin: 1
         anchors.leftMargin: 1
-        height: parent.height/root.optionNumber
+        height: parent.height/root.optionNumber - 1
         text: "Distance"
         font.bold: false
         horizontalAlignment: Text.AlignLeft
@@ -98,12 +99,29 @@ Popup {
         anchors.top: distanceId.bottom
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.bottom: parent.bottom
+        height: parent.height/root.optionNumber - 1
         anchors.topMargin: 1
         anchors.rightMargin: 1
         anchors.leftMargin: 1
         anchors.bottomMargin: 1
         text: "Image"
+        font.bold: false
+        horizontalAlignment: Text.AlignLeft
+        Material.background: SGT.Style.gray_20
+        textColor: "black"
+    }
+    CMN.MaterialButton
+    {
+        id: resetId
+        anchors.top: imageId.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        anchors.topMargin: 1
+        anchors.rightMargin: 1
+        anchors.leftMargin: 1
+        anchors.bottomMargin: 1
+        text: "Reset"
         font.bold: false
         horizontalAlignment: Text.AlignLeft
         Material.background: SGT.Style.gray_20

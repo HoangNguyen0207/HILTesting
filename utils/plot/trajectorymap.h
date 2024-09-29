@@ -30,6 +30,7 @@ class TrajectoryMap : public QQuickPaintedItem
         Q_INVOKABLE void fitChart(const QmlChartViewer::Direction& dir);
         Q_INVOKABLE void onDistanceCalcModeTriggered();
         Q_INVOKABLE QString onCreateImageTriggered(const QString& imageName);
+        Q_INVOKABLE void onResetMapTriggered();
 
         double deltaX() const;
         double deltaY() const;

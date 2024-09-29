@@ -86,6 +86,11 @@ Item {
             mapId.onCreateImageTriggered("save")
             close()
         }
+        resetBtn.onClicked:
+        {
+            mapId.onResetMapTriggered()
+            close()
+        }
     }
 
     DistancePopup

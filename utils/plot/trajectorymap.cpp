@@ -96,6 +96,22 @@ QString TrajectoryMap::onCreateImageTriggered(const QString &imageName)
     }
 }
 
+void TrajectoryMap::onResetMapTriggered()
+{
+    std::vector<CurveDataSeries>::iterator iter;
+    for(iter = mCurveList.begin(); iter != mCurveList.end(); iter++)
+    {
+        iter->xSeries.clear();
+        iter->ySeries.clear();
+
+        mMinXValue = 0;
+        mMinYValue = 0;
+        mMaxXValue = 10;
+        mMaxYValue = 100;
+    }
+    replot();
+}
+
 double TrajectoryMap::deltaX() const
 {
     return mDeltaX;
