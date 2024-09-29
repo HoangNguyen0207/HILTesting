@@ -12,5 +12,5 @@ HEADERS += \
     $$PWD/deploy/linux/include/fmsapi.h
 
 LIBS += -L$$PWD/deploy/linux/lib/release -lFmsApi
-#LIBS += -L$$PWD/deploy/linux/bin
+LIBS += -L$$PWD/deploy/linux/bin
 

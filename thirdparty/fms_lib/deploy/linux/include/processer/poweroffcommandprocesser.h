@@ -3,6 +3,9 @@
 
 #include "enablecommandprocesser.h"
 
+class BaseInfo;
+class PowerOffMessage;
+
 class PowerOffCommandProcesser : public EnableCommandProcesser
 {
 public:
@@ -12,6 +15,10 @@ public:
 public:
     void processCmd(const QString& cmd) override;
     void sendCommand(BaseInfo *baseInfo) override;
+
+private:
+    BaseInfo *baseInfo = nullptr;
+    PowerOffMessage *message = nullptr;
 };
 
 #endif // POWEROFFCOMMANDPROCESSER_H

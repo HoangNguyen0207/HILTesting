@@ -3,8 +3,14 @@
 
 #include "CommandProcesserInterface.h"
 
-class CfgSpdSetCommandProcesser : public CommandProcesserInterface
+#include <QObject>
+#include "info/ResponseInfo.h"
+
+class CfgSpdSetInfo;
+
+class CfgSpdSetCommandProcesser : public QObject, public CommandProcesserInterface
 {
+    Q_OBJECT
 public:
     CfgSpdSetCommandProcesser();
 
@@ -12,6 +18,12 @@ public:
     void processCmd(const QString& cmd);
     void processParameter(BaseInfo *baseInfo);
     void sendCommand(BaseInfo *baseInfo);
+
+signals:
+    void sigResponseResult(ResponseInfo responseInfo);
+
+private:
+    CfgSpdSetInfo *info = nullptr;
 };
 
 #endif // CFGSPDSETCOMMANDPROCESSER_H

@@ -18,6 +18,10 @@ public:
 private slots:
     void onResponseResult(QString responseStr);
 
+    void on_pbEnable_clicked();
+
+    void on_pbMultiSend_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

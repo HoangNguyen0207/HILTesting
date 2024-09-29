@@ -43,6 +43,7 @@ public slots:
     void onSendControlOffResponseMessage(const int& state);
     void onSendHomingResponseMessage(const int& state);
     void onSendMoveAbsResponseMessage(const int& state);
+    void onSendStopResponseMessage(const int& state);
 private slots:
     void readPendingDatagrams();
     virtual void onStarted() {;}

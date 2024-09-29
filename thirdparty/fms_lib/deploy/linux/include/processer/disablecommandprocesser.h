@@ -3,6 +3,8 @@
 
 #include "enablecommandprocesser.h"
 
+class DisableMessage;
+
 class DisableCommandProcesser : public EnableCommandProcesser
 {
 public:
@@ -11,6 +13,9 @@ public:
     // CommandProcesserInterface interface
 public:
     void sendCommand(BaseInfo *baseInfo) override;
+
+private:
+    DisableMessage *message = nullptr;
 };
 
 #endif // DISABLECOMMANDPROCESSER_H

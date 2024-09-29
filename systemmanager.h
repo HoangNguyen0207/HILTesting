@@ -5,9 +5,12 @@
 #include <sys/resource.h>
 #include "services/configservice.h"
 #include "services/logservice.h"
+#include "services/fmscommservice.h"
+#include "services/tmscommservice.h"
 #include "flux/action/actionprovider.h"
 #include "flux/middleware/systemmiddleware.h"
 #include "flux/store/mainstore.h"
+
 
 class SystemManager : public QObject
 {
@@ -25,6 +28,8 @@ class SystemManager : public QObject
 
     private slots:
         void slotCreateLogService();
+        void slotCreateFMSCommService();
+        void slotCreateTMSCommService();
 
     private:
         SystemManager() = default;
@@ -35,9 +40,11 @@ class SystemManager : public QObject
         void initSignalSlotConnection();
 
     private:
-        QSharedPointer<SystemMiddleware> mSystemMiddleware{nullptr};
-        LogService* mLogService{nullptr};
-        ConfigService* mConfigService{nullptr};
+        QSharedPointer<SystemMiddleware> mSystemMiddleware {nullptr};
+        LogService* mLogService {nullptr};
+        ConfigService* mConfigService {nullptr};
+        FMSCommService* mFMSCommService {nullptr};
+        TMSCommService* mTMSCommService {nullptr};
 
 };
 

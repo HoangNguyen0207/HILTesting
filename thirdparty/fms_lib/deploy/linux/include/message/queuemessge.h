@@ -14,6 +14,7 @@ public:
     ~QueueMessge();
     void swapDataQueues();
 public slots:
+    void onQueueWorker();
     void on_pushData(QByteArray data);
     void on_popData();
 
@@ -25,7 +26,7 @@ private:
     QByteArray *inputQueue;
     QByteArray *outputQueue;
     QMutex mutexQueue;
-    QTimer timerProcessMessage;
+    QTimer *timerProcessMessage;
 };
 
 #endif // QUEUEMESSGE_H

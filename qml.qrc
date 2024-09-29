@@ -194,5 +194,6 @@
         <file>ui/maps/DistancePopup.qml</file>
         <file>ui/dialogs/ConnectionDialog.qml</file>
         <file>ui/dialogs/ConnectionItem.qml</file>
+        <file>ui/dialogs/LaserTrackerDialog.qml</file>
     </qresource>
 </RCC>

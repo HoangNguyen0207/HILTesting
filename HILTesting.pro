@@ -31,8 +31,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 RESOURCES += qml.qrc
 
-LIBS += -lpng
-
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
 

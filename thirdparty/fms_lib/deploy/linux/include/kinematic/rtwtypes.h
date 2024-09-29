@@ -1,19 +1,3 @@
-//
-// File: rtwtypes.h
-//
-// Code generated for Simulink model 'inverse_kinematic_GEN'.
-//
-// Model version                  : 10.0
-// Simulink Coder version         : 9.8 (R2022b) 13-May-2022
-// C/C++ source code generated on : Wed Jul 10 15:19:48 2024
-//
-// Target selection: ert.tlc
-// Embedded hardware selection: Intel->x86-64 (Windows64)
-// Code generation objectives:
-//    1. Execution efficiency
-//    2. RAM efficiency
-// Validation result: Not run
-//
 
 #ifndef RTWTYPES_H
 #define RTWTYPES_H

@@ -81,10 +81,32 @@ Item {
             path: MainStore.loadedProcessFilePath
         }
 
+        CMN.MaterialCombobox
+        {
+            id: smrPosCbxId
+            anchors.top: filePathId.bottom
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.topMargin: 10
+            anchors.leftMargin: 10
+            height: 40
+            leftPadding: 5
+            model: ListModel
+            {
+                ListElement {text: "SMR FMS Roll"}
+                ListElement {text: "SMR FMS Pitch/Yaw"}
+                ListElement {text: "SMR TMS"}
+            }
+            onCurrentIndexChanged:
+            {
+
+            }
+        }
+
         Row
         {
             id: btnRowId
-            anchors.top: filePathId.bottom
+            anchors.top: smrPosCbxId.bottom
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.topMargin: 10

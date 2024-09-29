@@ -3,6 +3,9 @@
 
 #include "enablecommandprocesser.h"
 
+class BaseInfo;
+class StopMessage;
+
 class StopCommandProcesser : public EnableCommandProcesser
 {
 public:
@@ -12,6 +15,10 @@ public:
 public:
     void processCmd(const QString& cmd) override;
     void sendCommand(BaseInfo *baseInfo) override;
+
+private:
+    BaseInfo *baseInfo = nullptr;
+    StopMessage *message = nullptr;
 };
 
 #endif // STOPCOMMANDPROCESSER_H

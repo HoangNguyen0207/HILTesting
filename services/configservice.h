@@ -23,6 +23,8 @@ class ConfigService final : public ProcessorAbstract
 
     signals:
         void sigCreateLogService();
+        void sigCreateFMSCommService();
+        void sigCreateTMSCommService();
 
     private:
         bool loadProcessFile(int processIndex);

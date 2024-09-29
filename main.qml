@@ -131,4 +131,9 @@ ApplicationWindow {
     {
         id: connectionDialogId
     }
+
+    DLG.LaserTrackerDialog
+    {
+        id: laserDialogId
+    }
 }

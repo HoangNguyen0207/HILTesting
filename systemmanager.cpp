@@ -31,6 +31,22 @@ void SystemManager::slotCreateLogService()
     emit mLogService->startProcess();
 }
 
+void SystemManager::slotCreateFMSCommService()
+{
+    mFMSCommService = new FMSCommService(ProcessorName::BUS_ADDR_FMS);
+    QObject::connect(mSystemMiddleware.get(),&SystemMiddleware::sigDispatchActionToFMS,mFMSCommService,&FMSCommService::processActionFromMiddleware,Qt::QueuedConnection);
+    mFMSCommService->setSystemConfig(mConfigService->getSystemConfig());
+    emit mFMSCommService->startProcess();
+}
+
+void SystemManager::slotCreateTMSCommService()
+{
+    mTMSCommService = new TMSCommService(ProcessorName::BUS_ADDR_TMS);
+    QObject::connect(mSystemMiddleware.get(),&SystemMiddleware::sigDispatchActionToTMS,mTMSCommService,&TMSCommService::processActionFromMiddleware,Qt::QueuedConnection);
+    mTMSCommService->setSystemConfig(mConfigService->getSystemConfig());
+    emit mTMSCommService->startProcess();
+}
+
 void SystemManager::registerMetaType()
 {
     qRegisterMetaType<QSharedPointer<Action>>("QSharedPointer<Action>");
@@ -49,6 +65,8 @@ void SystemManager::initThreads()
     mConfigService = new ConfigService(ProcessorName::BUS_ADDR_CONFIG);
     QObject::connect(mSystemMiddleware.get(),&SystemMiddleware::sigDispatchActionToConfig,mConfigService,&ConfigService::processActionFromMiddleware, Qt::QueuedConnection);
     QObject::connect(mConfigService,&ConfigService::sigCreateLogService,this,&SystemManager::slotCreateLogService);
+    QObject::connect(mConfigService,&ConfigService::sigCreateFMSCommService,this,&SystemManager::slotCreateFMSCommService);
+    QObject::connect(mConfigService,&ConfigService::sigCreateTMSCommService,this,&SystemManager::slotCreateTMSCommService);
     emit mConfigService->startProcess();
 }
 

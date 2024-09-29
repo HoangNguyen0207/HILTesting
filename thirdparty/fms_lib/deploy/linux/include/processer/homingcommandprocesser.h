@@ -3,6 +3,8 @@
 
 #include "enablecommandprocesser.h"
 
+class HomingMessage;
+
 class HomingCommandProcesser : public EnableCommandProcesser
 {
 public:
@@ -11,6 +13,8 @@ public:
     // CommandProcesserInterface interface
 public:
     void sendCommand(BaseInfo *baseInfo) override;
+private:
+    HomingMessage *message = nullptr;
 };
 
 #endif // HOMINGCOMMANDPROCESSER_H

@@ -11,52 +11,109 @@ public:
     int serialToData(char *dest, int length) override;
     int parseFromData(char *mesData, int mesLen) override;
 
-    uint32 getO1() const;
-    void setO1(const uint32 &value);
+    uint8 getHoming() const;
+    void setHoming(const uint8 &value);
 
-    double getO2() const;
-    void setO2(double value);
+    uint8 getMoveOff() const;
+    void setMoveOff(const uint8 &value);
 
-    double getO3() const;
-    void setO3(double value);
+    uint8 getPowerOn() const;
+    void setPowerOn(const uint8 &value);
 
-    double getO4() const;
-    void setO4(double value);
+    uint8 getErrorSystem() const;
+    void setErrorSystem(const uint8 &value);
 
-    double getO5() const;
-    void setO5(double value);
+    uint8 getStop() const;
+    void setStop(const uint8 &value);
 
-    double getO6() const;
-    void setO6(double value);
+    uint8 getReady() const;
+    void setReady(const uint8 &value);
 
-    double getO7() const;
-    void setO7(double value);
+    uint8 getMovingAbsMode() const;
+    void setMovingAbsMode(const uint8 &value);
 
-    double getO8() const;
-    void setO8(double value);
+    uint8 getLimitJoint() const;
+    void setLimitJoint(const uint8 &value);
 
-    double getO9() const;
-    void setO9(double value);
+    uint8 getLimitWorkspace() const;
+    void setLimitWorkspace(const uint8 &value);
 
-    double getO10() const;
-    void setO10(double value);
+    uint8 getLimitSwitchSensor() const;
+    void setLimitSwitchSensor(const uint8 &value);
 
-    double getO11() const;
-    void setO11(double value);
+    uint8 getBrakeModule() const;
+    void setBrakeModule(const uint8 &value);
 
-    double getO12() const;
-    void setO12(double value);
+    uint8 getInputEmergency() const;
+    void setInputEmergency(const uint8 &value);
 
-    double getO13() const;
-    void setO13(double value);
+    uint8 getInputStart() const;
+    void setInputStart(const uint8 &value);
+
+    uint8 getInputReset() const;
+    void setInputReset(const uint8 &value);
+
+    uint8 getOutputWait() const;
+    void setOutputWait(const uint8 &value);
+
+    uint8 getOutputOk() const;
+    void setOutputOk(const uint8 &value);
+
+    uint8 getOutputOn() const;
+    void setOutputOn(const uint8 &value);
+
+    uint8 getOutputError() const;
+    void setOutputError(const uint8 &value);
+
+    QList<double> getPositionOfActuator() const;
+    void setPositionOfActuator(const QList<double> &value);
+
+    QList<double> getVelocityOfActuator() const;
+    void setVelocityOfActuator(const QList<double> &value);
+
+    QList<double> getAccOfActuator() const;
+    void setAccOfActuator(const QList<double> &value);
+
+    QList<uint8> getErrorActutor() const;
+    void setErrorActutor(const QList<uint8> &value);
+
+    QList<uint16> getErrorIdActuators() const;
+    void setErrorIdActuators(const QList<uint16> &value);
+
+    QString toString() override;
+    template<typename T>
+    QString listToString(QList<T> list)
+    {
+        QString listStr;
+        for (int i = 0; i < list.size(); i++)
+        {
+            listStr += QString::number(list[i]) + ", ";
+        }
+        return listStr;
+    }
 
     short getState() const;
     void setState(short value);
 
 private:
     short state;
-    uint32 o1;
-    double o2, o3, o4, o5, o6, o7, o8, o9, o10, o11, o12, o13;
+    uint8 homing;
+    uint8 moveOff;
+    uint8 powerOn;
+    uint8 errorSystem;
+    uint8 stop;
+    uint8 ready;
+    uint8 movingAbsMode;
+    uint8 limitJoint;
+    uint8 limitWorkspace;
+    uint8 limitSwitchSensor;
+    uint8 brakeModule;
+    uint8 inputEmergency, inputStart, inputReset, outputWait, outputOk, outputOn, outputError;
+    QList<double> positionOfActuator;
+    QList<double> velocityOfActuator;
+    QList<double> accOfActuator;
+    QList<uint8> errorActutor;
+    QList<uint16> errorIdActuators;
 };
 
 #endif // HEXAPODSTATUSRESPONSEMESSAGE_H

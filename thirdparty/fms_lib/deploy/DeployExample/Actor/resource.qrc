@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>config_processer.ini</file>
+    </qresource>
+</RCC>

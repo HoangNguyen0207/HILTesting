@@ -36,6 +36,8 @@ void ConfigService::onStartProcess()
     {
         LOG_DEBUG("Load file Config Successfully");
         emit sigCreateLogService();
+        emit sigCreateFMSCommService();
+        emit sigCreateTMSCommService();
     }
     else
     {

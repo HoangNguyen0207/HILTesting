@@ -3,6 +3,9 @@
 
 #include "CommandProcesserInterface.h"
 
+class AxisHomingInfo;
+class AxisHomingMessage;
+
 class AxisHomingCommandProcesser : public CommandProcesserInterface
 {
 public:
@@ -12,6 +15,10 @@ public:
     void processCmd(const QString& cmd);
     void processParameter(BaseInfo *baseInfo);
     void sendCommand(BaseInfo *baseInfo);
+
+private:
+    AxisHomingInfo *info = nullptr;
+    AxisHomingMessage *message = nullptr;
 };
 
 #endif // AXISHOMINGCOMMANDPROCESSER_H

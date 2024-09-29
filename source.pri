@@ -14,8 +14,12 @@ SOURCES += \
         $$PWD/flux/action/actionprovider.cpp \
         $$PWD/flux/middleware/systemmiddleware.cpp \
         $$PWD/flux/store/mainstore.cpp \
+        $$PWD/model/FMS/fmsdevice.cpp \
+        $$PWD/model/TMS/tmsdevice.cpp \
         $$PWD/services/configservice.cpp \
+        $$PWD/services/fmscommservice.cpp \
         $$PWD/services/logservice.cpp \
+        $$PWD/services/tmscommservice.cpp \
         $$PWD/systemmanager.cpp \
         $$PWD/utils/bytebuffer.cpp \
         $$PWD/utils/configLoader/fileloader.cpp \
@@ -39,8 +43,13 @@ HEADERS += \
     $$PWD/flux/middleware/systemmiddleware.h \
     $$PWD/flux/store/mainstore.h \
     $$PWD/message/messagetype.h \
+    $$PWD/model/FMS/FMSCommand.h \
+    $$PWD/model/FMS/fmsdevice.h \
+    $$PWD/model/TMS/tmsdevice.h \
     $$PWD/services/configservice.h \
+    $$PWD/services/fmscommservice.h \
     $$PWD/services/logservice.h \
+    $$PWD/services/tmscommservice.h \
     $$PWD/systemmanager.h \
     $$PWD/typedef/globalvar.h \
     $$PWD/utils/bytebuffer.h \

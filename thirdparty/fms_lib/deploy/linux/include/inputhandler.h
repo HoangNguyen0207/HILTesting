@@ -22,6 +22,7 @@ public:
     static void SendControlOffResponseMessage(const int& state);
     static void SendHomingResponseMessage(const int& state);
     static void SendMoveAbsResponseMessage(const int& state);
+    static void SendStopResponseMessage(const int& state);
     void processResponse(const ResponseInfo &responseInfo);
     void setResponseObserver(QObject* object);
 signals:
@@ -32,11 +33,13 @@ signals:
     void sigSendControlOffResponseMessage(const int& state);
     void sigSendHomingResponseMessage(const int& state);
     void sigSendMoveAbsResponseMessage(const int& state);
+    void sigSendStopResponseMessage(const int& state);
 private:
     static InputHandler *instance;
 
     QList<ResponseObserver *> observers;
     ResponseInfo oldInfo;
+    int i = 0;
 
 };
 

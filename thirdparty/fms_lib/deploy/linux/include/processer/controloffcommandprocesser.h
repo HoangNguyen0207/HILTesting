@@ -3,6 +3,8 @@
 
 #include "enablecommandprocesser.h"
 
+class ControlOffMessage;
+
 class ControlOffCommandProcesser : public EnableCommandProcesser
 {
 public:
@@ -10,6 +12,9 @@ public:
     // CommandProcesserInterface interface
 public:
     void sendCommand(BaseInfo *baseInfo) override;
+
+private:
+    ControlOffMessage *message = nullptr;
 };
 
 #endif // CONTROLOFFCOMMANDPROCESSER_H

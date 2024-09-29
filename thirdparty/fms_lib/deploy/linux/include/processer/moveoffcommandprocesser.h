@@ -3,6 +3,8 @@
 
 #include "enablecommandprocesser.h"
 
+class MoveOffMessage;
+
 class MoveOffCommandProcesser : public EnableCommandProcesser
 {
 public:
@@ -11,6 +13,9 @@ public:
     // CommandProcesserInterface interface
 public:
     void sendCommand(BaseInfo *baseInfo) override;
+
+private:
+    MoveOffMessage *message = nullptr;
 };
 
 #endif // MOVEOFFCOMMANDPROCESSER_H
