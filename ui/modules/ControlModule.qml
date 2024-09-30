@@ -156,13 +156,18 @@ Item {
                 anchors.top: startBtnId.bottom
                 anchors.left: parent.left
                 anchors.topMargin: 10
-                width: parent.width/2 - 2
+                anchors.right: parent.right
                 height: 35
                 text: "Emergency"
                 iconImg: "qrc:/ui/resources/icon/error_64px.png"
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
                 Material.background: SGT.Style.redColor
+                onClicked:
+                {
+                    ActionProvider.fmsPowerOff()
+                    ActionProvider.tmsPowerOff()
+                }
             }
         }
     }

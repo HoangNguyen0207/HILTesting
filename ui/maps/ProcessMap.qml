@@ -30,7 +30,7 @@ Item {
                 anchors.right: parent.right
                 anchors.bottom: parent.bottom
                 height: 20
-                color: root.backgroundColor
+                color: "white"
             }
             MouseArea
             {

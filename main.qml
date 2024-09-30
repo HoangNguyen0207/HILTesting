@@ -9,6 +9,7 @@ import "ui/singletons" as SGT
 import "ui/modules" as MDL
 import "ui/maps" as MAP
 import "ui/dialogs" as DLG
+import Flux 1.0
 
 ApplicationWindow {
     id: mainWindow
@@ -135,5 +136,6 @@ ApplicationWindow {
     DLG.LaserTrackerDialog
     {
         id: laserDialogId
+        visible: MainStore.laserTrackerDialogShowFlag
     }
 }

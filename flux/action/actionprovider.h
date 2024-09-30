@@ -73,6 +73,7 @@ class ActionProvider : public QObject
 
         // Laser tracker
         Q_INVOKABLE void laserInputTriggered(const QVariantMap& data);
+        Q_INVOKABLE void laserDialogShowFlagChanged(const bool& flag);
 
     signals:
 

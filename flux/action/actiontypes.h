@@ -61,7 +61,8 @@ enum class ActionType
     TMSQueryLimitAcc,
 
     // Laser tracker
-    LaserTrackerInputTriggered
+    LaserTrackerInputTriggered,
+    LaserTrackerDialogShowFlagChanged,
 };
 
 #endif

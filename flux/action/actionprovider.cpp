@@ -246,3 +246,8 @@ void ActionProvider::laserInputTriggered(const QVariantMap &data)
 {
     Dispatcher::instance().dispatch(new Action(ActionType::LaserTrackerInputTriggered,data));
 }
+
+void ActionProvider::laserDialogShowFlagChanged(const bool &flag)
+{
+    Dispatcher::instance().dispatch(new Action(ActionType::LaserTrackerDialogShowFlagChanged,flag));
+}

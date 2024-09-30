@@ -25,7 +25,6 @@ SOURCES += \
         $$PWD/utils/configLoader/fileloader.cpp \
         $$PWD/utils/configLoader/systemconfigloader.cpp \
         $$PWD/utils/plot/gencolor.cpp \
-        $$PWD/utils/plot/inputchart.cpp \
         $$PWD/utils/plot/outputchart.cpp \
         $$PWD/utils/plot/qmlchartviewer.cpp \
         $$PWD/utils/plot/trajectorymap.cpp \
@@ -58,7 +57,6 @@ HEADERS += \
     $$PWD/utils/configLoader/systemconfigloader.h \
     $$PWD/utils/plot/gencolor.h \
     $$PWD/utils/plot/graphdata.h \
-    $$PWD/utils/plot/inputchart.h \
     $$PWD/utils/plot/outputchart.h \
     $$PWD/utils/plot/qmlchartviewer.h \
     $$PWD/utils/plot/trajectorymap.h \
