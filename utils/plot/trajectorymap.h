@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "qmlchartviewer.h"
 #include "graphdata.h"
 #include "gencolor.h"
@@ -12,6 +12,8 @@
 #include <QPushButton>
 #include <QTimerEvent>
 #include "utils/calculatehelper/calculatehelper.h"
+#define TIMER_FREQ 100
+#define TIMER_INTERVAL 1000/TIMER_FREQ
 
 class TrajectoryMap : public QQuickPaintedItem
 {
@@ -19,6 +21,18 @@ class TrajectoryMap : public QQuickPaintedItem
         Q_PROPERTY(double deltaX READ deltaX WRITE setDeltaX NOTIFY deltaXChanged)
         Q_PROPERTY(double deltaY READ deltaY WRITE setDeltaY NOTIFY deltaYChanged)
         constexpr static int DISTANCE_CURVE_ID = 0;
+        constexpr static int FMS_TX_CURVE_ID = 1;
+        constexpr static int FMS_TY_CURVE_ID = 2;
+        constexpr static int FMS_TZ_CURVE_ID = 3;
+        constexpr static int FMS_RX_CURVE_ID = 4;
+        constexpr static int FMS_RY_CURVE_ID = 5;
+        constexpr static int FMS_RZ_CURVE_ID = 6;
+
+        constexpr static int TMS_TX_CURVE_ID = 7;
+        constexpr static int TMS_TY_CURVE_ID = 8;
+        constexpr static int TMS_RX_CURVE_ID = 9;
+        constexpr static int TMS_RY_CURVE_ID = 10;
+
 
     public:
         TrajectoryMap(QQuickPaintedItem* parent = nullptr);
@@ -31,6 +45,20 @@ class TrajectoryMap : public QQuickPaintedItem
         Q_INVOKABLE void onDistanceCalcModeTriggered();
         Q_INVOKABLE QString onCreateImageTriggered(const QString& imageName);
         Q_INVOKABLE void onResetMapTriggered();
+
+        // Plot process device
+        Q_INVOKABLE void startProcessTimerPlot();
+        Q_INVOKABLE void onFmsTxShowFlagChanged();
+        Q_INVOKABLE void onFmsTyShowFlagChanged();
+        Q_INVOKABLE void onFmsTzShowFlagChanged();
+        Q_INVOKABLE void onFmsRxShowFlagChanged();
+        Q_INVOKABLE void onFmsRyShowFlagChanged();
+        Q_INVOKABLE void onFmsRzShowFlagChanged();
+        Q_INVOKABLE void onTmsTxShowFlagChanged();
+        Q_INVOKABLE void onTmsTyShowFlagChanged();
+        Q_INVOKABLE void onTmsRxShowFlagChanged();
+        Q_INVOKABLE void onTmsRyShowFlagChanged();
+
 
         double deltaX() const;
         double deltaY() const;
@@ -58,13 +86,24 @@ class TrajectoryMap : public QQuickPaintedItem
         void drawLegend(XYChart* c);
 
         // Resize XY axis
-        void resizeXAxis(double time);
-        void resizeYAxis(double amp);
+        void resizeXAxis(double minX, double maxX);
+        void resizeYAxis(double minY, double maxY);
 
         // Draw track cursor when the mouse move over the plot area
         void drawTrackCursor(QmlChartViewer *viewer);
         void drawCrossHair(XYChart *c, int mouseX, int mouseY);
         void drawSelectedDistancePoint(double posX, double posY);
+
+        // Draw device
+        void drawFmsTx(double fmsTx);
+        void drawFmsTy(double fmsTy);
+        void drawFmsTz(double fmsTz);
+        void drawFmsRx(double fmsRx);
+        void drawFmsRy(double fmsRy);
+        void drawFmsRz(double fmsRz);
+
+        // Timer event
+        void timerEvent(QTimerEvent* event) override;
 
     private:
         // Data curve
@@ -73,13 +112,17 @@ class TrajectoryMap : public QQuickPaintedItem
         QmlChartViewer *mpChartViewer{nullptr};
         // XY axis
         double mMinYValue {0};
-        double mMaxYValue {200};
+        double mMaxYValue {20};
         double mMinXValue {0};
-        double mMaxXValue {200};
+        double mMaxXValue {5};
         // Distance calc mode
         bool mDistanceCalcModeFlag{false};
         // Delta XY
         double mDeltaX;
         double mDeltaY;
+        // Timer process
+        int mProcessTimerId {0};
+        double mCurrentProcessTime {0};
+
 };
 

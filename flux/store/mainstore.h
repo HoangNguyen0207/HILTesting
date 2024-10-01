@@ -50,6 +50,8 @@ class MainStore final : public QObject, public Store
         Q_PROPERTY(double tmsRxAcc READ tmsRxAcc WRITE setTmsRxAcc NOTIFY tmsRxAccChanged)
         Q_PROPERTY(double tmsRyAcc READ tmsRyAcc WRITE setTmsRyAcc NOTIFY tmsRyAccChanged)
 
+        Q_PROPERTY(bool plotProcessFlag READ plotProcessFlag WRITE setPlotProcessFlag NOTIFY plotProcessFlagChanged)
+
 
     public:
         ~MainStore() override;
@@ -103,6 +105,8 @@ class MainStore final : public QObject, public Store
         double tmsRxAcc() const;
         double tmsRyAcc() const;
 
+        bool plotProcessFlag() const;
+
     public slots:
         void setLoadedProcessFilePath(QString loadedProcessFilePath);
         void setLaserTrackerDialogShowFlag(bool laserTrackerDialogShowFlag);
@@ -146,6 +150,8 @@ class MainStore final : public QObject, public Store
         void setTmsRxAcc(double tmsRxAcc);
         void setTmsRyAcc(double tmsRyAcc);
 
+        void setPlotProcessFlag(bool plotProcessFlag);
+
     signals:
         void loadedProcessFilePathChanged(QString loadedProcessFilePath);
         void laserTrackerDialogShowFlagChanged(bool laserTrackerDialogShowFlag);
@@ -188,6 +194,8 @@ class MainStore final : public QObject, public Store
         void tmsTyAccChanged(double tmsTyAcc);
         void tmsRxAccChanged(double tmsRxAcc);
         void tmsRyAccChanged(double tmsRyAcc);
+
+        void plotProcessFlagChanged(bool plotProcessFlag);
 
     private:
         explicit MainStore(QObject* parent = nullptr);
@@ -234,5 +242,6 @@ class MainStore final : public QObject, public Store
         double m_tmsRxAcc;
         double m_tmsRyAcc;
 
+        bool m_plotProcessFlag;
 };
 

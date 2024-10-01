@@ -7,6 +7,7 @@
 #include <QMouseEvent>
 #include <QPixmap>
 #include <QStringLiteral>
+#include "flux/store/mainstore.h"
 
 TrajectoryMap::TrajectoryMap(QQuickPaintedItem *parent)
     : QQuickPaintedItem(parent)
@@ -103,13 +104,76 @@ void TrajectoryMap::onResetMapTriggered()
     {
         iter->xSeries.clear();
         iter->ySeries.clear();
-
-        mMinXValue = 0;
-        mMinYValue = 0;
-        mMaxXValue = 10;
-        mMaxYValue = 100;
+        resizeXAxis(0,5);
+        resizeYAxis(-0.25,0.25);
     }
     replot();
+    startProcessTimerPlot();
+}
+
+void TrajectoryMap::onFmsTxShowFlagChanged()
+{
+    mCurveList[FMS_TX_CURVE_ID].needToShow = !mCurveList[FMS_TX_CURVE_ID].needToShow;
+    replot();
+}
+
+void TrajectoryMap::onFmsTyShowFlagChanged()
+{
+    mCurveList[FMS_TY_CURVE_ID].needToShow = !mCurveList[FMS_TY_CURVE_ID].needToShow;
+    replot();
+}
+
+void TrajectoryMap::onFmsTzShowFlagChanged()
+{
+    mCurveList[FMS_TZ_CURVE_ID].needToShow = !mCurveList[FMS_TZ_CURVE_ID].needToShow;
+    replot();
+}
+
+void TrajectoryMap::onFmsRxShowFlagChanged()
+{
+    mCurveList[FMS_RX_CURVE_ID].needToShow = !mCurveList[FMS_RX_CURVE_ID].needToShow;
+    replot();
+}
+
+void TrajectoryMap::onFmsRyShowFlagChanged()
+{
+    mCurveList[FMS_RY_CURVE_ID].needToShow = !mCurveList[FMS_RY_CURVE_ID].needToShow;
+    replot();
+}
+
+void TrajectoryMap::onFmsRzShowFlagChanged()
+{
+    mCurveList[FMS_RZ_CURVE_ID].needToShow = !mCurveList[FMS_RZ_CURVE_ID].needToShow;
+    replot();
+}
+
+void TrajectoryMap::onTmsTxShowFlagChanged()
+{
+    mCurveList[TMS_TX_CURVE_ID].needToShow = !mCurveList[TMS_TX_CURVE_ID].needToShow;
+    replot();
+}
+
+void TrajectoryMap::onTmsTyShowFlagChanged()
+{
+    mCurveList[TMS_TY_CURVE_ID].needToShow = !mCurveList[TMS_TY_CURVE_ID].needToShow;
+    replot();
+}
+
+void TrajectoryMap::onTmsRxShowFlagChanged()
+{
+    mCurveList[TMS_RX_CURVE_ID].needToShow = !mCurveList[TMS_RX_CURVE_ID].needToShow;
+    replot();
+}
+
+void TrajectoryMap::onTmsRyShowFlagChanged()
+{
+    mCurveList[TMS_RY_CURVE_ID].needToShow = !mCurveList[TMS_RY_CURVE_ID].needToShow;
+    replot();
+}
+
+void TrajectoryMap::startProcessTimerPlot()
+{
+    mProcessTimerId = startTimer(TIMER_INTERVAL);
 }
 
 double TrajectoryMap::deltaX() const
@@ -187,7 +251,117 @@ void TrajectoryMap::initCurvePropertiesList()
     tmp.name = "Distance";
     tmp.symbolSize = 14;
     tmp.symbol = Chart::CircleSymbol;
-    tmp.lineWidth = 2;
+    tmp.lineWidth = 1;
+    tmp.isDashLine = true;
+    tmp.needToDraw = true;
+    tmp.needToShow = true;
+    mCurveList.push_back(tmp);
+
+    tmp.id = FMS_TX_CURVE_ID;
+    tmp.color = 0x0000FF;
+    tmp.name = "FmsTx";
+    tmp.symbolSize = 14;
+    tmp.symbol = Chart::NoSymbol;
+    tmp.lineWidth = 1;
+    tmp.isDashLine = true;
+    tmp.needToDraw = true;
+    tmp.needToShow = true;
+    mCurveList.push_back(tmp);
+
+    tmp.id = FMS_TY_CURVE_ID;
+    tmp.color = 0x0022FF;
+    tmp.name = "FmsTy";
+    tmp.symbolSize = 14;
+    tmp.symbol = Chart::NoSymbol;
+    tmp.lineWidth = 1;
+    tmp.isDashLine = true;
+    tmp.needToDraw = true;
+    tmp.needToShow = true;
+    mCurveList.push_back(tmp);
+
+    tmp.id = FMS_TZ_CURVE_ID;
+    tmp.color = 0x0044FF;
+    tmp.name = "FmsTz";
+    tmp.symbolSize = 14;
+    tmp.symbol = Chart::NoSymbol;
+    tmp.lineWidth = 1;
+    tmp.isDashLine = true;
+    tmp.needToDraw = true;
+    tmp.needToShow = true;
+    mCurveList.push_back(tmp);
+
+    tmp.id = FMS_RX_CURVE_ID;
+    tmp.color = 0x0066FF;
+    tmp.name = "FmsRx";
+    tmp.symbolSize = 14;
+    tmp.symbol = Chart::NoSymbol;
+    tmp.lineWidth = 1;
+    tmp.isDashLine = true;
+    tmp.needToDraw = true;
+    tmp.needToShow = true;
+    mCurveList.push_back(tmp);
+
+    tmp.id = FMS_RY_CURVE_ID;
+    tmp.color = 0x0088FF;
+    tmp.name = "FmsRy";
+    tmp.symbolSize = 14;
+    tmp.symbol = Chart::NoSymbol;
+    tmp.lineWidth = 1;
+    tmp.isDashLine = true;
+    tmp.needToDraw = true;
+    tmp.needToShow = true;
+    mCurveList.push_back(tmp);
+
+    tmp.id = FMS_RZ_CURVE_ID;
+    tmp.color = 0x00AAFF;
+    tmp.name = "FmsRz";
+    tmp.symbolSize = 14;
+    tmp.symbol = Chart::NoSymbol;
+    tmp.lineWidth = 1;
+    tmp.isDashLine = true;
+    tmp.needToDraw = true;
+    tmp.needToShow = true;
+    mCurveList.push_back(tmp);
+
+    tmp.id = TMS_TX_CURVE_ID;
+    tmp.color = 0x00CCFF;
+    tmp.name = "TmsTx";
+    tmp.symbolSize = 14;
+    tmp.symbol = Chart::NoSymbol;
+    tmp.lineWidth = 1;
+    tmp.isDashLine = true;
+    tmp.needToDraw = true;
+    tmp.needToShow = true;
+    mCurveList.push_back(tmp);
+
+    tmp.id = TMS_TY_CURVE_ID;
+    tmp.color = 0x00FF00;
+    tmp.name = "TmsTy";
+    tmp.symbolSize = 14;
+    tmp.symbol = Chart::NoSymbol;
+    tmp.lineWidth = 1;
+    tmp.isDashLine = true;
+    tmp.needToDraw = true;
+    tmp.needToShow = true;
+    mCurveList.push_back(tmp);
+
+    tmp.id = TMS_RX_CURVE_ID;
+    tmp.color = 0x00FF22;
+    tmp.name = "TmsRx";
+    tmp.symbolSize = 14;
+    tmp.symbol = Chart::NoSymbol;
+    tmp.lineWidth = 1;
+    tmp.isDashLine = true;
+    tmp.needToDraw = true;
+    tmp.needToShow = true;
+    mCurveList.push_back(tmp);
+
+    tmp.id = TMS_RY_CURVE_ID;
+    tmp.color = 0x00FF44;
+    tmp.name = "TmsRy";
+    tmp.symbolSize = 14;
+    tmp.symbol = Chart::NoSymbol;
+    tmp.lineWidth = 1;
     tmp.isDashLine = true;
     tmp.needToDraw = true;
     tmp.needToShow = true;
@@ -324,14 +498,18 @@ void TrajectoryMap::drawLegend(XYChart *c)
     t->destroy();
 }
 
-void TrajectoryMap::resizeXAxis(double time)
+void TrajectoryMap::resizeXAxis(double minX, double maxX)
 {
-
+    mMinXValue = minX;
+    mMaxXValue = maxX;
+    replot();
 }
 
-void TrajectoryMap::resizeYAxis(double amp)
+void TrajectoryMap::resizeYAxis(double minY, double maxY)
 {
-
+    mMinYValue = minY;
+    mMaxYValue = maxY;
+    replot();
 }
 
 void TrajectoryMap::drawTrackCursor(QmlChartViewer *viewer)
@@ -409,5 +587,65 @@ void TrajectoryMap::drawSelectedDistancePoint(double posX, double posY)
     }
 
     replot();
+}
+
+void TrajectoryMap::drawFmsTx(double fmsTx)
+{
+    mCurveList[FMS_TX_CURVE_ID].xSeries.push_back(mCurrentProcessTime);
+    mCurveList[FMS_TX_CURVE_ID].ySeries.push_back(fmsTx);
+    replot();
+}
+
+void TrajectoryMap::drawFmsTy(double fmsTy)
+{
+    mCurveList[FMS_TY_CURVE_ID].xSeries.push_back(mCurrentProcessTime);
+    mCurveList[FMS_TY_CURVE_ID].ySeries.push_back(fmsTy);
+    replot();
+}
+
+void TrajectoryMap::drawFmsTz(double fmsTz)
+{
+    mCurveList[FMS_TZ_CURVE_ID].xSeries.push_back(mCurrentProcessTime);
+    mCurveList[FMS_TZ_CURVE_ID].ySeries.push_back(fmsTz);
+    replot();
+}
+
+void TrajectoryMap::drawFmsRx(double fmsRx)
+{
+    mCurveList[FMS_RX_CURVE_ID].xSeries.push_back(mCurrentProcessTime);
+    mCurveList[FMS_RX_CURVE_ID].ySeries.push_back(fmsRx);
+    replot();
+}
+
+void TrajectoryMap::drawFmsRy(double fmsRy)
+{
+    mCurveList[FMS_RY_CURVE_ID].xSeries.push_back(mCurrentProcessTime);
+    mCurveList[FMS_RY_CURVE_ID].ySeries.push_back(fmsRy);
+    replot();
+}
+
+void TrajectoryMap::drawFmsRz(double fmsRz)
+{
+    mCurveList[FMS_RZ_CURVE_ID].xSeries.push_back(mCurrentProcessTime);
+    mCurveList[FMS_RZ_CURVE_ID].ySeries.push_back(fmsRz);
+    replot();
+}
+
+void TrajectoryMap::timerEvent(QTimerEvent *event)
+{
+    if(event->timerId() == mProcessTimerId)
+    {
+        mCurrentProcessTime += TIMER_INTERVAL/1000.0f;
+        if(mMaxXValue < mCurrentProcessTime)
+        {
+            resizeXAxis(0,mCurrentProcessTime);
+        }
+        drawFmsTx(MainStore::getInstance()->fmsTxPos());
+        drawFmsTy(MainStore::getInstance()->fmsTyPos());
+        drawFmsTz(MainStore::getInstance()->fmsTzPos());
+        drawFmsRx(MainStore::getInstance()->fmsRxPos());
+        drawFmsRy(MainStore::getInstance()->fmsRyPos());
+        drawFmsRz(MainStore::getInstance()->fmsRzPos());
+    }
 }
 

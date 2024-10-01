@@ -215,6 +215,11 @@ double MainStore::tmsRyAcc() const
     return m_tmsRyAcc;
 }
 
+bool MainStore::plotProcessFlag() const
+{
+    return m_plotProcessFlag;
+}
+
 void MainStore::setLoadedProcessFilePath(QString loadedProcessFilePath)
 {
     if (mLoadedProcessFilePath == loadedProcessFilePath)
@@ -573,6 +578,15 @@ void MainStore::setTmsRyAcc(double tmsRyAcc)
 
     m_tmsRyAcc = tmsRyAcc;
     emit tmsRyAccChanged(m_tmsRyAcc);
+}
+
+void MainStore::setPlotProcessFlag(bool plotProcessFlag)
+{
+    if (m_plotProcessFlag == plotProcessFlag)
+        return;
+
+    m_plotProcessFlag = plotProcessFlag;
+    emit plotProcessFlagChanged(m_plotProcessFlag);
 }
 
 MainStore::MainStore(QObject* parent) : QObject(parent)
