@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include "qmlchartviewer.h"
 #include "graphdata.h"
 #include "gencolor.h"
@@ -12,7 +12,7 @@
 #include <QPushButton>
 #include <QTimerEvent>
 #include "utils/calculatehelper/calculatehelper.h"
-#define TIMER_FREQ 100
+#define TIMER_FREQ 200
 #define TIMER_INTERVAL 1000/TIMER_FREQ
 
 class TrajectoryMap : public QQuickPaintedItem
@@ -48,6 +48,7 @@ class TrajectoryMap : public QQuickPaintedItem
 
         // Plot process device
         Q_INVOKABLE void startProcessTimerPlot();
+        Q_INVOKABLE void stopProcessTimerPlot();
         Q_INVOKABLE void onFmsTxShowFlagChanged();
         Q_INVOKABLE void onFmsTyShowFlagChanged();
         Q_INVOKABLE void onFmsTzShowFlagChanged();
@@ -58,7 +59,6 @@ class TrajectoryMap : public QQuickPaintedItem
         Q_INVOKABLE void onTmsTyShowFlagChanged();
         Q_INVOKABLE void onTmsRxShowFlagChanged();
         Q_INVOKABLE void onTmsRyShowFlagChanged();
-
 
         double deltaX() const;
         double deltaY() const;
@@ -77,6 +77,9 @@ class TrajectoryMap : public QQuickPaintedItem
         void onClickChart(Qt::MouseButton button);
         void onDoubleClickChart(QMouseEvent* event);
         void slotUpdateCustomPlotSize();
+
+        // slot to start or stop plot process
+        void onPlotProcessFlagChanged(bool flag);
 
     private:
         // Draw chart
@@ -101,6 +104,10 @@ class TrajectoryMap : public QQuickPaintedItem
         void drawFmsRx(double fmsRx);
         void drawFmsRy(double fmsRy);
         void drawFmsRz(double fmsRz);
+        void drawTmsTx(double tmsTx);
+        void drawTmsTy(double tmsTy);
+        void drawTmsRx(double tmsRx);
+        void drawTmsRy(double tmsRy);
 
         // Timer event
         void timerEvent(QTimerEvent* event) override;
@@ -111,7 +118,7 @@ class TrajectoryMap : public QQuickPaintedItem
         // QuickChartViewer control
         QmlChartViewer *mpChartViewer{nullptr};
         // XY axis
-        double mMinYValue {0};
+        double mMinYValue {-20};
         double mMaxYValue {20};
         double mMinXValue {0};
         double mMaxXValue {5};

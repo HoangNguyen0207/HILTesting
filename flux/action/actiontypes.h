@@ -63,6 +63,9 @@ enum class ActionType
     // Laser tracker
     LaserTrackerInputTriggered,
     LaserTrackerDialogShowFlagChanged,
+
+    // Plot process flag
+    PlotProcessFlagChanged,
 };
 
 #endif

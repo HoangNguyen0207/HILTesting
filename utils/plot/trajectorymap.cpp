@@ -26,6 +26,8 @@ TrajectoryMap::TrajectoryMap(QQuickPaintedItem *parent)
     connect(this,&TrajectoryMap::widthChanged,this,&TrajectoryMap::slotUpdateCustomPlotSize);
     connect(this,&TrajectoryMap::heightChanged,this,&TrajectoryMap::slotUpdateCustomPlotSize);
 
+    connect(MainStore::getInstance(),&MainStore::plotProcessFlagChanged,this,&TrajectoryMap::onPlotProcessFlagChanged);
+
     // Initially set the mouse to drag to scroll mode
     setMouseUsage(QmlChartViewer::MouseUsage::MouseUsageScroll);
     // Enable mouse wheel zooming by setting the zoom ratio to 1.1 per wheel event
@@ -85,6 +87,7 @@ void TrajectoryMap::onDistanceCalcModeTriggered()
 
 QString TrajectoryMap::onCreateImageTriggered(const QString &imageName)
 {
+//    stopProcessTimerPlot();
     QString imagePath = QString("../../image/%1.png").arg(imageName);
     if(mpChartViewer->getChart()->makeChart(imagePath.toStdString().c_str()))
     {
@@ -105,75 +108,173 @@ void TrajectoryMap::onResetMapTriggered()
         iter->xSeries.clear();
         iter->ySeries.clear();
         resizeXAxis(0,5);
-        resizeYAxis(-0.25,0.25);
+        resizeYAxis(-30,30);
     }
-    replot();
-    startProcessTimerPlot();
+//    startProcessTimerPlot();
 }
 
 void TrajectoryMap::onFmsTxShowFlagChanged()
 {
     mCurveList[FMS_TX_CURVE_ID].needToShow = !mCurveList[FMS_TX_CURVE_ID].needToShow;
+    if(!mCurveList[FMS_TX_CURVE_ID].needToShow)
+    {
+        mCurveList[FMS_TX_CURVE_ID].name = "";
+    }else
+    {
+        mCurveList[FMS_TX_CURVE_ID].name = "FmsTx";
+    }
     replot();
 }
 
 void TrajectoryMap::onFmsTyShowFlagChanged()
 {
     mCurveList[FMS_TY_CURVE_ID].needToShow = !mCurveList[FMS_TY_CURVE_ID].needToShow;
+    if(!mCurveList[FMS_TY_CURVE_ID].needToShow)
+    {
+        mCurveList[FMS_TY_CURVE_ID].name = "";
+    }else
+    {
+        mCurveList[FMS_TY_CURVE_ID].name = "FmsTy";
+    }
     replot();
 }
 
 void TrajectoryMap::onFmsTzShowFlagChanged()
 {
     mCurveList[FMS_TZ_CURVE_ID].needToShow = !mCurveList[FMS_TZ_CURVE_ID].needToShow;
+    if(!mCurveList[FMS_TZ_CURVE_ID].needToShow)
+    {
+        mCurveList[FMS_TZ_CURVE_ID].name = "";
+    }else
+    {
+        mCurveList[FMS_TZ_CURVE_ID].name = "FmsTz";
+    }
     replot();
 }
 
 void TrajectoryMap::onFmsRxShowFlagChanged()
 {
     mCurveList[FMS_RX_CURVE_ID].needToShow = !mCurveList[FMS_RX_CURVE_ID].needToShow;
+    if(!mCurveList[FMS_RX_CURVE_ID].needToShow)
+    {
+        mCurveList[FMS_RX_CURVE_ID].name = "";
+    }else
+    {
+        mCurveList[FMS_RX_CURVE_ID].name = "FmsRx";
+    }
     replot();
 }
 
 void TrajectoryMap::onFmsRyShowFlagChanged()
 {
     mCurveList[FMS_RY_CURVE_ID].needToShow = !mCurveList[FMS_RY_CURVE_ID].needToShow;
+    if(!mCurveList[FMS_RY_CURVE_ID].needToShow)
+    {
+        mCurveList[FMS_RY_CURVE_ID].name = "";
+    }else
+    {
+        mCurveList[FMS_RY_CURVE_ID].name = "FmsRy";
+    }
     replot();
 }
 
 void TrajectoryMap::onFmsRzShowFlagChanged()
 {
     mCurveList[FMS_RZ_CURVE_ID].needToShow = !mCurveList[FMS_RZ_CURVE_ID].needToShow;
+    if(!mCurveList[FMS_RZ_CURVE_ID].needToShow)
+    {
+        mCurveList[FMS_RZ_CURVE_ID].name = "";
+    }else
+    {
+        mCurveList[FMS_RZ_CURVE_ID].name = "FmsRz";
+    }
     replot();
 }
 
 void TrajectoryMap::onTmsTxShowFlagChanged()
 {
     mCurveList[TMS_TX_CURVE_ID].needToShow = !mCurveList[TMS_TX_CURVE_ID].needToShow;
+    if(!mCurveList[TMS_TX_CURVE_ID].needToShow)
+    {
+        mCurveList[TMS_TX_CURVE_ID].name = "";
+    }else
+    {
+        mCurveList[TMS_TX_CURVE_ID].name = "TmsTx";
+    }
     replot();
 }
 
 void TrajectoryMap::onTmsTyShowFlagChanged()
 {
     mCurveList[TMS_TY_CURVE_ID].needToShow = !mCurveList[TMS_TY_CURVE_ID].needToShow;
+    if(!mCurveList[TMS_TY_CURVE_ID].needToShow)
+    {
+        mCurveList[TMS_TY_CURVE_ID].name = "";
+    }else
+    {
+        mCurveList[TMS_TY_CURVE_ID].name = "TmsTy";
+    }
     replot();
 }
 
 void TrajectoryMap::onTmsRxShowFlagChanged()
 {
     mCurveList[TMS_RX_CURVE_ID].needToShow = !mCurveList[TMS_RX_CURVE_ID].needToShow;
+    if(!mCurveList[TMS_RX_CURVE_ID].needToShow)
+    {
+        mCurveList[TMS_RX_CURVE_ID].name = "";
+    }else
+    {
+        mCurveList[TMS_RX_CURVE_ID].name = "TmsRx";
+    }
     replot();
 }
 
 void TrajectoryMap::onTmsRyShowFlagChanged()
 {
     mCurveList[TMS_RY_CURVE_ID].needToShow = !mCurveList[TMS_RY_CURVE_ID].needToShow;
+    if(!mCurveList[TMS_RY_CURVE_ID].needToShow)
+    {
+        mCurveList[TMS_RY_CURVE_ID].name = "";
+    }else
+    {
+        mCurveList[TMS_RY_CURVE_ID].name = "TmsRy";
+    }
     replot();
 }
 
 void TrajectoryMap::startProcessTimerPlot()
 {
+    // Clear all plot data
+    mCurveList[FMS_TX_CURVE_ID].xSeries.clear();
+    mCurveList[FMS_TX_CURVE_ID].ySeries.clear();
+    mCurveList[FMS_TY_CURVE_ID].xSeries.clear();
+    mCurveList[FMS_TY_CURVE_ID].ySeries.clear();
+    mCurveList[FMS_TZ_CURVE_ID].xSeries.clear();
+    mCurveList[FMS_TZ_CURVE_ID].ySeries.clear();
+    mCurveList[FMS_RX_CURVE_ID].xSeries.clear();
+    mCurveList[FMS_RX_CURVE_ID].ySeries.clear();
+    mCurveList[FMS_RY_CURVE_ID].xSeries.clear();
+    mCurveList[FMS_RY_CURVE_ID].ySeries.clear();
+    mCurveList[FMS_RZ_CURVE_ID].xSeries.clear();
+    mCurveList[FMS_RZ_CURVE_ID].ySeries.clear();
+    mCurveList[TMS_TX_CURVE_ID].xSeries.clear();
+    mCurveList[TMS_TX_CURVE_ID].ySeries.clear();
+    mCurveList[TMS_TY_CURVE_ID].xSeries.clear();
+    mCurveList[TMS_TY_CURVE_ID].ySeries.clear();
+    mCurveList[TMS_RX_CURVE_ID].xSeries.clear();
+    mCurveList[TMS_RX_CURVE_ID].ySeries.clear();
+    mCurveList[TMS_RY_CURVE_ID].xSeries.clear();
+    mCurveList[TMS_RY_CURVE_ID].ySeries.clear();
+
+    // Start plot timer
     mProcessTimerId = startTimer(TIMER_INTERVAL);
+}
+
+void TrajectoryMap::stopProcessTimerPlot()
+{
+    killTimer(mProcessTimerId);
+    mCurrentProcessTime = 0;
 }
 
 double TrajectoryMap::deltaX() const
@@ -243,13 +344,24 @@ void TrajectoryMap::slotUpdateCustomPlotSize()
     drawChart(mpChartViewer);
 }
 
+void TrajectoryMap::onPlotProcessFlagChanged(bool flag)
+{
+    if(flag)
+    {
+        startProcessTimerPlot();
+    }else
+    {
+        stopProcessTimerPlot();
+    }
+}
+
 void TrajectoryMap::initCurvePropertiesList()
 {
     CurveDataSeries tmp;
     tmp.id = DISTANCE_CURVE_ID;
     tmp.color = 0x00FFFF;
     tmp.name = "Distance";
-    tmp.symbolSize = 14;
+    tmp.symbolSize = 8;
     tmp.symbol = Chart::CircleSymbol;
     tmp.lineWidth = 1;
     tmp.isDashLine = true;
@@ -263,7 +375,7 @@ void TrajectoryMap::initCurvePropertiesList()
     tmp.symbolSize = 14;
     tmp.symbol = Chart::NoSymbol;
     tmp.lineWidth = 1;
-    tmp.isDashLine = true;
+    tmp.isDashLine = false;
     tmp.needToDraw = true;
     tmp.needToShow = true;
     mCurveList.push_back(tmp);
@@ -274,7 +386,7 @@ void TrajectoryMap::initCurvePropertiesList()
     tmp.symbolSize = 14;
     tmp.symbol = Chart::NoSymbol;
     tmp.lineWidth = 1;
-    tmp.isDashLine = true;
+    tmp.isDashLine = false;
     tmp.needToDraw = true;
     tmp.needToShow = true;
     mCurveList.push_back(tmp);
@@ -285,7 +397,7 @@ void TrajectoryMap::initCurvePropertiesList()
     tmp.symbolSize = 14;
     tmp.symbol = Chart::NoSymbol;
     tmp.lineWidth = 1;
-    tmp.isDashLine = true;
+    tmp.isDashLine = false;
     tmp.needToDraw = true;
     tmp.needToShow = true;
     mCurveList.push_back(tmp);
@@ -296,7 +408,7 @@ void TrajectoryMap::initCurvePropertiesList()
     tmp.symbolSize = 14;
     tmp.symbol = Chart::NoSymbol;
     tmp.lineWidth = 1;
-    tmp.isDashLine = true;
+    tmp.isDashLine = false;
     tmp.needToDraw = true;
     tmp.needToShow = true;
     mCurveList.push_back(tmp);
@@ -307,7 +419,7 @@ void TrajectoryMap::initCurvePropertiesList()
     tmp.symbolSize = 14;
     tmp.symbol = Chart::NoSymbol;
     tmp.lineWidth = 1;
-    tmp.isDashLine = true;
+    tmp.isDashLine = false;
     tmp.needToDraw = true;
     tmp.needToShow = true;
     mCurveList.push_back(tmp);
@@ -318,7 +430,7 @@ void TrajectoryMap::initCurvePropertiesList()
     tmp.symbolSize = 14;
     tmp.symbol = Chart::NoSymbol;
     tmp.lineWidth = 1;
-    tmp.isDashLine = true;
+    tmp.isDashLine = false;
     tmp.needToDraw = true;
     tmp.needToShow = true;
     mCurveList.push_back(tmp);
@@ -329,7 +441,7 @@ void TrajectoryMap::initCurvePropertiesList()
     tmp.symbolSize = 14;
     tmp.symbol = Chart::NoSymbol;
     tmp.lineWidth = 1;
-    tmp.isDashLine = true;
+    tmp.isDashLine = false;
     tmp.needToDraw = true;
     tmp.needToShow = true;
     mCurveList.push_back(tmp);
@@ -340,7 +452,7 @@ void TrajectoryMap::initCurvePropertiesList()
     tmp.symbolSize = 14;
     tmp.symbol = Chart::NoSymbol;
     tmp.lineWidth = 1;
-    tmp.isDashLine = true;
+    tmp.isDashLine = false;
     tmp.needToDraw = true;
     tmp.needToShow = true;
     mCurveList.push_back(tmp);
@@ -351,7 +463,7 @@ void TrajectoryMap::initCurvePropertiesList()
     tmp.symbolSize = 14;
     tmp.symbol = Chart::NoSymbol;
     tmp.lineWidth = 1;
-    tmp.isDashLine = true;
+    tmp.isDashLine = false;
     tmp.needToDraw = true;
     tmp.needToShow = true;
     mCurveList.push_back(tmp);
@@ -362,7 +474,7 @@ void TrajectoryMap::initCurvePropertiesList()
     tmp.symbolSize = 14;
     tmp.symbol = Chart::NoSymbol;
     tmp.lineWidth = 1;
-    tmp.isDashLine = true;
+    tmp.isDashLine = false;
     tmp.needToDraw = true;
     tmp.needToShow = true;
     mCurveList.push_back(tmp);
@@ -631,6 +743,36 @@ void TrajectoryMap::drawFmsRz(double fmsRz)
     replot();
 }
 
+void TrajectoryMap::drawTmsTx(double tmsTx)
+{
+    mCurveList[TMS_TX_CURVE_ID].xSeries.push_back(mCurrentProcessTime);
+    mCurveList[TMS_TX_CURVE_ID].ySeries.push_back(tmsTx);
+    replot();
+}
+
+void TrajectoryMap::drawTmsTy(double tmsTy)
+{
+    mCurveList[TMS_TY_CURVE_ID].xSeries.push_back(mCurrentProcessTime);
+    mCurveList[TMS_TY_CURVE_ID].ySeries.push_back(tmsTy);
+    replot();
+}
+
+void TrajectoryMap::drawTmsRx(double tmsRx)
+{
+    mCurveList[TMS_RX_CURVE_ID].xSeries.push_back(mCurrentProcessTime);
+    mCurveList[TMS_RX_CURVE_ID].ySeries.push_back(tmsRx);
+    replot();
+}
+
+void TrajectoryMap::drawTmsRy(double tmsRy)
+{
+    mCurveList[TMS_RY_CURVE_ID].xSeries.push_back(mCurrentProcessTime);
+    mCurveList[TMS_RY_CURVE_ID].ySeries.push_back(tmsRy);
+    replot();
+}
+
+
+
 void TrajectoryMap::timerEvent(QTimerEvent *event)
 {
     if(event->timerId() == mProcessTimerId)
@@ -646,6 +788,22 @@ void TrajectoryMap::timerEvent(QTimerEvent *event)
         drawFmsRx(MainStore::getInstance()->fmsRxPos());
         drawFmsRy(MainStore::getInstance()->fmsRyPos());
         drawFmsRz(MainStore::getInstance()->fmsRzPos());
+        drawTmsTx(MainStore::getInstance()->tmsTxPos());
+        drawTmsTy(MainStore::getInstance()->tmsTyPos());
+        drawTmsRx(MainStore::getInstance()->tmsRxPos());
+        drawTmsRy(MainStore::getInstance()->tmsRyPos());
+
+        // test sin
+//        drawFmsTx(15 * sin(2 * PI * mCurrentProcessTime));
+//        drawFmsTy(15 * sin(2 * PI * mCurrentProcessTime + PI/2));
+//        drawFmsTz(15 * sin(2 * PI * mCurrentProcessTime + PI/3));
+//        drawFmsRx(15 * sin(2 * PI * mCurrentProcessTime + PI/4));
+//        drawFmsRy(15 * sin(2 * PI * mCurrentProcessTime + PI/5));
+//        drawFmsRz(15 * sin(2 * PI * mCurrentProcessTime + PI/6));
+//        drawTmsTx(0);
+//        drawTmsTy(0);
+//        drawTmsRx(0);
+//        drawTmsRy(0);
     }
 }
 

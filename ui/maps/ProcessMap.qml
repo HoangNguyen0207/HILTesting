@@ -91,6 +91,24 @@ Item {
             mapId.onResetMapTriggered()
             close()
         }
+        fmsShowBtn.onClicked:
+        {
+            mapId.onFmsTxShowFlagChanged()
+            mapId.onFmsTyShowFlagChanged()
+            mapId.onFmsTzShowFlagChanged()
+            mapId.onFmsRxShowFlagChanged()
+            mapId.onFmsRyShowFlagChanged()
+            mapId.onFmsRzShowFlagChanged()
+            close()
+        }
+        tmsShowBtn.onClicked:
+        {
+            mapId.onTmsTxShowFlagChanged()
+            mapId.onTmsTyShowFlagChanged()
+            mapId.onTmsRxShowFlagChanged()
+            mapId.onTmsRyShowFlagChanged()
+            close()
+        }
     }
 
     DistancePopup

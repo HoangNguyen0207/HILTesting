@@ -11,18 +11,22 @@ void MainStore::process(const QSharedPointer<Action> &action)
             setLaserTrackerDialogShowFlag(action->getPayload<bool>());
             break;
         }
+        case ActionType::PlotProcessFlagChanged:
+        {
+            setPlotProcessFlag(action->getPayload<bool>());
+        }
         default: break;
     }
 }
 
 QString MainStore::loadedProcessFilePath() const
 {
-    return mLoadedProcessFilePath;
+    return m_loadedProcessFilePath;
 }
 
 bool MainStore::laserTrackerDialogShowFlag() const
 {
-    return mLaserTrackerDialogShowFlag;
+    return m_laserTrackerDialogShowFlag;
 }
 
 bool MainStore::fmsEnableFlag() const
@@ -222,20 +226,20 @@ bool MainStore::plotProcessFlag() const
 
 void MainStore::setLoadedProcessFilePath(QString loadedProcessFilePath)
 {
-    if (mLoadedProcessFilePath == loadedProcessFilePath)
+    if (m_loadedProcessFilePath == loadedProcessFilePath)
         return;
 
-    mLoadedProcessFilePath = loadedProcessFilePath;
-    emit loadedProcessFilePathChanged(mLoadedProcessFilePath);
+    m_loadedProcessFilePath = loadedProcessFilePath;
+    emit loadedProcessFilePathChanged(m_loadedProcessFilePath);
 }
 
 void MainStore::setLaserTrackerDialogShowFlag(bool laserTrackerDialogShowFlag)
 {
-    if (mLaserTrackerDialogShowFlag == laserTrackerDialogShowFlag)
+    if (m_laserTrackerDialogShowFlag == laserTrackerDialogShowFlag)
         return;
 
-    mLaserTrackerDialogShowFlag = laserTrackerDialogShowFlag;
-    emit laserTrackerDialogShowFlagChanged(mLaserTrackerDialogShowFlag);
+    m_laserTrackerDialogShowFlag = laserTrackerDialogShowFlag;
+    emit laserTrackerDialogShowFlagChanged(m_laserTrackerDialogShowFlag);
 }
 
 void MainStore::setFmsEnableFlag(bool fmsEnableFlag)

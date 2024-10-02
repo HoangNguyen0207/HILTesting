@@ -251,3 +251,8 @@ void ActionProvider::laserDialogShowFlagChanged(const bool &flag)
 {
     Dispatcher::instance().dispatch(new Action(ActionType::LaserTrackerDialogShowFlagChanged,flag));
 }
+
+void ActionProvider::plotProcessFlagChanged(bool flag)
+{
+    Dispatcher::instance().dispatch(new Action(ActionType::PlotProcessFlagChanged,flag));
+}

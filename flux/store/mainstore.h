@@ -200,8 +200,9 @@ class MainStore final : public QObject, public Store
     private:
         explicit MainStore(QObject* parent = nullptr);
 
-        QString mLoadedProcessFilePath;
-        bool mLaserTrackerDialogShowFlag;
+        QString m_loadedProcessFilePath;
+        bool m_laserTrackerDialogShowFlag;
+
         bool m_fmsEnableFlag;
         bool m_fmsControlFlag;
         bool m_fmsHomingFlag;

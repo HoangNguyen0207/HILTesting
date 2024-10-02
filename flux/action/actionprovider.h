@@ -75,6 +75,9 @@ class ActionProvider : public QObject
         Q_INVOKABLE void laserInputTriggered(const QVariantMap& data);
         Q_INVOKABLE void laserDialogShowFlagChanged(const bool& flag);
 
+        // Process plot flag
+        Q_INVOKABLE void plotProcessFlagChanged(bool flag);
+
     signals:
 
     public slots:
