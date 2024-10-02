@@ -190,7 +190,6 @@
         <file>ui/maps/ProcessMap.qml</file>
         <file>ui/modules/StatusBar.qml</file>
         <file>ui/modules/ControlModule.qml</file>
-        <file>ui/maps/OptionPopup.qml</file>
         <file>ui/maps/DistancePopup.qml</file>
         <file>ui/dialogs/ConnectionDialog.qml</file>
         <file>ui/dialogs/ConnectionItem.qml</file>

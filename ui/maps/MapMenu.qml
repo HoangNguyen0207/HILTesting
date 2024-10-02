@@ -7,28 +7,63 @@ import "../singletons" as SGT
 import "../components" as CMN
 
 
-Popup {
+Menu {
     id: root
-    width: 160
-    height: 185
     modal: false
     padding: 0
     closePolicy: Popup.CloseOnReleaseOutside
+    property alias zoomAllAction: zoomAllActionId
+    property alias zoomHorizontalAction: zoomHorizontalActionId
+    property alias zoomVerticalAction: zoomVerticalActionId
+    property alias distanceAction: distanceActionId
+    property alias imageAction: imageActionId
+    property alias resetAction: resetActionId
+    property alias fmsShowAction: fmsShowActionId
+    property alias tmsShowAction: tmsShowActionId
 
-
-
-    background: Rectangle
+    Action
     {
-        id: recBkgId
-        color: SGT.Style.gray_20
-        anchors.fill: parent
-        radius: 0
+        id: zoomAllActionId
+        text: "Zoom all"
     }
-
+    Action
+    {
+        id: zoomHorizontalActionId
+        text: "Zoom horizontal"
+    }
+    Action
+    {
+        id: zoomVerticalActionId
+        text: "Zoom vertical"
+    }
+    Action
+    {
+        id: distanceActionId
+        text: "Distance"
+    }
+    Action
+    {
+        id: imageActionId
+        text: "Image"
+    }
+    Action
+    {
+        id: resetActionId
+        text: "Reset"
+    }
     Menu
     {
-
+        title: "Show"
+        Action
+        {
+            id: fmsShowActionId
+            text: "FMS"
+        }
+        Action
+        {
+            id: tmsShowActionId
+            text: "TMS"
+        }
     }
-
 
 }

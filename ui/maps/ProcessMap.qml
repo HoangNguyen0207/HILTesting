@@ -41,73 +41,12 @@ Item {
                 {
                     if(mouse.button === Qt.RightButton)
                     {
-                        optionPopupId.x = mouseX
-                        optionPopupId.y = mouseY
-                        optionPopupId.open()
+                        mapMenuId.x = mouseX
+                        mapMenuId.y = mouseY
+                        mapMenuId.open()
                     }
                 }
             }
-        }
-    }
-
-    OptionPopup
-    {
-        id: optionPopupId
-        zoomAllBtn.onClicked:
-        {
-            mapId.setZoomDirection(Chart.HorizontalVertical)
-            close()
-        }
-        zoomHorizontalBtn.onClicked:
-        {
-            mapId.setZoomDirection(Chart.Horizontal)
-            close()
-        }
-        zoomVerticalBtn.onClicked:
-        {
-            mapId.setZoomDirection(Chart.Vertical)
-            close()
-        }
-        distanceBtn.onClicked:
-        {
-            mapId.onDistanceCalcModeTriggered()
-            if(!distancePopupId.visible)
-            {
-                distancePopupId.open()
-            }else
-            {
-                distancePopupId.close()
-            }
-
-            close()
-        }
-        imageBtn.onClicked:
-        {
-            mapId.onCreateImageTriggered("save")
-            close()
-        }
-        resetBtn.onClicked:
-        {
-            mapId.onResetMapTriggered()
-            close()
-        }
-        fmsShowBtn.onClicked:
-        {
-            mapId.onFmsTxShowFlagChanged()
-            mapId.onFmsTyShowFlagChanged()
-            mapId.onFmsTzShowFlagChanged()
-            mapId.onFmsRxShowFlagChanged()
-            mapId.onFmsRyShowFlagChanged()
-            mapId.onFmsRzShowFlagChanged()
-            close()
-        }
-        tmsShowBtn.onClicked:
-        {
-            mapId.onTmsTxShowFlagChanged()
-            mapId.onTmsTyShowFlagChanged()
-            mapId.onTmsRxShowFlagChanged()
-            mapId.onTmsRyShowFlagChanged()
-            close()
         }
     }
 
@@ -118,5 +57,57 @@ Item {
         y: mapId.y + 15
         deltaXValue: "delta X = " + mapId.deltaX.toFixed(3)
         deltaYValue: "delta Y = " + mapId.deltaY.toFixed(3)
+    }
+
+    MapMenu
+    {
+        id: mapMenuId
+        zoomAllAction.onTriggered:
+        {
+            mapId.setZoomDirection(Chart.HorizontalVertical)
+        }
+        zoomHorizontalAction.onTriggered:
+        {
+            mapId.setZoomDirection(Chart.Horizontal)
+        }
+        zoomVerticalAction.onTriggered:
+        {
+            mapId.setZoomDirection(Chart.Vertical)
+        }
+        distanceAction.onTriggered:
+        {
+            mapId.onDistanceCalcModeTriggered()
+            if(!distancePopupId.visible)
+            {
+                distancePopupId.open()
+            }else
+            {
+                distancePopupId.close()
+            }
+        }
+        imageAction.onTriggered:
+        {
+            mapId.onCreateImageTriggered("save")
+        }
+        resetAction.onTriggered:
+        {
+            mapId.onResetMapTriggered()
+        }
+        fmsShowAction.onTriggered:
+        {
+            mapId.onFmsTxShowFlagChanged()
+            mapId.onFmsTyShowFlagChanged()
+            mapId.onFmsTzShowFlagChanged()
+            mapId.onFmsRxShowFlagChanged()
+            mapId.onFmsRyShowFlagChanged()
+            mapId.onFmsRzShowFlagChanged()
+        }
+        tmsShowAction.onTriggered:
+        {
+            mapId.onTmsTxShowFlagChanged()
+            mapId.onTmsTyShowFlagChanged()
+            mapId.onTmsRxShowFlagChanged()
+            mapId.onTmsRyShowFlagChanged()
+        }
     }
 }
