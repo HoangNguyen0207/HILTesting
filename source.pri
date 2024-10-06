@@ -24,8 +24,8 @@ SOURCES += \
         $$PWD/utils/bytebuffer.cpp \
         $$PWD/utils/configLoader/fileloader.cpp \
         $$PWD/utils/configLoader/systemconfigloader.cpp \
+        $$PWD/utils/plot/bodemap.cpp \
         $$PWD/utils/plot/gencolor.cpp \
-        $$PWD/utils/plot/outputchart.cpp \
         $$PWD/utils/plot/qmlchartviewer.cpp \
         $$PWD/utils/plot/trajectorymap.cpp \
         $$PWD/utils/processLoader/processloader.cpp \
@@ -55,9 +55,9 @@ HEADERS += \
     $$PWD/utils/calculatehelper/calculatehelper.h \
     $$PWD/utils/configLoader/fileloader.h \
     $$PWD/utils/configLoader/systemconfigloader.h \
+    $$PWD/utils/plot/bodemap.h \
     $$PWD/utils/plot/gencolor.h \
     $$PWD/utils/plot/graphdata.h \
-    $$PWD/utils/plot/outputchart.h \
     $$PWD/utils/plot/qmlchartviewer.h \
     $$PWD/utils/plot/trajectorymap.h \
     $$PWD/utils/processLoader/processloader.h

@@ -66,6 +66,9 @@ enum class ActionType
 
     // Plot process flag
     PlotProcessFlagChanged,
+
+    // Plot map mode
+    PlotMapModeChanged,
 };
 
 #endif

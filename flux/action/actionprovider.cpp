@@ -256,3 +256,8 @@ void ActionProvider::plotProcessFlagChanged(bool flag)
 {
     Dispatcher::instance().dispatch(new Action(ActionType::PlotProcessFlagChanged,flag));
 }
+
+void ActionProvider::plotMapModeChanged(int mode)
+{
+    Dispatcher::instance().dispatch(new Action(ActionType::PlotMapModeChanged,mode));
+}

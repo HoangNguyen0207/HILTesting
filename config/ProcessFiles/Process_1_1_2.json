@@ -10,9 +10,9 @@
         "fmsRzPos2": 20,
         "fmsTxPos1": -0.02,
         "fmsTxPos2": 0.02,
-		"fmsTyPos1": -0.02,
+        "fmsTyPos1": -0.02,
         "fmsTyPos2": 0.02,
-		"fmsTzPos1": -0.02,
+	"fmsTzPos1": -0.02,
         "fmsTzPos2": 0.02
     }
 }

@@ -10,7 +10,7 @@
         "fmsRzUpperLimitedPos": 25
     },
 	"spec": {
-		"fmsRxLowerLimitedPos": -25,
+	"fmsRxLowerLimitedPos": -25,
         "fmsRxUpperLimitedPos": 25,
         "fmsRyLowerLimitedPos": -25,
         "fmsRyUpperLimitedPos": 25,

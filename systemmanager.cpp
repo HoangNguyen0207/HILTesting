@@ -7,6 +7,7 @@
 #include "typedef/globalvar.h"
 #include "utils/plot/qmlchartviewer.h"
 #include "utils/plot/trajectorymap.h"
+#include "utils/plot/bodemap.h"
 
 SystemManager::~SystemManager()
 {
@@ -51,6 +52,7 @@ void SystemManager::registerMetaType()
 {
     qRegisterMetaType<QSharedPointer<Action>>("QSharedPointer<Action>");
     qmlRegisterType<TrajectoryMap>("Chart",1,0,"TrajectoryMap");
+    qmlRegisterType<BodeMap>("Chart",1,0,"BodeMap");
     qRegisterMetaType<QmlChartViewer::Direction>("Direction");
     qmlRegisterUncreatableMetaObject(QmlChartViewer::staticMetaObject,
                                      "Chart",

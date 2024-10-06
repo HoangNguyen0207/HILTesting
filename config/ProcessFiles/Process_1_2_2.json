@@ -4,17 +4,17 @@
     "param": {
         "fmsRxAmp": 25,
         "fmsRxFreq": 1,
-		"fmsRxMaxVelocity": 100,
+	"fmsRxMaxVelocity": 100,
         "fmsRyAmp": 25,
         "fmsRyFreq": 1,
-		"fmsRyMaxVelocity": 100,
+	"fmsRyMaxVelocity": 100,
         "fmsRzAmp": 25,
         "fmsRzFreq": 1,
-		"fmsRzMaxVelocity": 100
+	"fmsRzMaxVelocity": 100
     },
-	"spec": {
-		"fmsRxMaxVelocity": 100,
-		"fmsRyMaxVelocity": 100,
-		"fmsRzMaxVelocity": 100
-	}	
+    "spec": {
+	"fmsRxMaxVelocity": 100,
+	"fmsRyMaxVelocity": 100,
+	"fmsRzMaxVelocity": 100
+    }	
 }

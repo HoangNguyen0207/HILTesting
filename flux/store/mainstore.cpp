@@ -14,6 +14,12 @@ void MainStore::process(const QSharedPointer<Action> &action)
         case ActionType::PlotProcessFlagChanged:
         {
             setPlotProcessFlag(action->getPayload<bool>());
+            break;
+        }
+        case ActionType::PlotMapModeChanged:
+        {
+            setPlotMapMode(action->getPayload<int>());
+            break;
         }
         default: break;
     }
@@ -222,6 +228,11 @@ double MainStore::tmsRyAcc() const
 bool MainStore::plotProcessFlag() const
 {
     return m_plotProcessFlag;
+}
+
+int MainStore::plotMapMode() const
+{
+    return m_plotMapMode;
 }
 
 void MainStore::setLoadedProcessFilePath(QString loadedProcessFilePath)
@@ -591,6 +602,15 @@ void MainStore::setPlotProcessFlag(bool plotProcessFlag)
 
     m_plotProcessFlag = plotProcessFlag;
     emit plotProcessFlagChanged(m_plotProcessFlag);
+}
+
+void MainStore::setPlotMapMode(int plotMapMode)
+{
+    if (m_plotMapMode == plotMapMode)
+        return;
+
+    m_plotMapMode = plotMapMode;
+    emit plotMapModeChanged(m_plotMapMode);
 }
 
 MainStore::MainStore(QObject* parent) : QObject(parent)

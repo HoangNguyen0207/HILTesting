@@ -78,6 +78,9 @@ class ActionProvider : public QObject
         // Process plot flag
         Q_INVOKABLE void plotProcessFlagChanged(bool flag);
 
+        // Plot map mode
+        Q_INVOKABLE void plotMapModeChanged(int mode);
+
     signals:
 
     public slots:

@@ -52,6 +52,7 @@ class MainStore final : public QObject, public Store
 
         Q_PROPERTY(bool plotProcessFlag READ plotProcessFlag WRITE setPlotProcessFlag NOTIFY plotProcessFlagChanged)
 
+        Q_PROPERTY(int plotMapMode READ plotMapMode WRITE setPlotMapMode NOTIFY plotMapModeChanged)
 
     public:
         ~MainStore() override;
@@ -107,6 +108,8 @@ class MainStore final : public QObject, public Store
 
         bool plotProcessFlag() const;
 
+        int plotMapMode() const;
+
     public slots:
         void setLoadedProcessFilePath(QString loadedProcessFilePath);
         void setLaserTrackerDialogShowFlag(bool laserTrackerDialogShowFlag);
@@ -152,6 +155,8 @@ class MainStore final : public QObject, public Store
 
         void setPlotProcessFlag(bool plotProcessFlag);
 
+        void setPlotMapMode(int plotMapMode);
+
     signals:
         void loadedProcessFilePathChanged(QString loadedProcessFilePath);
         void laserTrackerDialogShowFlagChanged(bool laserTrackerDialogShowFlag);
@@ -196,6 +201,8 @@ class MainStore final : public QObject, public Store
         void tmsRyAccChanged(double tmsRyAcc);
 
         void plotProcessFlagChanged(bool plotProcessFlag);
+
+        void plotMapModeChanged(int plotMapMode);
 
     private:
         explicit MainStore(QObject* parent = nullptr);
@@ -244,5 +251,7 @@ class MainStore final : public QObject, public Store
         double m_tmsRyAcc;
 
         bool m_plotProcessFlag;
+
+        int m_plotMapMode{0};
 };
 

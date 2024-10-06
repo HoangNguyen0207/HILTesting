@@ -95,9 +95,9 @@ ApplicationWindow {
                     anchors.leftMargin: 5
                 }
             }
-            MAP.ProcessMap
+            StackLayout
             {
-                id: processMapId
+                id: stackMapId
                 anchors.top: deviceMonitorItemId.bottom
                 anchors.left: parent.left
                 anchors.right: parent.right
@@ -106,6 +106,17 @@ ApplicationWindow {
                 anchors.rightMargin: 10
                 anchors.bottom: parent.bottom
                 anchors.bottomMargin: 10
+                currentIndex: MainStore.plotMapMode
+                MAP.ProcessMap
+                {
+                    id: processMapId
+                    anchors.fill: parent
+                }
+                MAP.BodeMap
+                {
+                    id: bodeMapId
+                    anchors.fill: parent
+                }
             }
         }
 
