@@ -21,6 +21,158 @@ void MainStore::process(const QSharedPointer<Action> &action)
             setPlotMapMode(action->getPayload<int>());
             break;
         }
+        case ActionType::FMSTxPosChanged:
+        {
+            setFmsTxPos(action->getPayload<double>());
+            break;
+        }
+        case ActionType::FMSTyPosChanged:
+        {
+            setFmsTyPos(action->getPayload<double>());
+            break;
+        }
+        case ActionType::FMSTzPosChanged:
+        {
+            setFmsTzPos(action->getPayload<double>());
+            break;
+        }
+        case ActionType::FMSRxPosChanged:
+        {
+            setFmsRxPos(action->getPayload<double>());
+            break;
+        }
+        case ActionType::FMSRyPosChanged:
+        {
+            setFmsRyPos(action->getPayload<double>());
+            break;
+        }
+        case ActionType::FMSRzPosChanged:
+        {
+            setFmsRzPos(action->getPayload<double>());
+            break;
+        }
+        case ActionType::FMSTxVelChanged:
+        {
+            setFmsTxVel(action->getPayload<double>());
+            break;
+        }
+        case ActionType::FMSTyVelChanged:
+        {
+            setFmsTyVel(action->getPayload<double>());
+            break;
+        }
+        case ActionType::FMSTzVelChanged:
+        {
+            setFmsTzVel(action->getPayload<double>());
+            break;
+        }
+        case ActionType::FMSRxVelChanged:
+        {
+            setFmsRxVel(action->getPayload<double>());
+            break;
+        }
+        case ActionType::FMSRyVelChanged:
+        {
+            setFmsRyVel(action->getPayload<double>());
+            break;
+        }
+        case ActionType::FMSRzVelChanged:
+        {
+            setFmsRzVel(action->getPayload<double>());
+            break;
+        }
+        case ActionType::FMSTxAccChanged:
+        {
+            setFmsTxAcc(action->getPayload<double>());
+            break;
+        }
+        case ActionType::FMSTyAccChanged:
+        {
+            setFmsTyAcc(action->getPayload<double>());
+            break;
+        }
+        case ActionType::FMSTzAccChanged:
+        {
+            setFmsTzAcc(action->getPayload<double>());
+            break;
+        }
+        case ActionType::FMSRxAccChanged:
+        {
+            setFmsRxAcc(action->getPayload<double>());
+            break;
+        }
+        case ActionType::FMSRyAccChanged:
+        {
+            setFmsRyAcc(action->getPayload<double>());
+            break;
+        }
+        case ActionType::FMSRzAccChanged:
+        {
+            setFmsRzAcc(action->getPayload<double>());
+            break;
+        }
+
+        case ActionType::TMSTxPosChanged:
+        {
+            setTmsTxPos(action->getPayload<double>());
+            break;
+        }
+        case ActionType::TMSTyPosChanged:
+        {
+            setTmsTyPos(action->getPayload<double>());
+            break;
+        }
+        case ActionType::TMSRxPosChanged:
+        {
+            setTmsRxPos(action->getPayload<double>());
+            break;
+        }
+        case ActionType::TMSRyPosChanged:
+        {
+            setTmsRyPos(action->getPayload<double>());
+            break;
+        }
+        case ActionType::TMSTxVelChanged:
+        {
+            setTmsTxVel(action->getPayload<double>());
+            break;
+        }
+        case ActionType::TMSTyVelChanged:
+        {
+            setTmsTyVel(action->getPayload<double>());
+            break;
+        }
+        case ActionType::TMSRxVelChanged:
+        {
+            setTmsRxVel(action->getPayload<double>());
+            break;
+        }
+        case ActionType::TMSRyVelChanged:
+        {
+            setTmsRyVel(action->getPayload<double>());
+            break;
+        }
+        case ActionType::TMSTxAccChanged:
+        {
+            setTmsTxAcc(action->getPayload<double>());
+            break;
+        }
+        case ActionType::TMSTyAccChanged:
+        {
+            setTmsTyAcc(action->getPayload<double>());
+            break;
+        }
+        case ActionType::TMSRxAccChanged:
+        {
+            setTmsRxAcc(action->getPayload<double>());
+            break;
+        }
+        case ActionType::TMSRyAccChanged:
+        {
+            setTmsRyAcc(action->getPayload<double>());
+            break;
+        }
+
         default: break;
     }
 }

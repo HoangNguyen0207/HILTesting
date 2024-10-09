@@ -18,6 +18,7 @@ Menu {
     property alias distanceAction: distanceActionId
     property alias imageAction: imageActionId
     property alias resetAction: resetActionId
+    property alias whiteModeAction: whiteActionId
     property alias fmsShowAction: fmsShowActionId
     property alias tmsShowAction: tmsShowActionId
 
@@ -50,6 +51,11 @@ Menu {
     {
         id: resetActionId
         text: "Reset"
+    }
+    Action
+    {
+        id: whiteActionId
+        text: "WhiteMode"
     }
     Menu
     {

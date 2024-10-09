@@ -110,7 +110,22 @@ void TrajectoryMap::onResetMapTriggered()
         resizeXAxis(0,5);
         resizeYAxis(-30,30);
     }
-//    startProcessTimerPlot();
+    //    startProcessTimerPlot();
+}
+
+void TrajectoryMap::onWhiteBackgroundModeTriggered()
+{
+    if(!mWhiteModeFlag)
+    {
+        mWhiteModeFlag = true;
+        mBackgroundColor = ChartConstances::DEFAULT_PLOTAREA_WHITE_BACKGROUND;
+        replot();
+    }else
+    {
+        mWhiteModeFlag = false;
+        mBackgroundColor = ChartConstances::DEFAULT_PLOTAREA_BACKGROUND;
+        replot();
+    }
 }
 
 void TrajectoryMap::onFmsTxShowFlagChanged()
@@ -504,8 +519,8 @@ void TrajectoryMap::drawChart(QmlChartViewer *viewer)
     int plotAreaHeight = (c->getHeight() - topMargin - ChartConstances::DEFAULT_LICENSE_LABEL_MARGIN) - bottomMargin; // bottom margin
 
     c->setPlotArea(plotAreaX,plotAreaY,plotAreaWidth,plotAreaHeight,
-                   ChartConstances::DEFAULT_PLOTAREA_BACKGROUND,                              // background color
-                   ChartConstances::DEFAULT_PLOTAREA_SECOND_BACKGROUND,                       // second background color
+                   mBackgroundColor,                              // background color
+                   mBackgroundColor,                              // second background color
                    ChartConstances::DEFAULT_PLOTAREA_EDGE_COLOR,                              // edge color
                    ChartConstances::DEFAULT_GRID_COLOR,                                       // H-Grid color
                    ChartConstances::DEFAULT_GRID_COLOR);                                      // V-Grid color

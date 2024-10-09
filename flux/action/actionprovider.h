@@ -46,6 +46,25 @@ class ActionProvider : public QObject
         Q_INVOKABLE void fmsQueryLimitVelocity();
         Q_INVOKABLE void fmsQueryLimitAcc();
 
+        Q_INVOKABLE void fmsTxPosChanged(double value);
+        Q_INVOKABLE void fmsTyPosChanged(double value);
+        Q_INVOKABLE void fmsTzPosChanged(double value);
+        Q_INVOKABLE void fmsRxPosChanged(double value);
+        Q_INVOKABLE void fmsRyPosChanged(double value);
+        Q_INVOKABLE void fmsRzPosChanged(double value);
+        Q_INVOKABLE void fmsTxVelChanged(double value);
+        Q_INVOKABLE void fmsTyVelChanged(double value);
+        Q_INVOKABLE void fmsTzVelChanged(double value);
+        Q_INVOKABLE void fmsRxVelChanged(double value);
+        Q_INVOKABLE void fmsRyVelChanged(double value);
+        Q_INVOKABLE void fmsRzVelChanged(double value);
+        Q_INVOKABLE void fmsTxAccChanged(double value);
+        Q_INVOKABLE void fmsTyAccChanged(double value);
+        Q_INVOKABLE void fmsTzAccChanged(double value);
+        Q_INVOKABLE void fmsRxAccChanged(double value);
+        Q_INVOKABLE void fmsRyAccChanged(double value);
+        Q_INVOKABLE void fmsRzAccChanged(double value);
+
         // TMS action
         Q_INVOKABLE void tmsSendCommand(const QString& cmd);
         Q_INVOKABLE void tmsEnable();
@@ -70,6 +89,19 @@ class ActionProvider : public QObject
         Q_INVOKABLE void tmsQueryLimitWorkSpace();
         Q_INVOKABLE void tmsQueryLimitVelocity();
         Q_INVOKABLE void tmsQueryLimitAcc();
+
+        Q_INVOKABLE void tmsTxPosChanged(double value);
+        Q_INVOKABLE void tmsTyPosChanged(double value);
+        Q_INVOKABLE void tmsRxPosChanged(double value);
+        Q_INVOKABLE void tmsRyPosChanged(double value);
+        Q_INVOKABLE void tmsTxVelChanged(double value);
+        Q_INVOKABLE void tmsTyVelChanged(double value);
+        Q_INVOKABLE void tmsRxVelChanged(double value);
+        Q_INVOKABLE void tmsRyVelChanged(double value);
+        Q_INVOKABLE void tmsTxAccChanged(double value);
+        Q_INVOKABLE void tmsTyAccChanged(double value);
+        Q_INVOKABLE void tmsRxAccChanged(double value);
+        Q_INVOKABLE void tmsRyAccChanged(double value);
 
         // Laser tracker
         Q_INVOKABLE void laserInputTriggered(const QVariantMap& data);

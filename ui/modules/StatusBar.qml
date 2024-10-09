@@ -12,6 +12,40 @@ Item {
     height: 300
     width: 300
 
+    function getFmsColor()
+    {
+        if(MainStore.fmsEnableFlag && MainStore.fmsControlFlag && MainStore.fmsHomingFlag)
+        {
+            return SGT.Style.deviceHomingDoneColor
+        }else if(MainStore.fmsEnableFlag && MainStore.fmsControlFlag)
+        {
+            return SGT.Style.deviceControlOnColor
+        }else if(MainStore.fmsEnableFlag)
+        {
+            return SGT.Style.deviceEnableColor
+        }else
+        {
+            return SGT.Style.disconnectedStatusColor
+        }
+    }
+
+    function getTmsColor()
+    {
+        if(MainStore.tmsEnableFlag && MainStore.tmsControlFlag && MainStore.tmsHomingFlag)
+        {
+            return SGT.Style.deviceHomingDoneColor
+        }else if(MainStore.tmsEnableFlag && MainStore.tmsControlFlag)
+        {
+            return SGT.Style.deviceControlOnColor
+        }else if(MainStore.tmsEnableFlag)
+        {
+            return SGT.Style.deviceEnableColor
+        }else
+        {
+            return SGT.Style.disconnectedStatusColor
+        }
+    }
+
     Row
     {
         id: sttRowId
@@ -36,7 +70,7 @@ Item {
             background: Rectangle
             {
                 anchors.fill: parent
-                color: SGT.Style.disconnectedStatusColor
+                color: root.getFmsColor()
                 radius: 3
             }
         }
@@ -58,7 +92,7 @@ Item {
             background: Rectangle
             {
                 anchors.fill: parent
-                color: SGT.Style.disconnectedStatusColor
+                color: root.getTmsColor()
                 radius: 3
             }
         }

@@ -93,6 +93,10 @@ Item {
         {
             mapId.onResetMapTriggered()
         }
+        whiteModeAction.onTriggered:
+        {
+            mapId.onWhiteBackgroundModeTriggered()
+        }
         fmsShowAction.onTriggered:
         {
             mapId.onFmsTxShowFlagChanged()

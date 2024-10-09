@@ -5,6 +5,7 @@ import QtQuick.Controls.Styles 1.4
 import QtQuick.Controls.Material 2.12
 import "../singletons" as SGT
 import "../components" as CMN
+import Flux 1.0
 
 Item {
     id: root
@@ -64,7 +65,7 @@ Item {
                 height: parent.height/3 - 3
                 name: "Tx Pos"
                 unit: "m"
-                value: "0"
+                value: MainStore.fmsTxPos
                 hPadding: 5
             }
             CMN.MaterialValueDisplayCompact
@@ -77,7 +78,7 @@ Item {
                 height: parent.height/3 - 3
                 name: "Tx Vel"
                 unit: "m/s"
-                value: "0"
+                value: MainStore.fmsTxVel
                 hPadding: 5
             }
             CMN.MaterialValueDisplayCompact
@@ -90,7 +91,7 @@ Item {
                 anchors.topMargin: 5
                 name: "Tx Acc"
                 unit: "m/s2"
-                value: "0"
+                value: MainStore.fmsTxAcc
                 hPadding: 5
             }
         }
@@ -113,7 +114,7 @@ Item {
                 height: parent.height/3 - 3
                 name: "Ty Pos"
                 unit: "m"
-                value: "0"
+                value: MainStore.fmsTyPos
                 hPadding: 5
             }
             CMN.MaterialValueDisplayCompact
@@ -139,7 +140,7 @@ Item {
                 anchors.topMargin: 5
                 name: "Ty Acc"
                 unit: "m/s2"
-                value: "0"
+                value: MainStore.fmsTyAcc
                 hPadding: 5
             }
         }
@@ -162,7 +163,7 @@ Item {
                 height: parent.height/3 - 3
                 name: "Tz Pos"
                 unit: "m"
-                value: "0"
+                value: MainStore.fmsTzPos
                 hPadding: 5
             }
             CMN.MaterialValueDisplayCompact
@@ -175,7 +176,7 @@ Item {
                 height: parent.height/3 - 3
                 name: "Tz Vel"
                 unit: "m/s"
-                value: "0"
+                value: MainStore.fmsTzVel
                 hPadding: 5
             }
             CMN.MaterialValueDisplayCompact
@@ -188,7 +189,7 @@ Item {
                 anchors.topMargin: 5
                 name: "Tz Acc"
                 unit: "m/s2"
-                value: "0"
+                value: MainStore.fmsTzAcc
                 hPadding: 5
             }
         }
@@ -211,7 +212,7 @@ Item {
                 height: parent.height/3 - 3
                 name: "Rx Pos"
                 unit: "deg"
-                value: "0"
+                value: MainStore.fmsRxPos
                 hPadding: 5
             }
             CMN.MaterialValueDisplayCompact
@@ -224,7 +225,7 @@ Item {
                 height: parent.height/3 - 3
                 name: "Rx Vel"
                 unit: "deg/s"
-                value: "0"
+                value: MainStore.fmsRxVel
                 hPadding: 5
             }
             CMN.MaterialValueDisplayCompact
@@ -237,7 +238,7 @@ Item {
                 anchors.topMargin: 5
                 name: "Rx Acc"
                 unit: "deg/s2"
-                value: "0"
+                value: MainStore.fmsRxAcc
                 hPadding: 5
             }
         }
@@ -260,7 +261,7 @@ Item {
                 height: parent.height/3 - 3
                 name: "Ry Pos"
                 unit: "deg"
-                value: "0"
+                value: MainStore.fmsRyPos
                 hPadding: 5
             }
             CMN.MaterialValueDisplayCompact
@@ -273,7 +274,7 @@ Item {
                 height: parent.height/3 - 3
                 name: "Ry Vel"
                 unit: "deg/s"
-                value: "0"
+                value: MainStore.fmsRyVel
                 hPadding: 5
             }
             CMN.MaterialValueDisplayCompact
@@ -286,7 +287,7 @@ Item {
                 anchors.topMargin: 5
                 name: "Ry Acc"
                 unit: "deg/s2"
-                value: "0"
+                value: MainStore.fmsRyAcc
                 hPadding: 5
             }
         }
@@ -310,7 +311,7 @@ Item {
                 height: parent.height/3 - 3
                 name: "Rz Pos"
                 unit: "deg"
-                value: "0"
+                value: MainStore.fmsRzPos
                 hPadding: 5
             }
             CMN.MaterialValueDisplayCompact
@@ -323,7 +324,7 @@ Item {
                 height: parent.height/3 - 3
                 name: "Rz Vel"
                 unit: "deg/s"
-                value: "0"
+                value: MainStore.fmsRzVel
                 hPadding: 5
             }
             CMN.MaterialValueDisplayCompact
@@ -336,7 +337,7 @@ Item {
                 anchors.topMargin: 5
                 name: "Rz Acc"
                 unit: "deg/s2"
-                value: "0"
+                value: MainStore.fmsRzAcc
                 hPadding: 5
             }
         }

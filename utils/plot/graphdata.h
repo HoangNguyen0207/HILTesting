@@ -44,6 +44,7 @@ class ChartConstances
         static constexpr int DEFAULT_XY_CHART_BACKGROUND        = 0x2d2d2d/*0x1e1e1e*/;
         static constexpr int DEFAULT_PLOTAREA_BACKGROUND        = 0x001a33/*0x000d1a*//*0x212121*/;
         static constexpr int DEFAULT_PLOTAREA_SECOND_BACKGROUND = 0x001a33/*0x000d1a*//*0x232323*/;
+        static constexpr int DEFAULT_PLOTAREA_WHITE_BACKGROUND = 0xFFFFFF;
         static constexpr int DEFAULT_GRID_COLOR   = 0x2f2f2f;
         static constexpr int DEFAULT_H_GRID_COLOR   = 0x2f2f2f;
         static constexpr int DEFAULT_V_GRID_COLOR   = 0x2f2f2f;

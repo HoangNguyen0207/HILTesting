@@ -35,6 +35,9 @@ QtObject
     readonly property color connectedStatusColor: "#005ce6"
     readonly property color disconnectedStatusColor: "gray"
     readonly property color buttonBackgroundColor: "#004280"
+    readonly property color deviceEnableColor: "#FFC500"
+    readonly property color deviceControlOnColor: "#0052cc"
+    readonly property color deviceHomingDoneColor: "#00CC00"
 
     readonly property color gray_10: "#E6E6E5"
     readonly property color gray_15: "#DAD9D8"

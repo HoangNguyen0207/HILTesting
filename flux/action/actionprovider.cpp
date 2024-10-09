@@ -126,6 +126,96 @@ void ActionProvider::fmsQueryLimitAcc()
     Dispatcher::instance().dispatch(new Action(ActionType::FMSQueryLimitAcc));
 }
 
+void ActionProvider::fmsTxPosChanged(double value)
+{
+    Dispatcher::instance().dispatch(new Action(ActionType::FMSTxPosChanged,value));
+}
+
+void ActionProvider::fmsTyPosChanged(double value)
+{
+    Dispatcher::instance().dispatch(new Action(ActionType::FMSTyPosChanged,value));
+}
+
+void ActionProvider::fmsTzPosChanged(double value)
+{
+    Dispatcher::instance().dispatch(new Action(ActionType::FMSTzPosChanged,value));
+}
+
+void ActionProvider::fmsRxPosChanged(double value)
+{
+    Dispatcher::instance().dispatch(new Action(ActionType::FMSRxPosChanged,value));
+}
+
+void ActionProvider::fmsRyPosChanged(double value)
+{
+    Dispatcher::instance().dispatch(new Action(ActionType::FMSRyPosChanged,value));
+}
+
+void ActionProvider::fmsRzPosChanged(double value)
+{
+    Dispatcher::instance().dispatch(new Action(ActionType::FMSRzPosChanged,value));
+}
+
+void ActionProvider::fmsTxVelChanged(double value)
+{
+    Dispatcher::instance().dispatch(new Action(ActionType::FMSTxVelChanged,value));
+}
+
+void ActionProvider::fmsTyVelChanged(double value)
+{
+    Dispatcher::instance().dispatch(new Action(ActionType::FMSTyVelChanged,value));
+}
+
+void ActionProvider::fmsTzVelChanged(double value)
+{
+    Dispatcher::instance().dispatch(new Action(ActionType::FMSTzVelChanged,value));
+}
+
+void ActionProvider::fmsRxVelChanged(double value)
+{
+    Dispatcher::instance().dispatch(new Action(ActionType::FMSRxVelChanged,value));
+}
+
+void ActionProvider::fmsRyVelChanged(double value)
+{
+    Dispatcher::instance().dispatch(new Action(ActionType::FMSRyVelChanged,value));
+}
+
+void ActionProvider::fmsRzVelChanged(double value)
+{
+    Dispatcher::instance().dispatch(new Action(ActionType::FMSRzVelChanged,value));
+}
+
+void ActionProvider::fmsTxAccChanged(double value)
+{
+    Dispatcher::instance().dispatch(new Action(ActionType::FMSTxAccChanged,value));
+}
+
+void ActionProvider::fmsTyAccChanged(double value)
+{
+    Dispatcher::instance().dispatch(new Action(ActionType::FMSTyAccChanged,value));
+}
+
+void ActionProvider::fmsTzAccChanged(double value)
+{
+    Dispatcher::instance().dispatch(new Action(ActionType::FMSTzAccChanged,value));
+}
+
+void ActionProvider::fmsRxAccChanged(double value)
+{
+    Dispatcher::instance().dispatch(new Action(ActionType::FMSRxAccChanged,value));
+}
+
+void ActionProvider::fmsRyAccChanged(double value)
+{
+    Dispatcher::instance().dispatch(new Action(ActionType::FMSRyAccChanged,value));
+}
+
+void ActionProvider::fmsRzAccChanged(double value)
+{
+    Dispatcher::instance().dispatch(new Action(ActionType::FMSRzAccChanged,value));
+}
+
 //-----------------------------------------------------------------------------------
 void ActionProvider::tmsSendCommand(const QString &cmd)
 {
@@ -240,6 +330,66 @@ void ActionProvider::tmsQueryLimitVelocity()
 void ActionProvider::tmsQueryLimitAcc()
 {
     Dispatcher::instance().dispatch(new Action(ActionType::TMSQueryLimitAcc));
+}
+
+void ActionProvider::tmsTxPosChanged(double value)
+{
+    Dispatcher::instance().dispatch(new Action(ActionType::TMSTxPosChanged,value));
+}
+
+void ActionProvider::tmsTyPosChanged(double value)
+{
+    Dispatcher::instance().dispatch(new Action(ActionType::TMSTyPosChanged,value));
+}
+
+void ActionProvider::tmsRxPosChanged(double value)
+{
+    Dispatcher::instance().dispatch(new Action(ActionType::TMSRxPosChanged,value));
+}
+
+void ActionProvider::tmsRyPosChanged(double value)
+{
+    Dispatcher::instance().dispatch(new Action(ActionType::TMSRyPosChanged,value));
+}
+
+void ActionProvider::tmsTxVelChanged(double value)
+{
+    Dispatcher::instance().dispatch(new Action(ActionType::TMSTxVelChanged,value));
+}
+
+void ActionProvider::tmsTyVelChanged(double value)
+{
+    Dispatcher::instance().dispatch(new Action(ActionType::TMSTyVelChanged,value));
+}
+
+void ActionProvider::tmsRxVelChanged(double value)
+{
+    Dispatcher::instance().dispatch(new Action(ActionType::TMSRxVelChanged,value));
+}
+
+void ActionProvider::tmsRyVelChanged(double value)
+{
+    Dispatcher::instance().dispatch(new Action(ActionType::TMSRyVelChanged,value));
+}
+
+void ActionProvider::tmsTxAccChanged(double value)
+{
+    Dispatcher::instance().dispatch(new Action(ActionType::TMSTxAccChanged,value));
+}
+
+void ActionProvider::tmsTyAccChanged(double value)
+{
+    Dispatcher::instance().dispatch(new Action(ActionType::TMSTyAccChanged,value));
+}
+
+void ActionProvider::tmsRxAccChanged(double value)
+{
+    Dispatcher::instance().dispatch(new Action(ActionType::TMSRxAccChanged,value));
+}
+
+void ActionProvider::tmsRyAccChanged(double value)
+{
+    Dispatcher::instance().dispatch(new Action(ActionType::TMSRyAccChanged,value));
 }
 
 void ActionProvider::laserInputTriggered(const QVariantMap &data)

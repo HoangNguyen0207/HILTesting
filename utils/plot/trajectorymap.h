@@ -21,6 +21,7 @@ class TrajectoryMap : public QQuickPaintedItem
         Q_PROPERTY(double deltaX READ deltaX WRITE setDeltaX NOTIFY deltaXChanged)
         Q_PROPERTY(double deltaY READ deltaY WRITE setDeltaY NOTIFY deltaYChanged)
         constexpr static int DISTANCE_CURVE_ID = 0;
+
         constexpr static int FMS_TX_CURVE_ID = 1;
         constexpr static int FMS_TY_CURVE_ID = 2;
         constexpr static int FMS_TZ_CURVE_ID = 3;
@@ -45,6 +46,7 @@ class TrajectoryMap : public QQuickPaintedItem
         Q_INVOKABLE void onDistanceCalcModeTriggered();
         Q_INVOKABLE QString onCreateImageTriggered(const QString& imageName);
         Q_INVOKABLE void onResetMapTriggered();
+        Q_INVOKABLE void onWhiteBackgroundModeTriggered();
 
         // Plot process device
         Q_INVOKABLE void startProcessTimerPlot();
@@ -130,6 +132,9 @@ class TrajectoryMap : public QQuickPaintedItem
         // Timer process
         int mProcessTimerId {0};
         double mCurrentProcessTime {0};
+        // Background color
+        int mBackgroundColor = ChartConstances::DEFAULT_PLOTAREA_BACKGROUND;
+        bool mWhiteModeFlag {false};
 
 };
 
